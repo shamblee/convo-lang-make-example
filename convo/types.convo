@@ -1,0 +1,10 @@
+> define
+Page=struct(
+    name:string
+    # Short description of the page
+    description:string
+
+    # The path of the within the pages directory of a NextJS app.
+    # Do not include an extension and use the square bracket pairs for route parameters.
+    path:string
+)

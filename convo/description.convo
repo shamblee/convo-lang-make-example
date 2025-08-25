@@ -1,0 +1,20 @@
+@import ./vars.convo
+
+> user
+Create a detailed description for an an event registration web app called "{{appName}}".
+
+Here is a short description of the app:
+<short-description>
+{{shortDescription}}
+</short-description>
+
+There will be 2 pages:
+- index: The landing page with a hero section that features the next upcoming event and a grid layout listing all upcoming events.
+- create-event: A page to create a event
+
+App theme: {{appTheme}}
+
+Include a list of features.
+- List of features
+- Short description of each page
+- Description of a theme for the app tailwinds

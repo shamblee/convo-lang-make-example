@@ -1,0 +1,64 @@
+@import std://make.convo
+@import ./convo/types.convo
+
+
+> app beach-rescue
+port: 3000
+dir: '.'
+httpRoot: 'pages'
+
+
+// Marks the first build stage where documentation is generated
+> stage documentation
+
+// Generates a detailed description of the app based vars in the convo/vars.convo file
+> target
+in: 'convo/description.convo'
+out: 'docs/description.md'
+
+
+// Generates a pages.json file with a list of pages and routes.
+// The `Page` struct defines schema of the json values to be generated
+> target
+in: 'docs/description.md'
+out: 'docs/pages.json'
+model: 'gpt-5'
+outListType: Page
+---
+Generate a list of pages.
+Include:
+- landing page (index)
+- event creation page
+
+DO NOT include any other pages
+---
+
+
+// Generates a detailed description for each page in the pages.json file
+> target
+context: 'docs/description.md'
+inputTag: 'page'
+inList: 'docs/pages.json'
+outNameProp: 'path'
+out: 'docs/pages/*.md'
+---
+Generate a detailed description of the page in markdown format.
+Include information about layout and functionality.
+---
+
+
+
+// Marks the second build stage where ui files are generated
+// The ui stage will wait for all targets of the documentation stage to be generated
+> stage ui
+review: true
+context: array('docs/description.md' 'Agents.md')
+
+// Generates a .tsx page for each generated page description
+> target
+in: 'docs/pages/**.md'
+out: 'pages/*.tsx'
+model: 'gpt-5'
+---
+Create a next JS page based on context.
+---
