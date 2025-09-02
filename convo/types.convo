@@ -1,10 +1,10 @@
 > define
-Page=struct(
+Screen=struct(
     name:string
-    # Short description of the page
+    # Short description of the screen
     description:string
 
-    # The path of the within the pages directory of a NextJS app.
+    # The path of the screen within the pages directory of a NextJS app.
     # Do not include an extension and use the square bracket pairs for route parameters.
     path:string
 )

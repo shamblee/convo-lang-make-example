@@ -1,20 +1,44 @@
 @import ./vars.convo
 
-> user
-Create a detailed description for an an event registration web app called "{{appName}}".
+> system
 
-Here is a short description of the app:
-<short-description>
-{{shortDescription}}
-</short-description>
+# {{gameName}}
+{{gameName}} is a parity of Pokemon where user trade cards related to plumbing and fix plumbing
+emergencies in poke-battle like showdowns.
 
-There will be 2 pages:
-- index: The landing page with a hero section that features the next upcoming event and a grid layout listing all upcoming events.
-- create-event: A page to create a event
 
-App theme: {{appTheme}}
+## Game play elements
 
-Include a list of features.
-- List of features
-- Short description of each page
-- Description of a theme for the app tailwinds
+### Plumbing Emergencies
+The player has to fix plumbing emergencies using their cards. Before responding to an emergency the
+player will select one of their pre-built decks of cards. The player is awarded coins after
+fixing the emergency based on how fast they fixed the emergency.
+
+### Card Trading
+The player can trade and buy cards from the card shop
+
+
+
+## Screens
+
+### Dashboard
+The player can see the following
+- General player stats
+- total card count
+- top 10 cards
+- a link to a card list view
+- a list of all their decks. The items in the list should have options for renaming and deleting
+- A button to create a new deck
+
+### Card List
+A list of all the cards the player owns
+
+### Deck
+A view of a deck where they player can add and remove cards from a deck and give the deck a name
+
+### Card Shop
+The player can trade cards or buy cards using coins
+
+### Emergency
+The emergency view is where the player will use their cards to fix plumbing emergencies and should
+resemble the battle screen of a Pokemon game.

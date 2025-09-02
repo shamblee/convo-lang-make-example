@@ -1,8 +1,9 @@
 @import std://make.convo
 @import ./convo/types.convo
+@import ./convo/vars.convo
 
 
-> app beach-rescue
+> app pocket-plumber
 port: 3000
 dir: '.'
 httpRoot: 'pages'
@@ -10,41 +11,50 @@ httpRoot: 'pages'
 
 // Marks the first build stage where documentation is generated
 > stage documentation
+model: 'gpt-4.1'
 
-// Generates a detailed description of the app based vars in the convo/vars.convo file
+
 > target
-in: 'convo/description.convo'
-out: 'docs/description.md'
+in: 'convo/game-description.convo'
+out: 'docs/app-description.md'
+===
+Generate a detailed description of the {{gameName}} game and include the following:
+- List of features
+- Short description of each screen
+===
 
-
-// Generates a pages.json file with a list of pages and routes.
-// The `Page` struct defines schema of the json values to be generated
 > target
-in: 'docs/description.md'
-out: 'docs/pages.json'
-model: 'gpt-5'
-outListType: Page
----
-Generate a list of pages.
-Include:
-- landing page (index)
-- event creation page
+in: 'convo/game-description.convo'
+out: 'docs/theme.md'
+===
+Generate a detailed description of a theme for the {{gameName}} game using tailwinds utility classes.
 
-DO NOT include any other pages
----
+General Theme: {{gameTheme}}
+===
 
 
-// Generates a detailed description for each page in the pages.json file
+// Generates a screens.json file with a list of screens and routes.
+// The `Screen` struct defines schema of the json values to be generated
 > target
-context: 'docs/description.md'
-inputTag: 'page'
-inList: 'docs/pages.json'
+in: 'docs/app-description.md'
+out: 'docs/screens.json'
+outListType: Screen
+===
+Generate a list of screens based on the Screens section
+===
+
+
+// Generates a detailed description for each screen in the screens.json file
+> target
+context: array( 'docs/app-description.md' 'docs/theme.md' )
+inputTag: 'screen'
+inList: 'docs/screens.json'
 outNameProp: 'path'
-out: 'docs/pages/*.md'
----
-Generate a detailed description of the page in markdown format.
+out: 'docs/screens/*.md'
+===
+Generate a detailed description of the screen in markdown format.
 Include information about layout and functionality.
----
+===
 
 
 
@@ -52,13 +62,13 @@ Include information about layout and functionality.
 // The ui stage will wait for all targets of the documentation stage to be generated
 > stage ui
 review: true
-context: array('docs/description.md' 'Agents.md')
+context: array('docs/app-description.md' 'docs/theme.md' 'Agents.md')
 
 // Generates a .tsx page for each generated page description
 > target
-in: 'docs/pages/**.md'
+in: 'docs/screens/**.md'
 out: 'pages/*.tsx'
 model: 'gpt-5'
----
+===
 Create a next JS page based on context.
----
+===
