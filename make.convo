@@ -10,12 +10,12 @@ httpRoot: 'pages'
 
 
 // Marks the first build stage where documentation is generated
-> stage documentation
+> stage docs-assets
 model: 'gpt-4.1'
 
 
 > target
-in: 'convo/game-description.convo'
+in: 'convo/description.convo'
 out: 'docs/app-description.md'
 ===
 Generate a detailed description of the {{gameName}} game and include the following:
@@ -24,7 +24,7 @@ Generate a detailed description of the {{gameName}} game and include the followi
 ===
 
 > target
-in: 'convo/game-description.convo'
+in: 'convo/description.convo'
 out: 'docs/theme.md'
 ===
 Generate a detailed description of a theme for the {{gameName}} game using tailwinds utility classes.
