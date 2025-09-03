@@ -106,6 +106,7 @@ The background of the image should be black.
 // The ui stage will wait for all targets of the documentation stage to be generated
 > stage ui
 review: true
+model: 'gpt-5'
 context: array(
     {path:'docs/app-description.md' tag:'app-description'}
     {path:'docs/theme.md' tag:'theme'}
@@ -115,14 +116,26 @@ context: array(
     'Agents.md'
 )
 
+> target layout
+out: 'components/Layout.tsx'
+appPath: '/'
+===
+Generate a layout component for the app. The layout should include the following:
+
+- Navigation bar at the top of the screen
+- Number of coins the player has
+- A single `children` prop that will contain page content. Do not place the children in a container column, pages will define their open container if needed.
+===
+
 // Generates a .tsx page for each generated page description
 > target
 in: 'docs/screens/**.md'
 out: 'pages/*.tsx'
-model: 'gpt-5'
+deps: 'layout'
 ===
 Create a next JS page based on context.
 You can use package defined in the package-json tag.
 Card images are stored in the public/cards directory and can be accessed using a http path of "/cards/{baseFilename}.png"
+Do not include a navigation bar, one is included in the layout wrapper of the game.
 ===
 
