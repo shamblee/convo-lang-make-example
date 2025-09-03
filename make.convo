@@ -57,6 +57,27 @@ Include information about layout and functionality.
 ===
 
 
+> target
+context: 'docs/app-description.md'
+out: 'docs/cards.json'
+outListType: Card
+===
+Generate a list of cards. The list should contain 30 or more cards
+===
+
+> target
+model: 'open-router/google/gemini-2.5-flash-image-preview'
+context: array( 'docs/app-description.md' )
+inputTag: 'card'
+inList: 'docs/cards.json'
+outNameProp: 'baseFilename'
+out: 'public/cards/*.png'
+===
+Generate a 2D image of the cards.
+The card should cover the entire image.
+The background of the image should be black
+===
+
 
 // Marks the second build stage where ui files are generated
 // The ui stage will wait for all targets of the documentation stage to be generated
@@ -66,6 +87,7 @@ context: array(
     {path:'docs/app-description.md' tag:'app-description'}
     {path:'docs/theme.md' tag:'theme'}
     {path:'package.json' tag:'package-json'}
+    {path:'docs/cards.json' tag:'cards', prefix:'Below are all the cards in the game'}
     {path:'docs/screens.json' tag:'pages', prefix:'Below is a list of all pages in the app:'}
     'Agents.md'
 )
@@ -76,5 +98,7 @@ in: 'docs/screens/**.md'
 out: 'pages/*.tsx'
 model: 'gpt-5'
 ===
-Create a next JS page based on context. You can use package defined in the package-json tag.
+Create a next JS page based on context.
+You can use package defined in the package-json tag.
+Card images are stored in the public/cards directory and can be accessed using a http path of "/cards/{baseFilename}.png"
 ===
