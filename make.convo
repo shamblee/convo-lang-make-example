@@ -1,143 +1,25 @@
 @import std://make.convo
-@import ./inputs/types.convo
-@import ./inputs/vars.convo
 
-
-> app pocket-plumber
-port: 3000
-dir: '.'
-httpRoot: 'pages'
-
-
-// Marks the first build stage where documentation is generated
-> stage docs-assets
-model: 'gpt-4.1'
-
-
-> target
-in: 'inputs/description.convo'
-out: 'docs/app-description.md'
-===
-Generate a detailed description of the {{gameName}} game and include the following:
-- List of features
-- Short description of each screen
-===
-
-> target
-in: 'inputs/description.convo'
-out: 'docs/theme.md'
-===
-Generate a detailed description of a theme for the {{gameName}} game using tailwinds utility classes.
-
-General Theme: {{gameTheme}}
-===
-
-
-// Generates a screens.json file with a list of screens and routes.
-// The `Screen` struct defines schema of the json values to be generated
-> target
-in: 'docs/app-description.md'
-out: 'docs/screens.json'
-outListType: Screen
-===
-Generate a list of screens based on the Screens section
-===
-
-
-// Generates a detailed description for each screen in the screens.json file
-> target
-context: array( 'docs/app-description.md' 'docs/theme.md' )
-inputTag: 'screen'
-inList: 'docs/screens.json'
-outNameProp: 'path'
-out: 'docs/screens/*.md'
-===
-Generate a detailed description of the screen in markdown format.
-Include information about layout and functionality.
-===
-
-
-
-> target
-context: 'docs/app-description.md'
-out: 'docs/cards.json'
-outListType: Card
-===
-Generate a list of cards. The list should contain 30 or more cards
-===
-
-> target
-model: 'open-router/google/gemini-2.5-flash-image-preview'
-context: array(
-    'docs/app-description.md'
-    {path:'docs/cards.json' tag:'cards'}
-)
-out: 'docs/card-template.png'
-===
-Generate a 2D image of a template for the cards.
-The main of the image of the card should be blank filled with black.
-The card template should cover the entire image.
-The background of the image should be black
-===
-
-> target
-model: 'open-router/google/gemini-2.5-flash-image-preview'
-context: array(
-    'docs/app-description.md'
-    {
-        path:'docs/card-template.png'
-        tag:'card-template'
-        prefix:'Use the following image as a template'
-        tags: {vision:true}
-    }
-)
-inputTag: 'card'
-inList: 'docs/cards.json'
-outNameProp: 'baseFilename'
-out: 'public/cards/*.png'
-===
-Generate a 2D image of the cards.
-The card should cover the entire image.
-The background of the image should be black.
-===
-
-
-// Marks the second build stage where ui files are generated
-// The ui stage will wait for all targets of the documentation stage to be generated
-> stage ui
-review: true
-model: 'gpt-5'
-context: array(
-    {path:'docs/app-description.md' tag:'app-description'}
-    {path:'docs/theme.md' tag:'theme'}
-    {path:'package.json' tag:'package-json'}
-    {path:'docs/cards.json' tag:'cards', prefix:'Below are all the cards in the game'}
-    {path:'docs/screens.json' tag:'pages', prefix:'Below is a list of all pages in the app:'}
-    'Agents.md'
+> define
+Wonder = struct(
+    name: string
+    location: string
+    # A URL friendly filename without an extension
+    filename: string
+    # The problem that needs to be solved
+    problem: string
+    visualDescription: string
 )
 
-> target layout
-out: 'components/Layout.tsx'
-component: true
-appPath: '/'
-===
-Generate a layout component for the app. The layout should include the following:
-
-- Navigation bar at the top of the screen
-- Number of coins the player has
-- A single `children` prop that will contain page content. Do not place the children in a container column, pages will define their open container if needed.
-- Export the Layout as a named export do not export as default - `export function Layout`
-===
-
-// Generates a .tsx page for each generated page description
 > target
-in: 'docs/screens/**.md'
-out: 'pages/*.tsx'
-deps: 'layout'
+outListType: Wonder
+context: 'app.md'
+out: 'wonders.json'
 ===
-Create a next JS page based on context.
-You can use package defined in the package-json tag.
-Card images are stored in the public/cards directory and can be accessed using a http path of "/cards/{baseFilename}.png"
-Do not include a navigation bar, one is included in the layout wrapper of the game.
+Generate a list of 5 or more natural wonders of Earth that face major environmental issues
 ===
 
+> target
+inList: 'wonders.json'
+out: 'public/images/*.png'
+outNameProp: 'filename'
