@@ -1,6 +1,6 @@
 @import std://make.convo
-@import ./convo/types.convo
-@import ./convo/vars.convo
+@import ./inputs/types.convo
+@import ./inputs/vars.convo
 
 
 > app pocket-plumber
@@ -15,7 +15,7 @@ model: 'gpt-4.1'
 
 
 > target
-in: 'convo/description.convo'
+in: 'inputs/description.convo'
 out: 'docs/app-description.md'
 ===
 Generate a detailed description of the {{gameName}} game and include the following:
@@ -24,7 +24,7 @@ Generate a detailed description of the {{gameName}} game and include the followi
 ===
 
 > target
-in: 'convo/description.convo'
+in: 'inputs/description.convo'
 out: 'docs/theme.md'
 ===
 Generate a detailed description of a theme for the {{gameName}} game using tailwinds utility classes.
@@ -57,6 +57,7 @@ Include information about layout and functionality.
 ===
 
 
+
 > target
 context: 'docs/app-description.md'
 out: 'docs/cards.json'
@@ -67,7 +68,29 @@ Generate a list of cards. The list should contain 30 or more cards
 
 > target
 model: 'open-router/google/gemini-2.5-flash-image-preview'
-context: array( 'docs/app-description.md' )
+context: array(
+    'docs/app-description.md'
+    {path:'docs/cards.json' tag:'cards'}
+)
+out: 'docs/card-template.png'
+===
+Generate a 2D image of a template for the cards.
+The main of the image of the card should be blank filled with black.
+The card template should cover the entire image.
+The background of the image should be black
+===
+
+> target
+model: 'open-router/google/gemini-2.5-flash-image-preview'
+context: array(
+    'docs/app-description.md'
+    {
+        path:'docs/card-template.png'
+        tag:'card-template'
+        prefix:'Use the following image as a template'
+        tags: {vision:true}
+    }
+)
 inputTag: 'card'
 inList: 'docs/cards.json'
 outNameProp: 'baseFilename'
@@ -75,7 +98,7 @@ out: 'public/cards/*.png'
 ===
 Generate a 2D image of the cards.
 The card should cover the entire image.
-The background of the image should be black
+The background of the image should be black.
 ===
 
 
@@ -102,3 +125,4 @@ Create a next JS page based on context.
 You can use package defined in the package-json tag.
 Card images are stored in the public/cards directory and can be accessed using a http path of "/cards/{baseFilename}.png"
 ===
+
