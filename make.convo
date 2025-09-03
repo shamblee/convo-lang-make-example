@@ -62,7 +62,13 @@ Include information about layout and functionality.
 // The ui stage will wait for all targets of the documentation stage to be generated
 > stage ui
 review: true
-context: array('docs/app-description.md' 'docs/theme.md' 'Agents.md')
+context: array(
+    {path:'docs/app-description.md' tag:'app-description'}
+    {path:'docs/theme.md' tag:'theme'}
+    {path:'package.json' tag:'package-json'}
+    {path:'docs/screens.json' tag:'pages', prefix:'Below is a list of all pages in the app:'}
+    'Agents.md'
+)
 
 // Generates a .tsx page for each generated page description
 > target
@@ -70,5 +76,5 @@ in: 'docs/screens/**.md'
 out: 'pages/*.tsx'
 model: 'gpt-5'
 ===
-Create a next JS page based on context.
+Create a next JS page based on context. You can use package defined in the package-json tag.
 ===
