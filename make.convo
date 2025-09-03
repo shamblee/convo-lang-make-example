@@ -4,7 +4,7 @@
 Wonder = struct(
     name: string
     location: string
-    # A URL friendly filename without an extension
+    # A URL friendly filename. DO NOT include a file extension.
     filename: string
     # The problem that needs to be solved
     problem: string
@@ -12,6 +12,7 @@ Wonder = struct(
 )
 
 > target
+model: 'gpt-4.1'
 outListType: Wonder
 context: 'app.md'
 out: 'wonders.json'
@@ -20,6 +21,26 @@ Generate a list of 5 or more natural wonders of Earth that face major environmen
 ===
 
 > target
+model: 'open-router/google/gemini-2.5-flash-image-preview'
 inList: 'wonders.json'
 out: 'public/images/*.png'
 outNameProp: 'filename'
+===
+Generate an image based on the visual description and problem
+===
+
+> target
+model: 'gpt-5'
+review: true
+reviewUrl: 'http://localhost:5522'
+context: array(
+    {path:'app.md' tag:'app-description'}
+    {path:'wonders.json' tag:'wonders'}
+)
+out: 'public/index.html'
+===
+Generate a standalone web page based on the app-description.
+
+Each Wonder in the carousel should display an image of the Wonder.
+Images for the Wonders can be access by the web path of "/images/{filename}.png"
+===
