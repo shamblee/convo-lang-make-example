@@ -1,0 +1,24 @@
+{
+  "name": "convo-lang-make-example",
+  "version": "1.0.0",
+  "description": "This is project is a very simple example of using the **Convo-Make** generative build system.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "mkdir -p public && cd public && npx serve -p 5522"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/convo-lang/convo-lang-make-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/convo-lang/convo-lang-make-example/issues"
+  },
+  "homepage": "https://github.com/convo-lang/convo-lang-make-example#readme",
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
