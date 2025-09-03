@@ -1,0 +1,341 @@
+> define
+__model="gpt-4.1"
+
+> system
+You are generating content that will be directly written to "docs/screens/shop.md".
+DO NOT include a preamble or postamble.
+
+> appendUser
+# Pocket Plumbers: Detailed Game Description
+
+## Overview
+
+Pocket Plumbers is a fun and strategic card battle game inspired by classics like Pokémon and trading card games. Instead of battling monsters, players collect and trade plumbing-themed cards to overcome quirky and challenging plumbing emergencies. Experience the excitement of creating unique decks, responding to emergencies, and building the ultimate collection of plumber cards!
+
+---
+
+## Features
+
+- **Plumbing Emergencies:** Face a wide variety of plumbing emergencies, each requiring different strategies and card combinations to resolve.
+- **Card Collection:** Collect, unlock, and upgrade cards featuring tools, plumbers, parts, abilities, and special tactics.
+- **Deck Building:** Organize your collection into custom decks for different emergency scenarios. Save, customize, and rename your decks.
+- **Card Trading:** Swap and buy cards with the in-game card shop, growing your collection and refining your strategies.
+- **Player Dashboard:** Track your progress, view your top cards, stats, and manage your decks easily.
+- **Poke-Battle Style Battles:** Challenge plumbing emergencies with engaging, turn-based battle mechanics reminiscent of Pokémon showdowns.
+- **Coins and Rewards:** Earn coins based on your speed and performance in emergencies, and spend them on new cards.
+- **Stats Tracking:** See detailed information about your card collection and gameplay accomplishments.
+
+---
+
+## Screen Descriptions
+
+### Dashboard
+
+- **Short Description:** Your main hub for the game.
+- **Details:**  
+  See your overall game stats (wins, coins, emergencies solved), your total card count, and a highlight of your top ten cards. Access a full card list with a single tap. Review a complete list of your decks where you can quickly rename, delete, or create new decks for battle.
+
+### Card List
+
+- **Short Description:** A comprehensive inventory of all your collected cards.
+- **Details:**  
+  Browse every card you own, including plumbers, tools, emergency tactics, and upgrades. Use filters and sorting to quickly find the card you need.
+
+### Deck
+
+- **Short Description:** Build and edit your battle decks.
+- **Details:**  
+  Manage your deck by adding or removing cards, renaming it, and ensuring you have the perfect setup for any emergency. See stats for your deck, like average card power or type distribution.
+
+### Card Shop
+
+- **Short Description:** Buy and trade for new cards using in-game currency.
+- **Details:**  
+  Spend your hard-earned coins on card packs, single cards, or trade with other players via the shop. Keep an eye out for rotating specials and limited-time offers that could boost your collection.
+
+### Emergency
+
+- **Short Description:** Dive into battle and fix urgent plumbing problems!
+- **Details:**  
+  Select a deck and face off against unique plumbing emergencies in a turn-based, Pokémon-inspired battlefield. Each emergency behaves differently, and players must respond with tactics and the right cards to resolve them quickly for maximum rewards.
+
+---
+
+> appendUser
+## Pocket Plumbers Theme Specification
+
+### Overall Look and Feel
+Pocket Plumbers pays homage to classic Gameboy Color visuals while leveraging modern design principles for clarity and accessibility. The interface mimics pixelated charm and limited color palettes but uses cleaner typography, contemporary layout spacing, and subtle micro-interactions. All interactive elements and call-to-action accents use a retro-inspired green. Cards, buttons, and stat windows call back to cartridge labels and game menus, with soft shadows and border radii adding a welcoming, modern touch.
+
+### Core Palette
+- **Primary (Action) Color:** `emerald-500` (`bg-emerald-500`, `text-emerald-500`, `border-emerald-500`)
+- **Dark Ground:** `gray-900` / `gray-800`
+- **Light Backgrounds:** `gray-100`, `white`
+- **Accent Borders/Dividers:** `gray-200`
+- **Pixel Shadow Accent:** Vibrant contrast, e.g., `yellow-300`, `lime-400`
+- **Button & Selection Highlight:** `emerald-600`, `emerald-400`
+
+### Typography
+- **Font Family:** `font-mono` (for pixel/Gameboy effect), occasionally `font-sans` for announcements or body
+- **Uppercase Labels:** `uppercase`, `tracking-wider`
+- **Heading Style:** `text-xl md:text-2xl font-bold`
+- **Subtle Shadow:** `drop-shadow-[0_1px_0_rgba(0,0,0,0.8)]` (simulates pixel text highlight)
+
+---
+
+### Example Theme Application
+
+#### Main Game Container
+```html
+<div class="w-full min-h-screen bg-gray-900 flex flex-col items-center font-mono text-gray-100">
+  <!-- Content here -->
+</div>
+```
+
+#### Card Example
+```html
+<div class="bg-gray-100 rounded-lg border-2 border-emerald-500 shadow-lg px-4 py-3
+            relative overflow-hidden mb-4 transition-transform hover:scale-105">
+  <div class="absolute top-2 right-2 text-emerald-500 text-xs uppercase tracking-widest font-bold">
+    Rare
+  </div>
+  <h3 class="text-xl font-bold text-gray-900 drop-shadow-[0_1px_0_rgba(34,197,94,0.9)] leading-tight uppercase tracking-wide">
+    Pipe Wrench
+  </h3>
+  <p class="text-gray-700 text-sm mt-2">
+    A trusty wrench. Use to fix common leaks and open stuck valves.
+  </p>
+</div>
+```
+
+#### Button
+```html
+<button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow 
+                border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest
+                transition-colors duration-150">
+  TRADE
+</button>
+```
+
+#### Stat Panel
+```html
+<div class="bg-gray-800 rounded-md border border-gray-200 
+             shadow-md px-6 py-3 flex gap-4 items-center mb-2">
+  <div class="text-xl font-bold text-emerald-400">152</div>
+  <div class="uppercase text-xs text-gray-300 tracking-wide">Total Cards</div>
+</div>
+```
+
+#### Deck List Item
+```html
+<div class="flex items-center bg-white border border-emerald-200 rounded-lg px-3 py-2 mb-2 shadow
+            transition hover:border-emerald-400 group">
+  <span class="font-bold text-gray-800 group-hover:text-emerald-500 uppercase flex-1">Leak Busters</span>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-emerald-500 text-white hover:bg-emerald-400 
+                    border border-emerald-700 tracking-wider">Rename</button>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-400 
+                    border border-red-700">Delete</button>
+</div>
+```
+
+#### Emergency/Battle Screen Background
+- Use a patterned/solid background: `bg-gradient-to-b from-gray-100 via-emerald-100 to-gray-200`
+- Overlay a pixelated grid: `<div class="absolute inset-0 opacity-20 bg-[url('/pixelgrid.svg')]"></div>`
+
+#### Modal/Popover (Shop/Emergency Conclusion)
+```html
+<div class="bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl px-8 py-6
+            max-w-md mx-auto">
+  <h2 class="text-emerald-400 text-2xl font-bold uppercase mb-3 drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+    SHOP
+  </h2>
+  <!-- Shop content -->
+</div>
+```
+
+---
+
+## Thematic Details
+
+- Rounded edges (`rounded-lg`, `rounded-md`) on all core UI elements.
+- Shadow effects (`shadow`, `shadow-lg`, etc.) suggest the chunky, layered look of early handheld interface dividers.
+- Thin solid borders (`border-2`, `border`, `border-emerald-500`) on cards/buttons for the Gameboy look.
+- Use of `uppercase tracking-wider` (and `tracking-widest` for more dramatic effect) on all labels, buttons, and headings.
+- Flashy actions (rewards popups, critical fixes) use emerald gradients and pixelated burst SVGs.
+- Subtle transition effects (`transition`, `hover:*`) maintain a responsive, modern UI feel.
+
+---
+
+### Summary
+
+This theme blends a retro, pixel-inspired Gameboy color vibe—channeling nostalgia—while updating the interface for contemporary clarity and usability through Tailwind utilities. Emerald green stands out as the world’s core energy, used consistently for buttons, highlights, and progress bars, helping all “action” interactions pop vividly.
+
+> appendUser
+<screen>
+{
+    "name": "Card Shop",
+    "description": "Buy card packs, single cards, or trade with other players using coins. Discover daily specials and time-limited offers to enhance your collection.",
+    "path": "/shop"
+}
+</screen>
+
+> appendUser
+Generate a detailed description of the screen in markdown format.
+Include information about layout and functionality.
+
+> nop
+//_END_MAKE_TARGET_INPUT_
+
+
+@time 2025-09-03T16:58:41-04:00
+@tokenUsage 1974 / 1658 / $0.007264
+@model gpt-4.1-2025-04-14
+> assistant
+# Card Shop
+
+The **Card Shop** is the bustling heart of collection-building in Pocket Plumbers. Here, players use their hard-earned coins to buy fresh card packs, snipe rare single cards, and barter with others through a vibrant marketplace—all with a distinctly retro, Gameboy-inspired interface.
+
+---
+
+## Layout & Structure
+
+### Overall View
+
+The shop fills the screen with a lively, well-organized grid featuring themed shop sections, engaging pixel flourishes, and clear coin balances. It uses a soft, high-contrast palette: a light-to-emerald vertical gradient background with a pixel grid overlay, providing playful energy and focus to shopping activities. The shop’s main content is contained within a rounded, bordered, and subtly shadowed panel centered on the screen, recalling classic game menu boxes.
+
+### Sections
+
+#### 1. Shop Header
+
+- **Placement:** Centered at the top of the main panel.
+- **Style:**  
+  - Large, uppercase `SHOP` title in emerald, pixel-shadowed (`text-emerald-400 text-2xl font-bold uppercase drop-shadow`).
+  - Animated coin or pixel-burst icon next to the title for atmosphere.
+  - Player **Coin Balance** displayed prominently; mono font, bold, emerald-highlighted.
+
+#### 2. Shop Tabs
+
+- **Functionality:** Players can quickly switch between three core shop modes:
+  - **Card Packs** (default): Buy randomized packs of cards.
+  - **Single Cards**: Pick individual cards from rotating daily offers.
+  - **Trades**: See open trades or post cards to swap with other players.
+
+- **Style:**  
+  - Horizontal tab bar, each tab a pill-shaped emerald-outlined button (`rounded-full border-emerald-400 uppercase`).
+  - Active tab uses solid emerald fill (`bg-emerald-500 text-white`); inactive tabs are outline-only.
+  - Smooth hover transitions as you mouse over tabs.
+
+#### 3. Card Packs Section
+
+- **Layout:**  
+  - Grid layout: Featured card packs are arranged as oversized cards or tiles.
+  - Each pack tile shows artwork, pack name, number of cards, theme, and price in coins.
+  - **Purchase button:** Emerald, large, with coin icon.
+  - **Pack details** (rarity odds, included card types) appear on tile hover/tap.
+
+- **Specials:**  
+  - Daily or weekly rotating "Special Pack" highlighted with a glowing emerald border or pixel-burst effect.
+  - Limited-time offers use badge overlays (e.g., `LIMITED!` in yellow/lime).
+
+#### 4. Single Card Offers
+
+- **Layout:**  
+  - Vertical or grid list of individual cards available for direct purchase.
+  - Each card mini-panel:
+    - Pixel-art illustration.
+    - Card name and rarity.
+    - Coin price; purchase button.
+    - Timer bar for limited-time availability beneath each card.
+
+- **Rarity Highlight:**  
+  - Rare cards use brighter or animated emerald/yellow borders.
+  - Uncommon/common cards have softer outlines.
+
+#### 5. Player Trades
+
+- **Layout:**  
+  - Listing of trade requests from other players, sortable by newest, rarest, or match to your collection.
+  - Each trade features:
+    - Offered card(s): Mini-card previews.
+    - Requested card(s) or coin price.
+    - Player name/avatar (pixel-style).
+    - "Trade" button (emerald), or "Post Trade" for your own requests.
+
+- **Empty State:**  
+  - If few trades exist, display a friendly, pixel-plumber mascot with encouragement to post a trade.
+
+#### 6. Bonus/Promo Bar
+
+- **Placement:** Between shop header and tabs or floating at the top.
+- **Contents:**  
+  - Flashes current daily deal, flash discounts, or event packs (e.g., "Leak Week Special!").
+  - Subtle pulsing background, animated sparkle/burst for limited-time urgency.
+
+#### 7. Shop Modal
+
+- **Triggered by:** Card or pack purchases, or viewing a trade.
+- **Appearance:**  
+  - Central floating, emerald-outlined modal with bold title.
+  - Shows animated reveal of purchased cards, or confirmation of trade.
+  - "Close" and "Buy More" (emerald, bold) actions at bottom.
+  - Subtle celebration graphics—pixel confetti, emerald rays—on successful purchase.
+
+---
+
+## Functionality
+
+- **Coin Spending:** Players use their in-game coins; if insufficient, the purchase button is grayed and shows a tooltip.
+- **Transaction Feedback:** On every purchase, cards animate into the collection, with rare pulls highlighted.
+- **Inventory Updating:** Collection and coin counts in the header update in real-time with purchases or trades.
+- **Daily Reset:** Specials and card listings refresh on a daily schedule, with a visible timer before reset.
+- **Trading System:** Players can propose trades, browse open requests, and accept or counter-offer. All trades are safely escrowed by the shop.
+- **Accessibility:** All buttons and interactive elements are high-contrast, large touch targets, and keyboard navigable.
+
+---
+
+## Thematic UI Highlights
+
+- **Emerald action color:** Drives every purchase, highlight, and “Buy” action.
+- **Pixel shadows, burst SVGs:** Used for badges, limited-time deals, or highlighting rare finds.
+- **Rounded containers and borders:** Every card, button, and shop panel feels inviting and game-like.
+- **Rewards/Notifications:** Success feedback uses emerald gradients and retro flourishes (sparkles, coin chimes).
+- **Mono font and uppercase:** Shop labels and headings echo classic game menus.
+- **Card Reveal Animation:** Buying a pack triggers a quick, flipping animation as new cards are “unpacked.”
+
+---
+
+## Example UI Outline
+
+```html
+<div class="max-w-lg mx-auto mt-12 mb-8 bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl p-8
+            relative">
+  <!-- Shop Header -->
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-emerald-400 text-2xl font-bold uppercase drop-shadow">SHOP</h2>
+    <div class="flex items-center gap-2 font-mono font-bold text-emerald-300 bg-gray-800 rounded px-4 py-2">
+      <img src="/icons/coin.svg" class="w-5 h-5" /> 5,200
+    </div>
+  </div>
+
+  <!-- Bonus/Promo Banner -->
+  <div class="bg-gradient-to-r from-emerald-400/60 to-yellow-300/60 rounded-md text-center font-mono
+              text-sm py-2 px-3 mb-3 uppercase tracking-wider shadow drop-shadow">
+    Leak Week Special: 50% off Plumber Pack!
+  </div>
+
+  <!-- Shop Tabs -->
+  <div class="flex gap-2 mb-6">
+    <button class="bg-emerald-500 text-white px-4 py-1 rounded-full font-bold uppercase tracking-wider shadow">Card Packs</button>
+    <button class="border-2 border-emerald-400 text-emerald-500 px-4 py-1 rounded-full font-bold uppercase tracking-wider">Single Cards</button>
+    <button class="border-2 border-emerald-400 text-emerald-500 px-4 py-1 rounded-full font-bold uppercase tracking-wider">Trades</button>
+  </div>
+
+  <!-- Packs/cards/trades section updates below here -->
+</div>
+```
+
+---
+
+## Summary
+
+The Card Shop is a lively, accessible space where players can expand their collections and strategize. Every interaction—buying, browsing, trading—feels rewarding, thanks to the tactile retro visuals, pixelated highlights, and punchy emerald-driven action buttons. Frequent daily specials, prominent coin feedback, and satisfying card reveal animations encourage continual engagement and reward collectors both casual and hardcore.

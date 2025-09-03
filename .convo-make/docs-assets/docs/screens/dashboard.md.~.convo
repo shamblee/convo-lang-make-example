@@ -1,0 +1,385 @@
+> define
+__model="gpt-4.1"
+
+> system
+You are generating content that will be directly written to "docs/screens/dashboard.md".
+DO NOT include a preamble or postamble.
+
+> appendUser
+# Pocket Plumbers: Detailed Game Description
+
+## Overview
+
+Pocket Plumbers is a fun and strategic card battle game inspired by classics like Pokémon and trading card games. Instead of battling monsters, players collect and trade plumbing-themed cards to overcome quirky and challenging plumbing emergencies. Experience the excitement of creating unique decks, responding to emergencies, and building the ultimate collection of plumber cards!
+
+---
+
+## Features
+
+- **Plumbing Emergencies:** Face a wide variety of plumbing emergencies, each requiring different strategies and card combinations to resolve.
+- **Card Collection:** Collect, unlock, and upgrade cards featuring tools, plumbers, parts, abilities, and special tactics.
+- **Deck Building:** Organize your collection into custom decks for different emergency scenarios. Save, customize, and rename your decks.
+- **Card Trading:** Swap and buy cards with the in-game card shop, growing your collection and refining your strategies.
+- **Player Dashboard:** Track your progress, view your top cards, stats, and manage your decks easily.
+- **Poke-Battle Style Battles:** Challenge plumbing emergencies with engaging, turn-based battle mechanics reminiscent of Pokémon showdowns.
+- **Coins and Rewards:** Earn coins based on your speed and performance in emergencies, and spend them on new cards.
+- **Stats Tracking:** See detailed information about your card collection and gameplay accomplishments.
+
+---
+
+## Screen Descriptions
+
+### Dashboard
+
+- **Short Description:** Your main hub for the game.
+- **Details:**  
+  See your overall game stats (wins, coins, emergencies solved), your total card count, and a highlight of your top ten cards. Access a full card list with a single tap. Review a complete list of your decks where you can quickly rename, delete, or create new decks for battle.
+
+### Card List
+
+- **Short Description:** A comprehensive inventory of all your collected cards.
+- **Details:**  
+  Browse every card you own, including plumbers, tools, emergency tactics, and upgrades. Use filters and sorting to quickly find the card you need.
+
+### Deck
+
+- **Short Description:** Build and edit your battle decks.
+- **Details:**  
+  Manage your deck by adding or removing cards, renaming it, and ensuring you have the perfect setup for any emergency. See stats for your deck, like average card power or type distribution.
+
+### Card Shop
+
+- **Short Description:** Buy and trade for new cards using in-game currency.
+- **Details:**  
+  Spend your hard-earned coins on card packs, single cards, or trade with other players via the shop. Keep an eye out for rotating specials and limited-time offers that could boost your collection.
+
+### Emergency
+
+- **Short Description:** Dive into battle and fix urgent plumbing problems!
+- **Details:**  
+  Select a deck and face off against unique plumbing emergencies in a turn-based, Pokémon-inspired battlefield. Each emergency behaves differently, and players must respond with tactics and the right cards to resolve them quickly for maximum rewards.
+
+---
+
+> appendUser
+## Pocket Plumbers Theme Specification
+
+### Overall Look and Feel
+Pocket Plumbers pays homage to classic Gameboy Color visuals while leveraging modern design principles for clarity and accessibility. The interface mimics pixelated charm and limited color palettes but uses cleaner typography, contemporary layout spacing, and subtle micro-interactions. All interactive elements and call-to-action accents use a retro-inspired green. Cards, buttons, and stat windows call back to cartridge labels and game menus, with soft shadows and border radii adding a welcoming, modern touch.
+
+### Core Palette
+- **Primary (Action) Color:** `emerald-500` (`bg-emerald-500`, `text-emerald-500`, `border-emerald-500`)
+- **Dark Ground:** `gray-900` / `gray-800`
+- **Light Backgrounds:** `gray-100`, `white`
+- **Accent Borders/Dividers:** `gray-200`
+- **Pixel Shadow Accent:** Vibrant contrast, e.g., `yellow-300`, `lime-400`
+- **Button & Selection Highlight:** `emerald-600`, `emerald-400`
+
+### Typography
+- **Font Family:** `font-mono` (for pixel/Gameboy effect), occasionally `font-sans` for announcements or body
+- **Uppercase Labels:** `uppercase`, `tracking-wider`
+- **Heading Style:** `text-xl md:text-2xl font-bold`
+- **Subtle Shadow:** `drop-shadow-[0_1px_0_rgba(0,0,0,0.8)]` (simulates pixel text highlight)
+
+---
+
+### Example Theme Application
+
+#### Main Game Container
+```html
+<div class="w-full min-h-screen bg-gray-900 flex flex-col items-center font-mono text-gray-100">
+  <!-- Content here -->
+</div>
+```
+
+#### Card Example
+```html
+<div class="bg-gray-100 rounded-lg border-2 border-emerald-500 shadow-lg px-4 py-3
+            relative overflow-hidden mb-4 transition-transform hover:scale-105">
+  <div class="absolute top-2 right-2 text-emerald-500 text-xs uppercase tracking-widest font-bold">
+    Rare
+  </div>
+  <h3 class="text-xl font-bold text-gray-900 drop-shadow-[0_1px_0_rgba(34,197,94,0.9)] leading-tight uppercase tracking-wide">
+    Pipe Wrench
+  </h3>
+  <p class="text-gray-700 text-sm mt-2">
+    A trusty wrench. Use to fix common leaks and open stuck valves.
+  </p>
+</div>
+```
+
+#### Button
+```html
+<button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow 
+                border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest
+                transition-colors duration-150">
+  TRADE
+</button>
+```
+
+#### Stat Panel
+```html
+<div class="bg-gray-800 rounded-md border border-gray-200 
+             shadow-md px-6 py-3 flex gap-4 items-center mb-2">
+  <div class="text-xl font-bold text-emerald-400">152</div>
+  <div class="uppercase text-xs text-gray-300 tracking-wide">Total Cards</div>
+</div>
+```
+
+#### Deck List Item
+```html
+<div class="flex items-center bg-white border border-emerald-200 rounded-lg px-3 py-2 mb-2 shadow
+            transition hover:border-emerald-400 group">
+  <span class="font-bold text-gray-800 group-hover:text-emerald-500 uppercase flex-1">Leak Busters</span>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-emerald-500 text-white hover:bg-emerald-400 
+                    border border-emerald-700 tracking-wider">Rename</button>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-400 
+                    border border-red-700">Delete</button>
+</div>
+```
+
+#### Emergency/Battle Screen Background
+- Use a patterned/solid background: `bg-gradient-to-b from-gray-100 via-emerald-100 to-gray-200`
+- Overlay a pixelated grid: `<div class="absolute inset-0 opacity-20 bg-[url('/pixelgrid.svg')]"></div>`
+
+#### Modal/Popover (Shop/Emergency Conclusion)
+```html
+<div class="bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl px-8 py-6
+            max-w-md mx-auto">
+  <h2 class="text-emerald-400 text-2xl font-bold uppercase mb-3 drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+    SHOP
+  </h2>
+  <!-- Shop content -->
+</div>
+```
+
+---
+
+## Thematic Details
+
+- Rounded edges (`rounded-lg`, `rounded-md`) on all core UI elements.
+- Shadow effects (`shadow`, `shadow-lg`, etc.) suggest the chunky, layered look of early handheld interface dividers.
+- Thin solid borders (`border-2`, `border`, `border-emerald-500`) on cards/buttons for the Gameboy look.
+- Use of `uppercase tracking-wider` (and `tracking-widest` for more dramatic effect) on all labels, buttons, and headings.
+- Flashy actions (rewards popups, critical fixes) use emerald gradients and pixelated burst SVGs.
+- Subtle transition effects (`transition`, `hover:*`) maintain a responsive, modern UI feel.
+
+---
+
+### Summary
+
+This theme blends a retro, pixel-inspired Gameboy color vibe—channeling nostalgia—while updating the interface for contemporary clarity and usability through Tailwind utilities. Emerald green stands out as the world’s core energy, used consistently for buttons, highlights, and progress bars, helping all “action” interactions pop vividly.
+
+> appendUser
+<screen>
+{
+    "name": "Dashboard",
+    "description": "Your main hub for the game. See your stats, top ten cards, total card count, and access your complete deck and card lists. Quickly manage and organize all your decks from here.",
+    "path": "/dashboard"
+}
+</screen>
+
+> appendUser
+Generate a detailed description of the screen in markdown format.
+Include information about layout and functionality.
+
+> nop
+//_END_MAKE_TARGET_INPUT_
+
+
+@time 2025-09-03T16:58:44-04:00
+@tokenUsage 1983 / 1960 / $0.007886
+@model gpt-4.1-2025-04-14
+> assistant
+# Dashboard
+
+Your mission command center! The Dashboard is the starting point every time you enter Pocket Plumbers, giving you a crisp, all-in-one overview of your progress, collection, and essential management tools.
+
+---
+
+## Layout Overview
+
+The Dashboard is organized to deliver essential info at a glance, while providing easy access to deep-dive features. The classic Gameboy-inspired look infuses every element: emerald accents, chunky shadows, pixel fonts, and softly rounded cards.
+
+**Main Layout:**
+- **Top Section:** Game greeting & summary stats
+- **Middle Section:** Card highlights & collection info
+- **Lower Section:** Deck management and quick links
+
+The layout is responsive—single column on mobile, two-to-three columns and expanded stat panels on tablet or desktop.
+
+---
+
+## Functional Areas
+
+### 1. Welcome and Stats Panel (Header)
+
+A strip at the very top, blending `bg-emerald-500` and `bg-gray-900` via a soft gradient, with pixel text greeting and your current level/badge.
+
+**Elements:**
+- Player avatar or pixel plumber icon (left)
+- “WELCOME, PLUMBER!” label, your current level badge (center)
+- Settings cog/button (right)
+
+Below, a row of chunky stat panels showing:
+- **Wins:** Total battles/emergencies cleared
+- **Coins:** Current in-game currency balance
+- **Emergencies Solved:** Cumulative completed challenges
+- **Total Cards:** Total collected card count
+
+**Design Details:**
+```html
+<div class="flex gap-3 mb-3">
+  <div class="bg-gray-800 rounded-md border border-gray-200 shadow-md px-6 py-3 flex items-center">
+    <div class="text-xl font-bold text-emerald-400 mr-2">27</div>
+    <span class="uppercase text-xs text-gray-300 tracking-wide">Wins</span>
+  </div>
+  <!-- ...repeat for Coins, Emergencies Solved, Total Cards -->
+</div>
+```
+
+---
+
+### 2. Card Highlights
+
+A prominent feature card list, showcasing your **top ten cards** (by rarity, power, or recent play). Each card is visually presented in a horizontal scroll container on mobile, or grid on larger screens.
+
+**Card Items:**
+- Card art/mini pixel icon (left/top)
+- Card name (`text-xl uppercase font-bold`)
+- Rarity label & highlight accent (emerald details)
+- Key stat(s) for each card, e.g., Power, Rarity, Upgrade level
+
+**Design Details:**
+```html
+<div class="flex overflow-x-auto gap-4">
+  <div class="bg-gray-100 border-2 border-emerald-500 rounded-lg shadow-lg px-4 py-3 min-w-[180px]">
+    <div class="text-emerald-500 uppercase tracking-wider text-xs mb-1">Rare</div>
+    <div class="font-bold text-gray-900 text-lg uppercase mb-1">Pipe Wrench</div>
+    <div class="text-gray-700 text-xs">POWER: <span class="font-bold">42</span></div>
+  </div>
+  <!-- ...up to 10 cards -->
+</div>
+```
+
+**Below highlights** is a quick button:
+```html
+<button class="mt-2 text-emerald-600 hover:underline uppercase font-bold tracking-wider">
+  View Full Card List
+</button>
+```
+
+---
+
+### 3. Decks Overview & Management
+
+The **next section** displays your list of decks with powerful management tools. You see each deck's name, key stats, and fast actions.
+
+**Deck List:**
+- Rendered as a stacked list (mobile) or compact grid (desktop)
+- Each deck entry includes:
+  - Deck name (prominent, uppercase, emerald on hover)
+  - Key stats: card count, average power/type icons (inline or tooltip)
+  - Action buttons: **Rename**, **Delete**
+  - “New Deck” button at the top or fixed at the bottom
+
+**Example Deck Item:**
+```html
+<div class="flex items-center bg-white border border-emerald-200 rounded-lg px-3 py-2 mb-2 shadow transition hover:border-emerald-400 group">
+  <span class="font-bold text-gray-800 group-hover:text-emerald-500 uppercase flex-1">Leak Busters</span>
+  <span class="text-xs text-gray-500 mr-2">12 Cards</span>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-emerald-500 text-white hover:bg-emerald-400 border border-emerald-700 tracking-wider">Rename</button>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-400 border border-red-700">Delete</button>
+</div>
+```
+
+**“Create New Deck” Button:**
+```html
+<button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest mt-2">
+  New Deck
+</button>
+```
+
+---
+
+### 4. Quick Navigation / Shortcuts
+
+At the bottom or as a sticky panel:
+- **View Card List** (opens full collection)
+- **Manage Decks**
+- **Visit Card Shop**
+All styled with emerald action color, pixel buttons, and bold uppercase labels.
+
+---
+
+## Theming & Visual Details
+
+- **Emerald green** used for all CTAs, deck highlights, and active tabs.
+- **Rounded corners** and **thick borders** distinguish each major panel.
+- **Pixel font (`font-mono`, uppercase, tracking-wider`)** for headings, stats, and buttons.
+- **Drop-shadow accents** on stats and cards for chunky retro depth.
+- **Subtle hover/active scaling** on cards and buttons for modern feedback.
+- **Soft gray backgrounds** and **grid pattern overlays** reinforce the Gameboy vibe while ensuring accessibility.
+
+---
+
+## Functionality Summary
+
+- **All-in-One Progress:** Instantly see and track coins, wins, emergencies solved, and your collection’s growth.
+- **Show Off Best Cards:** Glance at your most powerful or rare cards, all visually presented.
+- **Deck Control Center:** Rename, delete, and create new decks with minimal taps/clicks.
+- **Quick Access:** Jump to cards, decks, or the shop from any device.
+- **Persistent, Nostalgic Theme:** The Gameboy-powered style makes every stat panel, card, and button feel part of a cohesive, playful world.
+
+---
+
+## Example Dashboard Structure (Pseudocode)
+
+```html
+<div class="dashboard bg-gray-900 min-h-screen font-mono text-gray-100">
+  <!-- Header: Greeting and Main Stats -->
+  <div class="flex items-center justify-between bg-emerald-500 px-4 py-3 rounded-b-lg shadow-lg">
+    <img src="plumber-avatar.png" class="w-10 h-10 rounded-full" />
+    <div class="text-xl font-bold uppercase tracking-wider">Welcome, Plumber!</div>
+    <button class="p-2" aria-label="Settings"><i class="icon-cog"></i></button>
+  </div>
+  <div class="flex gap-3 mt-4">
+    <!-- Individual stat panels as above -->
+  </div>
+  <!-- Card Highlights -->
+  <section class="mt-5">
+    <h2 class="uppercase text-lg font-bold text-emerald-400 mb-2 tracking-wide">Top Cards</h2>
+    <div class="flex overflow-x-auto gap-4">
+      <!-- Card components -->
+    </div>
+    <button class="mt-2 text-emerald-600 hover:underline uppercase font-bold tracking-wider">View Full Card List</button>
+  </section>
+  <!-- Decks Management -->
+  <section class="mt-8">
+    <h2 class="uppercase text-lg font-bold text-emerald-400 mb-2 tracking-wide">My Decks</h2>
+    <div>
+      <!-- Deck list items as above -->
+    </div>
+    <button class="bg-emerald-500 hover:bg-emerald-600 ...">New Deck</button>
+  </section>
+  <!-- Quick links (bottom/sticky) -->
+  <nav class="fixed bottom-4 left-0 right-0 mx-auto max-w-sm flex gap-3 justify-center">
+    <button class="...">Cards</button>
+    <button class="...">Decks</button>
+    <button class="...">Shop</button>
+  </nav>
+</div>
+```
+
+---
+
+## User Flow Highlights
+
+- **First glance:** Find out how you’re progressing and what you’ve unlocked.
+- **Deck Operations:** Instantly make, edit, or remove decks based on new cards or strategies—no deep menu digging!
+- **Collection Pride:** Quickly show off your shiniest plumbing cards to others or plan your next upgrade.
+- **Next Steps:** Whether you’re diving for an emergency or shopping for new packs, Dashboard is your efficient, stylish launchpad.
+
+---
+
+In Pocket Plumbers, the Dashboard isn’t just an info dump—it’s a celebration of your achievements and the command center from which every grand adventure begins!

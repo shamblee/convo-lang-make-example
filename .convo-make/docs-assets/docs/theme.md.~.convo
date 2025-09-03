@@ -1,0 +1,172 @@
+> define
+__model="gpt-4.1"
+
+> system
+You are generating content that will be directly written to "docs/theme.md".
+DO NOT include a preamble or postamble.
+
+@import ./vars.convo
+
+> system
+
+# {{gameName}}
+{{gameName}} is a parity of Pokemon where user trade cards related to plumbing and fix plumbing
+emergencies in poke-battle like showdowns.
+
+
+## Game play elements
+
+### Plumbing Emergencies
+The player has to fix plumbing emergencies using their cards. Before responding to an emergency the
+player will select one of their pre-built decks of cards. The player is awarded coins after
+fixing the emergency based on how fast they fixed the emergency.
+
+### Card Trading
+The player can trade and buy cards from the card shop
+
+
+
+## Screens
+
+### Dashboard
+The player can see the following
+- General player stats
+- total card count
+- top 10 cards
+- a link to a card list view
+- a list of all their decks. The items in the list should have options for renaming and deleting
+- A button to create a new deck
+
+### Card List
+A list of all the cards the player owns
+
+### Deck
+A view of a deck where they player can add and remove cards from a deck and give the deck a name
+
+### Card Shop
+The player can trade cards or buy cards using coins
+
+### Emergency
+The emergency view is where the player will use their cards to fix plumbing emergencies and should
+resemble the battle screen of a Pokemon game.
+
+> appendUser
+Generate a detailed description of a theme for thePocket Plumbers game using tailwinds utility classes.
+
+General Theme: Gameboy color graphics with a clean modern update. Primary / action color of green
+
+> nop
+//_END_MAKE_TARGET_INPUT_
+
+
+@time 2025-09-03T16:57:36-04:00
+@tokenUsage 344 / 1270 / $0.0032279999999999995
+@model gpt-4.1-2025-04-14
+> assistant
+## Pocket Plumbers Theme Specification
+
+### Overall Look and Feel
+Pocket Plumbers pays homage to classic Gameboy Color visuals while leveraging modern design principles for clarity and accessibility. The interface mimics pixelated charm and limited color palettes but uses cleaner typography, contemporary layout spacing, and subtle micro-interactions. All interactive elements and call-to-action accents use a retro-inspired green. Cards, buttons, and stat windows call back to cartridge labels and game menus, with soft shadows and border radii adding a welcoming, modern touch.
+
+### Core Palette
+- **Primary (Action) Color:** `emerald-500` (`bg-emerald-500`, `text-emerald-500`, `border-emerald-500`)
+- **Dark Ground:** `gray-900` / `gray-800`
+- **Light Backgrounds:** `gray-100`, `white`
+- **Accent Borders/Dividers:** `gray-200`
+- **Pixel Shadow Accent:** Vibrant contrast, e.g., `yellow-300`, `lime-400`
+- **Button & Selection Highlight:** `emerald-600`, `emerald-400`
+
+### Typography
+- **Font Family:** `font-mono` (for pixel/Gameboy effect), occasionally `font-sans` for announcements or body
+- **Uppercase Labels:** `uppercase`, `tracking-wider`
+- **Heading Style:** `text-xl md:text-2xl font-bold`
+- **Subtle Shadow:** `drop-shadow-[0_1px_0_rgba(0,0,0,0.8)]` (simulates pixel text highlight)
+
+---
+
+### Example Theme Application
+
+#### Main Game Container
+```html
+<div class="w-full min-h-screen bg-gray-900 flex flex-col items-center font-mono text-gray-100">
+  <!-- Content here -->
+</div>
+```
+
+#### Card Example
+```html
+<div class="bg-gray-100 rounded-lg border-2 border-emerald-500 shadow-lg px-4 py-3
+            relative overflow-hidden mb-4 transition-transform hover:scale-105">
+  <div class="absolute top-2 right-2 text-emerald-500 text-xs uppercase tracking-widest font-bold">
+    Rare
+  </div>
+  <h3 class="text-xl font-bold text-gray-900 drop-shadow-[0_1px_0_rgba(34,197,94,0.9)] leading-tight uppercase tracking-wide">
+    Pipe Wrench
+  </h3>
+  <p class="text-gray-700 text-sm mt-2">
+    A trusty wrench. Use to fix common leaks and open stuck valves.
+  </p>
+</div>
+```
+
+#### Button
+```html
+<button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow 
+                border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest
+                transition-colors duration-150">
+  TRADE
+</button>
+```
+
+#### Stat Panel
+```html
+<div class="bg-gray-800 rounded-md border border-gray-200 
+             shadow-md px-6 py-3 flex gap-4 items-center mb-2">
+  <div class="text-xl font-bold text-emerald-400">152</div>
+  <div class="uppercase text-xs text-gray-300 tracking-wide">Total Cards</div>
+</div>
+```
+
+#### Deck List Item
+```html
+<div class="flex items-center bg-white border border-emerald-200 rounded-lg px-3 py-2 mb-2 shadow
+            transition hover:border-emerald-400 group">
+  <span class="font-bold text-gray-800 group-hover:text-emerald-500 uppercase flex-1">Leak Busters</span>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-emerald-500 text-white hover:bg-emerald-400 
+                    border border-emerald-700 tracking-wider">Rename</button>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-400 
+                    border border-red-700">Delete</button>
+</div>
+```
+
+#### Emergency/Battle Screen Background
+- Use a patterned/solid background: `bg-gradient-to-b from-gray-100 via-emerald-100 to-gray-200`
+- Overlay a pixelated grid: `<div class="absolute inset-0 opacity-20 bg-[url('/pixelgrid.svg')]"></div>`
+
+#### Modal/Popover (Shop/Emergency Conclusion)
+```html
+<div class="bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl px-8 py-6
+            max-w-md mx-auto">
+  <h2 class="text-emerald-400 text-2xl font-bold uppercase mb-3 drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+    SHOP
+  </h2>
+  <!-- Shop content -->
+</div>
+```
+
+---
+
+## Thematic Details
+
+- Rounded edges (`rounded-lg`, `rounded-md`) on all core UI elements.
+- Shadow effects (`shadow`, `shadow-lg`, etc.) suggest the chunky, layered look of early handheld interface dividers.
+- Thin solid borders (`border-2`, `border`, `border-emerald-500`) on cards/buttons for the Gameboy look.
+- Use of `uppercase tracking-wider` (and `tracking-widest` for more dramatic effect) on all labels, buttons, and headings.
+- Flashy actions (rewards popups, critical fixes) use emerald gradients and pixelated burst SVGs.
+- Subtle transition effects (`transition`, `hover:*`) maintain a responsive, modern UI feel.
+
+---
+
+### Summary
+
+This theme blends a retro, pixel-inspired Gameboy color vibe—channeling nostalgia—while updating the interface for contemporary clarity and usability through Tailwind utilities. Emerald green stands out as the world’s core energy, used consistently for buttons, highlights, and progress bars, helping all “action” interactions pop vividly.

@@ -1,0 +1,396 @@
+> define
+__model="gpt-4.1"
+
+> system
+You are generating content that will be directly written to "docs/screens/emergency.md".
+DO NOT include a preamble or postamble.
+
+> appendUser
+# Pocket Plumbers: Detailed Game Description
+
+## Overview
+
+Pocket Plumbers is a fun and strategic card battle game inspired by classics like Pokémon and trading card games. Instead of battling monsters, players collect and trade plumbing-themed cards to overcome quirky and challenging plumbing emergencies. Experience the excitement of creating unique decks, responding to emergencies, and building the ultimate collection of plumber cards!
+
+---
+
+## Features
+
+- **Plumbing Emergencies:** Face a wide variety of plumbing emergencies, each requiring different strategies and card combinations to resolve.
+- **Card Collection:** Collect, unlock, and upgrade cards featuring tools, plumbers, parts, abilities, and special tactics.
+- **Deck Building:** Organize your collection into custom decks for different emergency scenarios. Save, customize, and rename your decks.
+- **Card Trading:** Swap and buy cards with the in-game card shop, growing your collection and refining your strategies.
+- **Player Dashboard:** Track your progress, view your top cards, stats, and manage your decks easily.
+- **Poke-Battle Style Battles:** Challenge plumbing emergencies with engaging, turn-based battle mechanics reminiscent of Pokémon showdowns.
+- **Coins and Rewards:** Earn coins based on your speed and performance in emergencies, and spend them on new cards.
+- **Stats Tracking:** See detailed information about your card collection and gameplay accomplishments.
+
+---
+
+## Screen Descriptions
+
+### Dashboard
+
+- **Short Description:** Your main hub for the game.
+- **Details:**  
+  See your overall game stats (wins, coins, emergencies solved), your total card count, and a highlight of your top ten cards. Access a full card list with a single tap. Review a complete list of your decks where you can quickly rename, delete, or create new decks for battle.
+
+### Card List
+
+- **Short Description:** A comprehensive inventory of all your collected cards.
+- **Details:**  
+  Browse every card you own, including plumbers, tools, emergency tactics, and upgrades. Use filters and sorting to quickly find the card you need.
+
+### Deck
+
+- **Short Description:** Build and edit your battle decks.
+- **Details:**  
+  Manage your deck by adding or removing cards, renaming it, and ensuring you have the perfect setup for any emergency. See stats for your deck, like average card power or type distribution.
+
+### Card Shop
+
+- **Short Description:** Buy and trade for new cards using in-game currency.
+- **Details:**  
+  Spend your hard-earned coins on card packs, single cards, or trade with other players via the shop. Keep an eye out for rotating specials and limited-time offers that could boost your collection.
+
+### Emergency
+
+- **Short Description:** Dive into battle and fix urgent plumbing problems!
+- **Details:**  
+  Select a deck and face off against unique plumbing emergencies in a turn-based, Pokémon-inspired battlefield. Each emergency behaves differently, and players must respond with tactics and the right cards to resolve them quickly for maximum rewards.
+
+---
+
+> appendUser
+## Pocket Plumbers Theme Specification
+
+### Overall Look and Feel
+Pocket Plumbers pays homage to classic Gameboy Color visuals while leveraging modern design principles for clarity and accessibility. The interface mimics pixelated charm and limited color palettes but uses cleaner typography, contemporary layout spacing, and subtle micro-interactions. All interactive elements and call-to-action accents use a retro-inspired green. Cards, buttons, and stat windows call back to cartridge labels and game menus, with soft shadows and border radii adding a welcoming, modern touch.
+
+### Core Palette
+- **Primary (Action) Color:** `emerald-500` (`bg-emerald-500`, `text-emerald-500`, `border-emerald-500`)
+- **Dark Ground:** `gray-900` / `gray-800`
+- **Light Backgrounds:** `gray-100`, `white`
+- **Accent Borders/Dividers:** `gray-200`
+- **Pixel Shadow Accent:** Vibrant contrast, e.g., `yellow-300`, `lime-400`
+- **Button & Selection Highlight:** `emerald-600`, `emerald-400`
+
+### Typography
+- **Font Family:** `font-mono` (for pixel/Gameboy effect), occasionally `font-sans` for announcements or body
+- **Uppercase Labels:** `uppercase`, `tracking-wider`
+- **Heading Style:** `text-xl md:text-2xl font-bold`
+- **Subtle Shadow:** `drop-shadow-[0_1px_0_rgba(0,0,0,0.8)]` (simulates pixel text highlight)
+
+---
+
+### Example Theme Application
+
+#### Main Game Container
+```html
+<div class="w-full min-h-screen bg-gray-900 flex flex-col items-center font-mono text-gray-100">
+  <!-- Content here -->
+</div>
+```
+
+#### Card Example
+```html
+<div class="bg-gray-100 rounded-lg border-2 border-emerald-500 shadow-lg px-4 py-3
+            relative overflow-hidden mb-4 transition-transform hover:scale-105">
+  <div class="absolute top-2 right-2 text-emerald-500 text-xs uppercase tracking-widest font-bold">
+    Rare
+  </div>
+  <h3 class="text-xl font-bold text-gray-900 drop-shadow-[0_1px_0_rgba(34,197,94,0.9)] leading-tight uppercase tracking-wide">
+    Pipe Wrench
+  </h3>
+  <p class="text-gray-700 text-sm mt-2">
+    A trusty wrench. Use to fix common leaks and open stuck valves.
+  </p>
+</div>
+```
+
+#### Button
+```html
+<button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow 
+                border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest
+                transition-colors duration-150">
+  TRADE
+</button>
+```
+
+#### Stat Panel
+```html
+<div class="bg-gray-800 rounded-md border border-gray-200 
+             shadow-md px-6 py-3 flex gap-4 items-center mb-2">
+  <div class="text-xl font-bold text-emerald-400">152</div>
+  <div class="uppercase text-xs text-gray-300 tracking-wide">Total Cards</div>
+</div>
+```
+
+#### Deck List Item
+```html
+<div class="flex items-center bg-white border border-emerald-200 rounded-lg px-3 py-2 mb-2 shadow
+            transition hover:border-emerald-400 group">
+  <span class="font-bold text-gray-800 group-hover:text-emerald-500 uppercase flex-1">Leak Busters</span>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-emerald-500 text-white hover:bg-emerald-400 
+                    border border-emerald-700 tracking-wider">Rename</button>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-400 
+                    border border-red-700">Delete</button>
+</div>
+```
+
+#### Emergency/Battle Screen Background
+- Use a patterned/solid background: `bg-gradient-to-b from-gray-100 via-emerald-100 to-gray-200`
+- Overlay a pixelated grid: `<div class="absolute inset-0 opacity-20 bg-[url('/pixelgrid.svg')]"></div>`
+
+#### Modal/Popover (Shop/Emergency Conclusion)
+```html
+<div class="bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl px-8 py-6
+            max-w-md mx-auto">
+  <h2 class="text-emerald-400 text-2xl font-bold uppercase mb-3 drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+    SHOP
+  </h2>
+  <!-- Shop content -->
+</div>
+```
+
+---
+
+## Thematic Details
+
+- Rounded edges (`rounded-lg`, `rounded-md`) on all core UI elements.
+- Shadow effects (`shadow`, `shadow-lg`, etc.) suggest the chunky, layered look of early handheld interface dividers.
+- Thin solid borders (`border-2`, `border`, `border-emerald-500`) on cards/buttons for the Gameboy look.
+- Use of `uppercase tracking-wider` (and `tracking-widest` for more dramatic effect) on all labels, buttons, and headings.
+- Flashy actions (rewards popups, critical fixes) use emerald gradients and pixelated burst SVGs.
+- Subtle transition effects (`transition`, `hover:*`) maintain a responsive, modern UI feel.
+
+---
+
+### Summary
+
+This theme blends a retro, pixel-inspired Gameboy color vibe—channeling nostalgia—while updating the interface for contemporary clarity and usability through Tailwind utilities. Emerald green stands out as the world’s core energy, used consistently for buttons, highlights, and progress bars, helping all “action” interactions pop vividly.
+
+> appendUser
+<screen>
+{
+    "name": "Emergency",
+    "description": "Jump into turn-based battles to fix quirky and challenging plumbing emergencies using your custom decks. Each emergency is unique and rewards skillful, speedy play with extra coins.",
+    "path": "/emergency"
+}
+</screen>
+
+> appendUser
+Generate a detailed description of the screen in markdown format.
+Include information about layout and functionality.
+
+> nop
+//_END_MAKE_TARGET_INPUT_
+
+
+@time 2025-09-03T16:58:56-04:00
+@tokenUsage 1979 / 2784 / $0.009526
+@model gpt-4.1-2025-04-14
+> assistant
+# Emergency Screen
+
+The **Emergency** screen is where the heart of Pocket Plumbers gameplay unfolds—a fast-paced, turn-based battle against plumbing chaos! Here, you’ll face unique, themed emergencies, deploying plumber cards, tools, and tactics from your custom deck to outwit leaks, clogs, and mechanical mishaps for maximum rewards.
+
+---
+
+## Layout and Structure
+
+### 1. **Emergency Introduction Header**
+
+- **Location:** Top of the screen, spanning full width.
+- **Contains:**
+    - **Emergency Name:** Large, uppercase, emerald-highlighted heading (e.g., “BURST PIPE IN BASEMENT”).
+    - **Brief Description:** A one- or two-line scenario setup (“Water gushes across the floor—a main pipe has blown! Fix it quick before the timer runs out!”).
+    - **Icon/Pixel Art:** Themed, pixel-style emergency icon (e.g., cartoon gushing pipe).
+- **Visuals:** 
+    - Header background uses `bg-gradient-to-b from-gray-100 via-emerald-100 to-gray-200`.
+    - Emergency name uses `text-emerald-500 drop-shadow-[0_1px_0_rgba(0,0,0,0.8)] text-xl md:text-2xl font-bold uppercase tracking-wider`.
+
+---
+
+### 2. **Battlefield Area**
+
+- **Location:** Central and most prominent section.
+- **Components:**
+    - **Opponent Display Panel (Left):**
+        - Large sprite or illustration of the plumbing emergency.
+        - Emergency stats (HP/Condition bar, e.g., “Water Damage: 34%”) rendered in emerald-green progress bars.
+    - **Versus Divider:** Retro “VS” or pixelated burst visual between player and emergency.
+    - **Player Deck Zone (Right):**
+        - Display of player’s active plumber(s) or played card(s), including tool cards or special tactics in effect.
+        - HP/Energy bar for current plumber if relevant (for certain emergencies).
+    - **Background:** Blends pixel grid overlay, faint emerald/gray gradient, and scattered plumbing icons (spanners, faucets).
+
+---
+
+### 3. **Turn Log / Announcer Panel**
+
+- **Location:** Just below the battlefield, full width but compact.
+- **Functionality & Visuals:**
+    - Displays last several turns: plays, effects, actions, and results (“Drip Fixer used Pipe Tape! Leak damage reduced by 40%.”).
+    - Uses `bg-gray-800 rounded-md border border-emerald-400 text-gray-100 px-4 py-2 text-sm font-mono`
+    - Scrollable if the log is long.
+    - Turn counter (e.g., “Turn 3” in emerald highlight).
+
+---
+
+### 4. **Playable Card Hand**
+
+- **Location:** Bottom edge, in a raised, horizontally scrollable container.
+- **Details:**
+    - Each card shown as a small preview: pixel-art image, title, rarity label.
+    - Cards use `bg-white border-2 border-emerald-500 rounded-lg shadow-lg px-2 py-1 transition-transform hover:scale-110 cursor-pointer`.
+    - Drag or tap to play; held cards “fan out” slightly for tactile feel.
+    - Cards with valid moves glow with `emerald-400` outline.
+    - A floating counter shows “Cards Left in Deck: 27.”
+
+---
+
+### 5. **Action Panel / Confirm Row**
+
+- **Location:** Just above or overlaying the card hand.
+- **Includes:**
+    - **“END TURN”** button (`bg-emerald-500 hover:bg-emerald-600 text-white uppercase font-bold rounded shadow border-2 border-emerald-700 px-4 py-2 tracking-widest`).
+    - **Ability/Quick Use Buttons:** (if applicable)—playable one-offs like “Undo Last Move,” “View Board,” or “Call for Help” use slightly lighter emerald/aqua hues and pixel burst icons.
+
+---
+
+### 6. **Rewards, Warnings & Status Banners**
+
+- **Example:**  
+    - “CRITICAL FLOOD! – Solve within 2 turns for a bonus” (banner at top or above log).
+    - After battle: Modal popover styled as `bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl px-8 py-6`, displaying coins/rewards and options to retry or return.
+
+---
+
+## Key Functionality
+
+- **Deck Selection:** On entering, player selects which custom deck to use for the emergency (modal selector, with stats and preview).
+- **Battle Loop:**
+    - Each turn, select card(s) from hand and target emergency/problem spots.
+    - Play plumber cards to deploy specialists, tool cards for immediate fixes, and tactic cards for clever combos (e.g., “Quick Patch” or “Lock Valve”).
+    - The emergency reacts after player’s turn—damage increases, status effects trigger, or obstacles escalate.
+    - The log updates all actions and consequences in sequence for clarity.
+- **Urgency/Timer Elements:**  
+    - Certain emergencies feature visible urgency meters or timers (animated emerald bar; e.g., “Rising Water: 2 Turns Until Flood”). These are highly visible for challenge and urgency.
+- **Victory/Defeat:**
+    - On success: Pup-up modal with coins, possible new cards, and performance rating (bonus for speed/clever play).
+    - On loss: Option to retry, tips on improving, and a prompt suggesting recommended deck tweaks or cards.
+
+---
+
+## Accessibility & Thematic Notes
+
+- All action and CTA elements (buttons, highlights) use consistent emerald greens for instant recognition.
+- All text sits on strong-contrast backgrounds for high readability. Critical info (turn, timer, warnings) uses `uppercase tracking-wider` and drop-shadow for the “game alert” retro vibe.
+- Important player moves and rewards are punctuated with pixelated, animated “burst” or “sparkle” SVGs for visual excitement.
+
+---
+
+## Emergency Screen—Example Visual Structure
+
+```html
+<div class="w-full min-h-screen bg-gradient-to-b from-gray-100 via-emerald-100 to-gray-200 
+            relative font-mono flex flex-col items-center">
+    
+  <!-- Pixel grid overlay -->
+  <div class="absolute inset-0 opacity-20 bg-[url('/pixelgrid.svg')] pointer-events-none"></div>
+  
+  <!-- Emergency Header -->
+  <section class="w-full py-4 bg-white bg-opacity-60 border-b-2 border-emerald-300 
+                   flex flex-col items-center z-10">
+    <img src="/emergencies/pipeburst.png" class="w-14 h-14 mb-2"/>
+    <h1 class="text-emerald-500 text-2xl font-bold uppercase tracking-wider drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+      Burst Pipe in Basement
+    </h1>
+    <p class="text-gray-700 text-sm mt-2 max-w-md text-center">
+      Water gushes across the floor—a main pipe has blown! Fix it quick before the timer runs out!
+    </p>
+  </section>
+  
+  <!-- Battlefield -->
+  <main class="flex flex-1 justify-center items-center w-full max-w-4xl gap-6 py-8 z-10">
+    <!-- Emergency Sprite & Status -->
+    <div class="flex flex-col items-center">
+      <img src="/emergencies/sprite-pipe.png" class="w-32 h-32"/>
+      <div class="mt-2 w-40 bg-gray-200 rounded-full overflow-hidden shadow-inner">
+        <div class="bg-emerald-400 h-3 rounded-full" style="width: 59%"></div>
+      </div>
+      <span class="uppercase text-xs text-gray-700 mt-1 tracking-wider">Water Damage: 41%</span>
+    </div>
+    <!-- Versus Divider -->
+    <div class="flex flex-col items-center px-2">
+      <svg><!-- pixel burst or VS icon --></svg>
+    </div>
+    <!-- Player Active Zone -->
+    <div class="flex flex-col items-center">
+      <div class="bg-white rounded-lg border-2 border-emerald-400 shadow-md px-3 py-2 mb-1">
+        <img src="/plumbers/dripfixer.png" class="w-16 h-16"/>
+        <div class="font-bold uppercase text-emerald-600 text-xs tracking-wider mt-1">Drip Fixer</div>
+        <div class="bg-emerald-100 rounded h-2 mt-1 w-full">
+          <div class="bg-emerald-500 h-2 rounded" style="width: 92%"></div>
+        </div>
+      </div>
+      <!-- Played Tool / Ability Cards as stacked tags below -->
+      <div class="flex flex-wrap gap-2 mt-2">
+        <div class="bg-gray-200 text-xs rounded px-2 py-1 border border-emerald-400">Pipe Tape</div>
+        <div class="bg-emerald-100 text-xs rounded px-2 py-1 border border-emerald-600">Quick Patch</div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Turn Log / Announcer -->
+  <section class="w-full max-w-2xl bg-gray-800 rounded-md border border-emerald-400
+                    text-gray-100 px-4 py-2 text-sm font-mono mb-2 z-10">
+    <div class="flex items-center justify-between">
+      <span class="font-bold text-emerald-400 uppercase tracking-wider">Turn 3</span>
+      <span class="text-yellow-300 uppercase tracking-wide">CRITICAL FLOOD—2 turns left!</span>
+    </div>
+    <ul class="list-none pl-0 mt-1">
+      <li><span class="text-emerald-400">Drip Fixer</span> used <span class="font-bold">Pipe Tape</span>! Leak damage down 40%.</li>
+      <li>Emergency: Rising water pressure! Next turn will drain 2 plumber energy.</li>
+      <li><span class="text-emerald-400">Plunger Pro</span> is ready to deploy.</li>
+    </ul>
+  </section>
+  
+  <!-- Player Card Hand -->
+  <section class="fixed bottom-0 w-full max-w-4xl z-20 px-4 pb-2 mb-2">
+    <div class="flex items-center gap-3 bg-gray-100 rounded-lg border border-emerald-300 shadow-lg p-3 overflow-x-auto">
+      <div class="bg-white border-2 border-emerald-500 rounded-lg shadow-lg px-2 py-1 cursor-pointer
+                  hover:scale-110 transition-transform relative">
+        <img src="/cards/pipewrench.png" class="w-12 h-12"/>
+        <div class="absolute bottom-1 right-1 text-emerald-500 text-[10px] uppercase font-bold">Tool</div>
+      </div>
+      <div class="bg-white border-2 border-emerald-400 rounded-lg shadow-lg px-2 py-1 cursor-pointer
+                  hover:scale-110 transition-transform relative">
+        <img src="/cards/plungerpro.png" class="w-12 h-12"/>
+        <div class="absolute bottom-1 right-1 text-emerald-400 text-[10px] uppercase font-bold">Plumber</div>
+      </div>
+      <!-- ... More cards ... -->
+      <div class="ml-auto text-xs text-gray-700 tracking-wide">Cards Left: <b>27</b></div>
+    </div>
+    <!-- Action Panel -->
+    <div class="flex gap-4 mt-3 items-center justify-end">
+      <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow border-2 border-emerald-700 px-6 py-2 uppercase tracking-widest transition">END TURN</button>
+      <button class="bg-emerald-400 text-white rounded px-4 py-2 border border-emerald-500 font-bold uppercase tracking-wide shadow hover:bg-emerald-200 transition">Undo Move</button>
+    </div>
+  </section>
+</div>
+```
+
+---
+
+## Summary of Emergency Screen Experience
+
+- **Immersive Battles:** Retro visuals and dynamic turn-by-turn flow evoke the thrill of classic monster-battling games—with a plumbing twist.
+- **Strategic Choices:** Players must optimize cards and tactics in real time against unpredictable emergencies.
+- **Rewarding Play:** Coins, new cards, and leaderboard progress are tied to speed and skill, with repeated play encouraged by randomness and special rewards.
+- **Handheld Nostalgia + Modern Flair:** Every pixel, panel, and effect leans into retro style, while modern UI polish ensures a seamless, satisfying experience.
+
+---
+
+This screen is the lively, tactical arena where players prove their plumber prowess, collect rewards, and experience the pixel-powered fun at the core of **Pocket Plumbers**!

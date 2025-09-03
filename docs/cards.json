@@ -1,0 +1,325 @@
+[
+    {
+        "type": "plumber",
+        "name": "Turbo Tony",
+        "baseFilename": "plumber_turbo_tony",
+        "visualDescription": "A burly plumber with a big red wrench and a confident grin. Wears blue coveralls and a tool belt.",
+        "price": 300,
+        "rarity": 3,
+        "hp": 100,
+        "damage": 25
+    },
+    {
+        "type": "plumber",
+        "name": "Speedy Sal",
+        "baseFilename": "plumber_speedy_sal",
+        "visualDescription": "A slim, speedy plumber in green with goggles and rollerblades attached to his boots.",
+        "price": 250,
+        "rarity": 2,
+        "hp": 80,
+        "damage": 19
+    },
+    {
+        "type": "plumber",
+        "name": "Mighty Mona",
+        "baseFilename": "plumber_mighty_mona",
+        "visualDescription": "A tall, muscular woman holding two plungers, ready for battle. Has utility pouches and an iconic yellow cap.",
+        "price": 320,
+        "rarity": 4,
+        "hp": 105,
+        "damage": 29
+    },
+    {
+        "type": "plumber",
+        "name": "Wrenchin’ Wes",
+        "baseFilename": "plumber_wrenchin_wes",
+        "visualDescription": "A young, scrappy plumber with spiky hair and an oversized wrench slung over his shoulder.",
+        "price": 180,
+        "rarity": 1,
+        "hp": 65,
+        "damage": 17
+    },
+    {
+        "type": "plumber",
+        "name": "Pipe Pro Paula",
+        "baseFilename": "plumber_pipe_pro_paula",
+        "visualDescription": "A stylish plumber with fluorescent-pink gloves, glasses, and a digital leak detector.",
+        "price": 220,
+        "rarity": 2,
+        "hp": 75,
+        "damage": 22
+    },
+    {
+        "type": "tool",
+        "name": "Mega Plunger",
+        "baseFilename": "tool_mega_plunger",
+        "visualDescription": "A bright orange, oversized plunger with a metal handle and glowing accents.",
+        "price": 90,
+        "rarity": 2,
+        "damage": 14
+    },
+    {
+        "type": "tool",
+        "name": "Snake-O-Matic",
+        "baseFilename": "tool_snake_o_matic",
+        "visualDescription": "A mechanical, coiled drain snake that retracts and extends with buttons.",
+        "price": 110,
+        "rarity": 3,
+        "damage": 20
+    },
+    {
+        "type": "tool",
+        "name": "Leak Detector",
+        "baseFilename": "tool_leak_detector",
+        "visualDescription": "A hi-tech gadget with blinking blue lights to find hidden leaks.",
+        "price": 60,
+        "rarity": 1,
+        "damage": 6
+    },
+    {
+        "type": "tool",
+        "name": "Pipe Patch Kit",
+        "baseFilename": "tool_pipe_patch_kit",
+        "visualDescription": "A small metal box filled with tape, putty, and quick fixes for cracks.",
+        "price": 75,
+        "rarity": 2,
+        "damage": 10
+    },
+    {
+        "type": "tool",
+        "name": "Turbo Torque Wrench",
+        "baseFilename": "tool_turbo_torque_wrench",
+        "visualDescription": "A gleaming chrome wrench with digital torque settings.",
+        "price": 100,
+        "rarity": 3,
+        "damage": 18
+    },
+    {
+        "type": "excuse",
+        "name": "Blame the Dog",
+        "baseFilename": "excuse_blame_the_dog",
+        "visualDescription": "A comical card featuring a guilty-looking dog next to a puddle.",
+        "price": 45,
+        "rarity": 1,
+        "timeGain": 5
+    },
+    {
+        "type": "excuse",
+        "name": "Traffic Jam",
+        "baseFilename": "excuse_traffic_jam",
+        "visualDescription": "A cartoon traffic jam blocks a city street full of plumbers.",
+        "price": 60,
+        "rarity": 2,
+        "timeGain": 8
+    },
+    {
+        "type": "excuse",
+        "name": "Misplaced Tools",
+        "baseFilename": "excuse_misplaced_tools",
+        "visualDescription": "A messy toolbox with open drawers and scattered wrenches.",
+        "price": 30,
+        "rarity": 1,
+        "timeGain": 3
+    },
+    {
+        "type": "excuse",
+        "name": "Parts on Backorder",
+        "baseFilename": "excuse_parts_on_backorder",
+        "visualDescription": "A computer with a 'backorder' alert on the screen.",
+        "price": 80,
+        "rarity": 3,
+        "timeGain": 10
+    },
+    {
+        "type": "excuse",
+        "name": "Client Not Home",
+        "baseFilename": "excuse_client_not_home",
+        "visualDescription": "A locked door with a 'Sorry, missed you' note.",
+        "price": 65,
+        "rarity": 2,
+        "timeGain": 6
+    },
+    {
+        "type": "power-up",
+        "name": "Caffeinated Surge",
+        "baseFilename": "powerup_caffeinated_surge",
+        "visualDescription": "A neon coffee mug overflowing with energy bolts.",
+        "price": 70,
+        "rarity": 2,
+        "damageMultiplier": 1.2
+    },
+    {
+        "type": "power-up",
+        "name": "Unbreakable Gloves",
+        "baseFilename": "powerup_unbreakable_gloves",
+        "visualDescription": "Shiny black gloves etched with golden symbols.",
+        "price": 120,
+        "rarity": 4,
+        "healthMultiplier": 1.25
+    },
+    {
+        "type": "power-up",
+        "name": "Safety Goggles",
+        "baseFilename": "powerup_safety_goggles",
+        "visualDescription": "Translucent blue goggles radiating a protective aura.",
+        "price": 55,
+        "rarity": 1,
+        "healthMultiplier": 1.1
+    },
+    {
+        "type": "power-up",
+        "name": "Protein Shake",
+        "baseFilename": "powerup_protein_shake",
+        "visualDescription": "A sports bottle with liquid strength sloshing inside.",
+        "price": 85,
+        "rarity": 2,
+        "damageMultiplier": 1.15
+    },
+    {
+        "type": "power-up",
+        "name": "Quick Reflexes",
+        "baseFilename": "powerup_quick_reflexes",
+        "visualDescription": "A pair of hands juggling pipes, tools, and a wrench all at once.",
+        "price": 95,
+        "rarity": 3,
+        "damageMultiplier": 1.18
+    },
+    {
+        "type": "sandwich",
+        "name": "Classic Sub",
+        "baseFilename": "sandwich_classic_sub",
+        "visualDescription": "A traditional submarine sandwich overflowing with deli meats and cheese.",
+        "price": 35,
+        "rarity": 1,
+        "health": 22
+    },
+    {
+        "type": "sandwich",
+        "name": "Mega BLT",
+        "baseFilename": "sandwich_mega_blt",
+        "visualDescription": "A huge BLT with crisp lettuce and bacon, radiating tempting aroma.",
+        "price": 50,
+        "rarity": 2,
+        "health": 33
+    },
+    {
+        "type": "sandwich",
+        "name": "Spicy Wrap",
+        "baseFilename": "sandwich_spicy_wrap",
+        "visualDescription": "A tightly-rolled wrap with bright peppers peeking out the sides.",
+        "price": 48,
+        "rarity": 2,
+        "health": 29
+    },
+    {
+        "type": "sandwich",
+        "name": "Veggie Hoagie",
+        "baseFilename": "sandwich_veggie_hoagie",
+        "visualDescription": "A fresh green hoagie loaded with crisp veggies and creamy dressing.",
+        "price": 42,
+        "rarity": 1,
+        "health": 18
+    },
+    {
+        "type": "sandwich",
+        "name": "Energy Bagel",
+        "baseFilename": "sandwich_energy_bagel",
+        "visualDescription": "A plump bagel with sunflower seeds and glowing cream cheese.",
+        "price": 37,
+        "rarity": 1,
+        "health": 20
+    },
+    {
+        "type": "tool",
+        "name": "Copper Pipe Set",
+        "baseFilename": "tool_copper_pipe_set",
+        "visualDescription": "A bundle of shiny copper pipes ready for installation.",
+        "price": 80,
+        "rarity": 2,
+        "damage": 12
+    },
+    {
+        "type": "tool",
+        "name": "Waterproof Tape",
+        "baseFilename": "tool_waterproof_tape",
+        "visualDescription": "A roll of gray, ultra-sticky tape that magically seals leaks.",
+        "price": 70,
+        "rarity": 1,
+        "damage": 8
+    },
+    {
+        "type": "tool",
+        "name": "Mini Shop Vac",
+        "baseFilename": "tool_mini_shop_vac",
+        "visualDescription": "A portable vacuum with wheels and a big blue button.",
+        "price": 60,
+        "rarity": 1,
+        "damage": 5
+    },
+    {
+        "type": "plumber",
+        "name": "Delicate Dani",
+        "baseFilename": "plumber_delicate_dani",
+        "visualDescription": "A careful, meticulous plumber with small tools and surgical gloves.",
+        "price": 190,
+        "rarity": 1,
+        "hp": 60,
+        "damage": 15
+    },
+    {
+        "type": "power-up",
+        "name": "Inspirational Playlist",
+        "baseFilename": "powerup_inspirational_playlist",
+        "visualDescription": "A phone with musical notes floating around, headphones plugged in.",
+        "price": 78,
+        "rarity": 2,
+        "damageMultiplier": 1.12
+    },
+    {
+        "type": "excuse",
+        "name": "Epic Rainstorm",
+        "baseFilename": "excuse_epic_rainstorm",
+        "visualDescription": "A deluge outside the window with flashing thunderbolts.",
+        "price": 70,
+        "rarity": 2,
+        "timeGain": 7
+    },
+    {
+        "type": "plumber",
+        "name": "Old School Stan",
+        "baseFilename": "plumber_old_school_stan",
+        "visualDescription": "A gray-bearded plumber in suspenders, wielding a classic monkey wrench.",
+        "price": 240,
+        "rarity": 2,
+        "hp": 90,
+        "damage": 21
+    },
+    {
+        "type": "tool",
+        "name": "Liquid Drain Blaster",
+        "baseFilename": "tool_liquid_drain_blaster",
+        "visualDescription": "A big blue and red bottle with warning labels, bubbling with potent chemicals.",
+        "price": 85,
+        "rarity": 2,
+        "damage": 13
+    },
+    {
+        "type": "plumber",
+        "name": "Techie Tessa",
+        "baseFilename": "plumber_techie_tessa",
+        "visualDescription": "A high-tech plumber adorned with smart glasses and a tablet for diagnostics.",
+        "price": 250,
+        "rarity": 3,
+        "hp": 85,
+        "damage": 20
+    },
+    {
+        "type": "tool",
+        "name": "Pipe Cutter Deluxe",
+        "baseFilename": "tool_pipe_cutter_deluxe",
+        "visualDescription": "A heavy-duty red pipe cutter with a digital readout.",
+        "price": 95,
+        "rarity": 2,
+        "damage": 16
+    }
+]

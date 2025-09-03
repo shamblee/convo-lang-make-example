@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Dashboard",
+        "description": "Your main hub for the game. See your stats, top ten cards, total card count, and access your complete deck and card lists. Quickly manage and organize all your decks from here.",
+        "path": "/dashboard"
+    },
+    {
+        "name": "Card List",
+        "description": "Browse a comprehensive inventory of all your collected cards, including plumbers, tools, tactics, and upgrades. Use filters and sorting to find specific cards quickly.",
+        "path": "/cards"
+    },
+    {
+        "name": "Deck",
+        "description": "Build, edit, and rename your decks for battle. Add or remove cards and view stats like average card power and type breakdown to optimize your deck for different emergencies.",
+        "path": "/deck"
+    },
+    {
+        "name": "Card Shop",
+        "description": "Buy card packs, single cards, or trade with other players using coins. Discover daily specials and time-limited offers to enhance your collection.",
+        "path": "/shop"
+    },
+    {
+        "name": "Emergency",
+        "description": "Jump into turn-based battles to fix quirky and challenging plumbing emergencies using your custom decks. Each emergency is unique and rewards skillful, speedy play with extra coins.",
+        "path": "/emergency"
+    }
+]

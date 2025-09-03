@@ -1,0 +1,2430 @@
+> define
+__model="gpt-5"
+
+> system
+You are generating content that will be directly written to "pages/shop.tsx".
+DO NOT include a preamble or postamble.
+
+> appendUser
+<app-description>
+# Pocket Plumbers: Detailed Game Description
+
+## Overview
+
+Pocket Plumbers is a fun and strategic card battle game inspired by classics like Pokémon and trading card games. Instead of battling monsters, players collect and trade plumbing-themed cards to overcome quirky and challenging plumbing emergencies. Experience the excitement of creating unique decks, responding to emergencies, and building the ultimate collection of plumber cards!
+
+---
+
+## Features
+
+- **Plumbing Emergencies:** Face a wide variety of plumbing emergencies, each requiring different strategies and card combinations to resolve.
+- **Card Collection:** Collect, unlock, and upgrade cards featuring tools, plumbers, parts, abilities, and special tactics.
+- **Deck Building:** Organize your collection into custom decks for different emergency scenarios. Save, customize, and rename your decks.
+- **Card Trading:** Swap and buy cards with the in-game card shop, growing your collection and refining your strategies.
+- **Player Dashboard:** Track your progress, view your top cards, stats, and manage your decks easily.
+- **Poke-Battle Style Battles:** Challenge plumbing emergencies with engaging, turn-based battle mechanics reminiscent of Pokémon showdowns.
+- **Coins and Rewards:** Earn coins based on your speed and performance in emergencies, and spend them on new cards.
+- **Stats Tracking:** See detailed information about your card collection and gameplay accomplishments.
+
+---
+
+## Screen Descriptions
+
+### Dashboard
+
+- **Short Description:** Your main hub for the game.
+- **Details:**  
+  See your overall game stats (wins, coins, emergencies solved), your total card count, and a highlight of your top ten cards. Access a full card list with a single tap. Review a complete list of your decks where you can quickly rename, delete, or create new decks for battle.
+
+### Card List
+
+- **Short Description:** A comprehensive inventory of all your collected cards.
+- **Details:**  
+  Browse every card you own, including plumbers, tools, emergency tactics, and upgrades. Use filters and sorting to quickly find the card you need.
+
+### Deck
+
+- **Short Description:** Build and edit your battle decks.
+- **Details:**  
+  Manage your deck by adding or removing cards, renaming it, and ensuring you have the perfect setup for any emergency. See stats for your deck, like average card power or type distribution.
+
+### Card Shop
+
+- **Short Description:** Buy and trade for new cards using in-game currency.
+- **Details:**  
+  Spend your hard-earned coins on card packs, single cards, or trade with other players via the shop. Keep an eye out for rotating specials and limited-time offers that could boost your collection.
+
+### Emergency
+
+- **Short Description:** Dive into battle and fix urgent plumbing problems!
+- **Details:**  
+  Select a deck and face off against unique plumbing emergencies in a turn-based, Pokémon-inspired battlefield. Each emergency behaves differently, and players must respond with tactics and the right cards to resolve them quickly for maximum rewards.
+
+---
+</app-description>
+
+> appendUser
+<theme>
+## Pocket Plumbers Theme Specification
+
+### Overall Look and Feel
+Pocket Plumbers pays homage to classic Gameboy Color visuals while leveraging modern design principles for clarity and accessibility. The interface mimics pixelated charm and limited color palettes but uses cleaner typography, contemporary layout spacing, and subtle micro-interactions. All interactive elements and call-to-action accents use a retro-inspired green. Cards, buttons, and stat windows call back to cartridge labels and game menus, with soft shadows and border radii adding a welcoming, modern touch.
+
+### Core Palette
+- **Primary (Action) Color:** `emerald-500` (`bg-emerald-500`, `text-emerald-500`, `border-emerald-500`)
+- **Dark Ground:** `gray-900` / `gray-800`
+- **Light Backgrounds:** `gray-100`, `white`
+- **Accent Borders/Dividers:** `gray-200`
+- **Pixel Shadow Accent:** Vibrant contrast, e.g., `yellow-300`, `lime-400`
+- **Button & Selection Highlight:** `emerald-600`, `emerald-400`
+
+### Typography
+- **Font Family:** `font-mono` (for pixel/Gameboy effect), occasionally `font-sans` for announcements or body
+- **Uppercase Labels:** `uppercase`, `tracking-wider`
+- **Heading Style:** `text-xl md:text-2xl font-bold`
+- **Subtle Shadow:** `drop-shadow-[0_1px_0_rgba(0,0,0,0.8)]` (simulates pixel text highlight)
+
+---
+
+### Example Theme Application
+
+#### Main Game Container
+```html
+<div class="w-full min-h-screen bg-gray-900 flex flex-col items-center font-mono text-gray-100">
+  <!-- Content here -->
+</div>
+```
+
+#### Card Example
+```html
+<div class="bg-gray-100 rounded-lg border-2 border-emerald-500 shadow-lg px-4 py-3
+            relative overflow-hidden mb-4 transition-transform hover:scale-105">
+  <div class="absolute top-2 right-2 text-emerald-500 text-xs uppercase tracking-widest font-bold">
+    Rare
+  </div>
+  <h3 class="text-xl font-bold text-gray-900 drop-shadow-[0_1px_0_rgba(34,197,94,0.9)] leading-tight uppercase tracking-wide">
+    Pipe Wrench
+  </h3>
+  <p class="text-gray-700 text-sm mt-2">
+    A trusty wrench. Use to fix common leaks and open stuck valves.
+  </p>
+</div>
+```
+
+#### Button
+```html
+<button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow 
+                border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest
+                transition-colors duration-150">
+  TRADE
+</button>
+```
+
+#### Stat Panel
+```html
+<div class="bg-gray-800 rounded-md border border-gray-200 
+             shadow-md px-6 py-3 flex gap-4 items-center mb-2">
+  <div class="text-xl font-bold text-emerald-400">152</div>
+  <div class="uppercase text-xs text-gray-300 tracking-wide">Total Cards</div>
+</div>
+```
+
+#### Deck List Item
+```html
+<div class="flex items-center bg-white border border-emerald-200 rounded-lg px-3 py-2 mb-2 shadow
+            transition hover:border-emerald-400 group">
+  <span class="font-bold text-gray-800 group-hover:text-emerald-500 uppercase flex-1">Leak Busters</span>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-emerald-500 text-white hover:bg-emerald-400 
+                    border border-emerald-700 tracking-wider">Rename</button>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-400 
+                    border border-red-700">Delete</button>
+</div>
+```
+
+#### Emergency/Battle Screen Background
+- Use a patterned/solid background: `bg-gradient-to-b from-gray-100 via-emerald-100 to-gray-200`
+- Overlay a pixelated grid: `<div class="absolute inset-0 opacity-20 bg-[url('/pixelgrid.svg')]"></div>`
+
+#### Modal/Popover (Shop/Emergency Conclusion)
+```html
+<div class="bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl px-8 py-6
+            max-w-md mx-auto">
+  <h2 class="text-emerald-400 text-2xl font-bold uppercase mb-3 drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+    SHOP
+  </h2>
+  <!-- Shop content -->
+</div>
+```
+
+---
+
+## Thematic Details
+
+- Rounded edges (`rounded-lg`, `rounded-md`) on all core UI elements.
+- Shadow effects (`shadow`, `shadow-lg`, etc.) suggest the chunky, layered look of early handheld interface dividers.
+- Thin solid borders (`border-2`, `border`, `border-emerald-500`) on cards/buttons for the Gameboy look.
+- Use of `uppercase tracking-wider` (and `tracking-widest` for more dramatic effect) on all labels, buttons, and headings.
+- Flashy actions (rewards popups, critical fixes) use emerald gradients and pixelated burst SVGs.
+- Subtle transition effects (`transition`, `hover:*`) maintain a responsive, modern UI feel.
+
+---
+
+### Summary
+
+This theme blends a retro, pixel-inspired Gameboy color vibe—channeling nostalgia—while updating the interface for contemporary clarity and usability through Tailwind utilities. Emerald green stands out as the world’s core energy, used consistently for buttons, highlights, and progress bars, helping all “action” interactions pop vividly.
+</theme>
+
+> appendUser
+<package-json>
+{
+  "name": "beach-rescue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start"
+  },
+  "dependencies": {
+    "lucide-react": "^0.542.0",
+    "next": "15.5.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+</package-json>
+
+> appendUser
+Below are all the cards in the game
+
+<cards>
+[
+    {
+        "type": "plumber",
+        "name": "Turbo Tony",
+        "baseFilename": "plumber_turbo_tony",
+        "visualDescription": "A burly plumber with a big red wrench and a confident grin. Wears blue coveralls and a tool belt.",
+        "price": 300,
+        "rarity": 3,
+        "hp": 100,
+        "damage": 25
+    },
+    {
+        "type": "plumber",
+        "name": "Speedy Sal",
+        "baseFilename": "plumber_speedy_sal",
+        "visualDescription": "A slim, speedy plumber in green with goggles and rollerblades attached to his boots.",
+        "price": 250,
+        "rarity": 2,
+        "hp": 80,
+        "damage": 19
+    },
+    {
+        "type": "plumber",
+        "name": "Mighty Mona",
+        "baseFilename": "plumber_mighty_mona",
+        "visualDescription": "A tall, muscular woman holding two plungers, ready for battle. Has utility pouches and an iconic yellow cap.",
+        "price": 320,
+        "rarity": 4,
+        "hp": 105,
+        "damage": 29
+    },
+    {
+        "type": "plumber",
+        "name": "Wrenchin’ Wes",
+        "baseFilename": "plumber_wrenchin_wes",
+        "visualDescription": "A young, scrappy plumber with spiky hair and an oversized wrench slung over his shoulder.",
+        "price": 180,
+        "rarity": 1,
+        "hp": 65,
+        "damage": 17
+    },
+    {
+        "type": "plumber",
+        "name": "Pipe Pro Paula",
+        "baseFilename": "plumber_pipe_pro_paula",
+        "visualDescription": "A stylish plumber with fluorescent-pink gloves, glasses, and a digital leak detector.",
+        "price": 220,
+        "rarity": 2,
+        "hp": 75,
+        "damage": 22
+    },
+    {
+        "type": "tool",
+        "name": "Mega Plunger",
+        "baseFilename": "tool_mega_plunger",
+        "visualDescription": "A bright orange, oversized plunger with a metal handle and glowing accents.",
+        "price": 90,
+        "rarity": 2,
+        "damage": 14
+    },
+    {
+        "type": "tool",
+        "name": "Snake-O-Matic",
+        "baseFilename": "tool_snake_o_matic",
+        "visualDescription": "A mechanical, coiled drain snake that retracts and extends with buttons.",
+        "price": 110,
+        "rarity": 3,
+        "damage": 20
+    },
+    {
+        "type": "tool",
+        "name": "Leak Detector",
+        "baseFilename": "tool_leak_detector",
+        "visualDescription": "A hi-tech gadget with blinking blue lights to find hidden leaks.",
+        "price": 60,
+        "rarity": 1,
+        "damage": 6
+    },
+    {
+        "type": "tool",
+        "name": "Pipe Patch Kit",
+        "baseFilename": "tool_pipe_patch_kit",
+        "visualDescription": "A small metal box filled with tape, putty, and quick fixes for cracks.",
+        "price": 75,
+        "rarity": 2,
+        "damage": 10
+    },
+    {
+        "type": "tool",
+        "name": "Turbo Torque Wrench",
+        "baseFilename": "tool_turbo_torque_wrench",
+        "visualDescription": "A gleaming chrome wrench with digital torque settings.",
+        "price": 100,
+        "rarity": 3,
+        "damage": 18
+    },
+    {
+        "type": "excuse",
+        "name": "Blame the Dog",
+        "baseFilename": "excuse_blame_the_dog",
+        "visualDescription": "A comical card featuring a guilty-looking dog next to a puddle.",
+        "price": 45,
+        "rarity": 1,
+        "timeGain": 5
+    },
+    {
+        "type": "excuse",
+        "name": "Traffic Jam",
+        "baseFilename": "excuse_traffic_jam",
+        "visualDescription": "A cartoon traffic jam blocks a city street full of plumbers.",
+        "price": 60,
+        "rarity": 2,
+        "timeGain": 8
+    },
+    {
+        "type": "excuse",
+        "name": "Misplaced Tools",
+        "baseFilename": "excuse_misplaced_tools",
+        "visualDescription": "A messy toolbox with open drawers and scattered wrenches.",
+        "price": 30,
+        "rarity": 1,
+        "timeGain": 3
+    },
+    {
+        "type": "excuse",
+        "name": "Parts on Backorder",
+        "baseFilename": "excuse_parts_on_backorder",
+        "visualDescription": "A computer with a 'backorder' alert on the screen.",
+        "price": 80,
+        "rarity": 3,
+        "timeGain": 10
+    },
+    {
+        "type": "excuse",
+        "name": "Client Not Home",
+        "baseFilename": "excuse_client_not_home",
+        "visualDescription": "A locked door with a 'Sorry, missed you' note.",
+        "price": 65,
+        "rarity": 2,
+        "timeGain": 6
+    },
+    {
+        "type": "power-up",
+        "name": "Caffeinated Surge",
+        "baseFilename": "powerup_caffeinated_surge",
+        "visualDescription": "A neon coffee mug overflowing with energy bolts.",
+        "price": 70,
+        "rarity": 2,
+        "damageMultiplier": 1.2
+    },
+    {
+        "type": "power-up",
+        "name": "Unbreakable Gloves",
+        "baseFilename": "powerup_unbreakable_gloves",
+        "visualDescription": "Shiny black gloves etched with golden symbols.",
+        "price": 120,
+        "rarity": 4,
+        "healthMultiplier": 1.25
+    },
+    {
+        "type": "power-up",
+        "name": "Safety Goggles",
+        "baseFilename": "powerup_safety_goggles",
+        "visualDescription": "Translucent blue goggles radiating a protective aura.",
+        "price": 55,
+        "rarity": 1,
+        "healthMultiplier": 1.1
+    },
+    {
+        "type": "power-up",
+        "name": "Protein Shake",
+        "baseFilename": "powerup_protein_shake",
+        "visualDescription": "A sports bottle with liquid strength sloshing inside.",
+        "price": 85,
+        "rarity": 2,
+        "damageMultiplier": 1.15
+    },
+    {
+        "type": "power-up",
+        "name": "Quick Reflexes",
+        "baseFilename": "powerup_quick_reflexes",
+        "visualDescription": "A pair of hands juggling pipes, tools, and a wrench all at once.",
+        "price": 95,
+        "rarity": 3,
+        "damageMultiplier": 1.18
+    },
+    {
+        "type": "sandwich",
+        "name": "Classic Sub",
+        "baseFilename": "sandwich_classic_sub",
+        "visualDescription": "A traditional submarine sandwich overflowing with deli meats and cheese.",
+        "price": 35,
+        "rarity": 1,
+        "health": 22
+    },
+    {
+        "type": "sandwich",
+        "name": "Mega BLT",
+        "baseFilename": "sandwich_mega_blt",
+        "visualDescription": "A huge BLT with crisp lettuce and bacon, radiating tempting aroma.",
+        "price": 50,
+        "rarity": 2,
+        "health": 33
+    },
+    {
+        "type": "sandwich",
+        "name": "Spicy Wrap",
+        "baseFilename": "sandwich_spicy_wrap",
+        "visualDescription": "A tightly-rolled wrap with bright peppers peeking out the sides.",
+        "price": 48,
+        "rarity": 2,
+        "health": 29
+    },
+    {
+        "type": "sandwich",
+        "name": "Veggie Hoagie",
+        "baseFilename": "sandwich_veggie_hoagie",
+        "visualDescription": "A fresh green hoagie loaded with crisp veggies and creamy dressing.",
+        "price": 42,
+        "rarity": 1,
+        "health": 18
+    },
+    {
+        "type": "sandwich",
+        "name": "Energy Bagel",
+        "baseFilename": "sandwich_energy_bagel",
+        "visualDescription": "A plump bagel with sunflower seeds and glowing cream cheese.",
+        "price": 37,
+        "rarity": 1,
+        "health": 20
+    },
+    {
+        "type": "tool",
+        "name": "Copper Pipe Set",
+        "baseFilename": "tool_copper_pipe_set",
+        "visualDescription": "A bundle of shiny copper pipes ready for installation.",
+        "price": 80,
+        "rarity": 2,
+        "damage": 12
+    },
+    {
+        "type": "tool",
+        "name": "Waterproof Tape",
+        "baseFilename": "tool_waterproof_tape",
+        "visualDescription": "A roll of gray, ultra-sticky tape that magically seals leaks.",
+        "price": 70,
+        "rarity": 1,
+        "damage": 8
+    },
+    {
+        "type": "tool",
+        "name": "Mini Shop Vac",
+        "baseFilename": "tool_mini_shop_vac",
+        "visualDescription": "A portable vacuum with wheels and a big blue button.",
+        "price": 60,
+        "rarity": 1,
+        "damage": 5
+    },
+    {
+        "type": "plumber",
+        "name": "Delicate Dani",
+        "baseFilename": "plumber_delicate_dani",
+        "visualDescription": "A careful, meticulous plumber with small tools and surgical gloves.",
+        "price": 190,
+        "rarity": 1,
+        "hp": 60,
+        "damage": 15
+    },
+    {
+        "type": "power-up",
+        "name": "Inspirational Playlist",
+        "baseFilename": "powerup_inspirational_playlist",
+        "visualDescription": "A phone with musical notes floating around, headphones plugged in.",
+        "price": 78,
+        "rarity": 2,
+        "damageMultiplier": 1.12
+    },
+    {
+        "type": "excuse",
+        "name": "Epic Rainstorm",
+        "baseFilename": "excuse_epic_rainstorm",
+        "visualDescription": "A deluge outside the window with flashing thunderbolts.",
+        "price": 70,
+        "rarity": 2,
+        "timeGain": 7
+    },
+    {
+        "type": "plumber",
+        "name": "Old School Stan",
+        "baseFilename": "plumber_old_school_stan",
+        "visualDescription": "A gray-bearded plumber in suspenders, wielding a classic monkey wrench.",
+        "price": 240,
+        "rarity": 2,
+        "hp": 90,
+        "damage": 21
+    },
+    {
+        "type": "tool",
+        "name": "Liquid Drain Blaster",
+        "baseFilename": "tool_liquid_drain_blaster",
+        "visualDescription": "A big blue and red bottle with warning labels, bubbling with potent chemicals.",
+        "price": 85,
+        "rarity": 2,
+        "damage": 13
+    },
+    {
+        "type": "plumber",
+        "name": "Techie Tessa",
+        "baseFilename": "plumber_techie_tessa",
+        "visualDescription": "A high-tech plumber adorned with smart glasses and a tablet for diagnostics.",
+        "price": 250,
+        "rarity": 3,
+        "hp": 85,
+        "damage": 20
+    },
+    {
+        "type": "tool",
+        "name": "Pipe Cutter Deluxe",
+        "baseFilename": "tool_pipe_cutter_deluxe",
+        "visualDescription": "A heavy-duty red pipe cutter with a digital readout.",
+        "price": 95,
+        "rarity": 2,
+        "damage": 16
+    }
+]
+</cards>
+
+> appendUser
+Below is a list of all pages in the app:
+
+<pages>
+[
+    {
+        "name": "Dashboard",
+        "description": "Your main hub for the game. See your stats, top ten cards, total card count, and access your complete deck and card lists. Quickly manage and organize all your decks from here.",
+        "path": "/dashboard"
+    },
+    {
+        "name": "Card List",
+        "description": "Browse a comprehensive inventory of all your collected cards, including plumbers, tools, tactics, and upgrades. Use filters and sorting to find specific cards quickly.",
+        "path": "/cards"
+    },
+    {
+        "name": "Deck",
+        "description": "Build, edit, and rename your decks for battle. Add or remove cards and view stats like average card power and type breakdown to optimize your deck for different emergencies.",
+        "path": "/deck"
+    },
+    {
+        "name": "Card Shop",
+        "description": "Buy card packs, single cards, or trade with other players using coins. Discover daily specials and time-limited offers to enhance your collection.",
+        "path": "/shop"
+    },
+    {
+        "name": "Emergency",
+        "description": "Jump into turn-based battles to fix quirky and challenging plumbing emergencies using your custom decks. Each emergency is unique and rewards skillful, speedy play with extra coins.",
+        "path": "/emergency"
+    }
+]
+</pages>
+
+> appendUser
+# Next.js Developers Guide (Pages Router, no SSR, Tailwind utilities, no external component libraries)
+
+Core principles
+- Pages router only: use the pages directory. Do not create an app directory.
+- No server-side rendering. Do not use getServerSideProps or getInitialProps.
+- Prefer static generation (SSG) and/or client-side data fetching.
+- Use square brackets for route parameters (e.g., pages/users/[id].tsx).
+- Styling uses basic Tailwind CSS utility classes only. No design systems or component libraries.
+- All UI components are defined directly in page files (co-located, no shared components directory).
+
+**Data storage**
+- All persistent user data should be stored in the browser's local storage.
+- Do not use cookies, server-side sessions, or external databases for user data persistence.
+- Use the `window.localStorage` API to read and write data:
+    ```js
+    // Save data
+    localStorage.setItem("key", JSON.stringify(value));
+    // Retrieve data
+    const value = JSON.parse(localStorage.getItem("key") || "null");
+    ```
+- Always check for window existence before accessing localStorage (e.g., inside useEffect) to avoid SSR-related errors.
+- For sensitive data, consider encrypting before storing, but avoid storing secrets in the browser.
+- Example pattern:
+    ```js
+    import { useEffect, useState } from "react";
+
+    function useLocalStorage(key, initialValue) {
+        const [value, setValue] = useState(() => {
+            if (typeof window === "undefined") return initialValue;
+            const stored = localStorage.getItem(key);
+            return stored ? JSON.parse(stored) : initialValue;
+        });
+
+        useEffect(() => {
+            if (typeof window !== "undefined") {
+                localStorage.setItem(key, JSON.stringify(value));
+            }
+        }, [key, value]);
+
+        return [value, setValue];
+    }
+    ```
+- Use this pattern for user preferences, drafts, or other persistent client-side data.
+
+Project setup
+1) Create the project (TypeScript recommended)
+- npx create-next-app@latest my-app --ts
+- When prompted, choose the Pages Router if asked.
+
+2) Add Tailwind CSS
+- npm install -D tailwindcss postcss autoprefixer
+- npx tailwindcss init -p
+- tailwind.config.js content should include:
+    - content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"]
+    - You won’t create a components folder, but leaving it does no harm; you may remove it if you want to be strict.
+- styles/globals.css should include Tailwind directives:
+    - @tailwind base;
+    - @tailwind components;
+    - @tailwind utilities;
+
+3) Ensure no app directory
+- Do not create an app/ folder.
+- All page files go under pages/.
+
+4) next.config.js (optional but recommended)
+- Ensure default settings. You do not need to enable appDir.
+- You may enable images.domains if using next/image with remote sources.
+
+Directory structure (minimal)
+- pages/
+    - _app.tsx (global providers, global layout, defined in-file)
+    - _document.tsx (document shell if needed)
+    - index.tsx
+    - 404.tsx
+    - example/[id].tsx (dynamic routes use [param] files)
+- public/ (static assets)
+- styles/
+    - globals.css
+- tailwind.config.js, postcss.config.js, next.config.js
+
+Routing guidelines
+- Static routes: pages/about.tsx => /about
+- Dynamic routes (square brackets only):
+    - pages/users/[id].tsx => /users/123
+    - pages/blog/[slug].tsx => /blog/my-post
+    - Catch-all: pages/docs/[...slug].tsx => /docs/a/b/c
+- Link between pages with next/link. Example:
+    import Link from "next/link"
+    <Link href="/users/123" className="text-blue-600 hover:underline">User</Link>
+- Access route params via useRouter in client code:
+    import { useRouter } from "next/router"
+    const { query } = useRouter()
+    const { id } = query
+
+No server-side rendering
+- Do not use getServerSideProps or getInitialProps in any page or custom _app/_document.
+- Prefer:
+    - Static generation (getStaticProps + getStaticPaths) when content can be known at build time. Optionally use ISR via revalidate for freshness.
+    - Client-side fetching (useEffect/fetch or SWR-like patterns using fetch) for user-specific or frequently changing data.
+- Avoid patterns that force SSR (including getInitialProps in _app.tsx).
+
+Data fetching patterns
+1) Static generation (preferred when possible)
+- pages/blog/[slug].tsx
+    export async function getStaticPaths() {
+        return { paths: [], fallback: "blocking" }
+    }
+    export async function getStaticProps({ params }) {
+        const { slug } = params
+        const post = await fetch(`${process.env.API_BASE_URL}/posts/${slug}`).then(r => r.json())
+        if (!post) return { notFound: true }
+        return {
+            props: { post },
+            revalidate: 60 // ISR (optional)
+        }
+    }
+    export default function BlogPost({ post }) { /* render with Tailwind utilities */ }
+
+2) Client-side fetching (no SSR)
+- pages/users/[id].tsx
+    import { useEffect, useState } from "react"
+    import { useRouter } from "next/router"
+    export default function UserPage() {
+        const { query } = useRouter()
+        const { id } = query
+        const [user, setUser] = useState(null)
+        const [loading, setLoading] = useState(true)
+
+        useEffect(() => {
+            if (!id) return
+            setLoading(true)
+            fetch(`/api/users/${id}`)
+                .then(r => r.json())
+                .then(data => setUser(data))
+                .finally(() => setLoading(false))
+        }, [id])
+
+        if (loading) return <p className="p-4 text-gray-500">Loading…</p>
+        if (!user) return <p className="p-4 text-red-600">User not found</p>
+        return <div className="p-4">...</div>
+    }
+
+Styling with Tailwind utilities (no component libraries)
+- Use Tailwind utility classes directly in JSX (bg-, text-, p-/m-, flex/grid, rounded, shadow, border, hover:, focus:, md:, etc.).
+- Keep className strings readable: group by layout, spacing, color/typography, state.
+- Prefer semantic HTML elements and ARIA attributes for accessibility.
+- Do not use Tailwind UI, Headless UI, Radix, MUI, Chakra, or similar component libraries.
+
+Examples (inline, minimal components defined in the page file)
+- pages/index.tsx
+    import Head from "next/head"
+
+    function Button({ children, onClick, variant = "primary" }) {
+        const base = "inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
+        const variants = {
+            primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-600",
+            secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-400"
+        }
+        return (
+            <button onClick={onClick} className={`${base} ${variants[variant]}`}>
+                {children}
+            </button>
+        )
+    }
+
+    export default function Home() {
+        return (
+            <>
+                <Head>
+                    <title>Home</title>
+                    <meta name="description" content="Next.js Pages + Tailwind (no SSR)" />
+                </Head>
+                <main className="mx-auto max-w-3xl p-6">
+                    <h1 className="mb-4 text-3xl font-bold text-gray-900">Welcome</h1>
+                    <p className="mb-6 text-gray-700">Build with static generation or client-side fetching.</p>
+                    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+                        <h2 className="mb-2 text-xl font-semibold text-gray-900">Example card</h2>
+                        <p className="mb-4 text-gray-600">This card uses only Tailwind utilities.</p>
+                        <Button onClick={() => alert("Clicked!")}>Click me</Button>
+                    </div>
+                </main>
+            </>
+        )
+    }
+
+Global layout and providers (inside pages/_app.tsx, define local components in-file)
+- pages/_app.tsx
+    import "../styles/globals.css"
+    import type { AppProps } from "next/app"
+
+    function Layout({ children }) {
+        return (
+            <div className="min-h-screen bg-gray-50 text-gray-900">
+                <header className="border-b bg-white">
+                    <div className="mx-auto flex max-w-5xl items-center justify-between p-4">
+                        <a href="/" className="text-lg font-semibold">MyApp</a>
+                        <nav className="space-x-4">
+                            <a href="/about" className="text-gray-600 hover:text-gray-900">About</a>
+                            <a href="/docs/getting-started" className="text-gray-600 hover:text-gray-900">Docs</a>
+                        </nav>
+                    </div>
+                </header>
+                <div className="mx-auto max-w-5xl p-4">{children}</div>
+                <footer className="mt-12 border-t bg-white">
+                    <div className="mx-auto max-w-5xl p-4 text-sm text-gray-500">© {new Date().getFullYear()}</div>
+                </footer>
+            </div>
+        )
+    }
+
+    export default function MyApp({ Component, pageProps }: AppProps) {
+        return (
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        )
+    }
+
+Dynamic routes examples (square brackets)
+- Single parameter:
+    - File: pages/products/[id].tsx
+    - URL: /products/42
+- Multiple parameters via nesting:
+    - File: pages/teams/[teamId]/members/[memberId].tsx
+    - URL: /teams/7/members/15
+- Catch-all:
+    - File: pages/docs/[...slug].tsx
+    - URLs: /docs/a, /docs/a/b, /docs/a/b/c
+    - Use getStaticPaths/getStaticProps or client-side fetching depending on needs.
+
+Navigation
+- Use next/link:
+    import Link from "next/link"
+    <Link href="/products/42" className="text-blue-600 hover:underline">View Product</Link>
+- Avoid router.push with string concatenation when a Link is sufficient; Link prefetching improves UX.
+
+Images and assets
+- You may use next/image (built-in) or plain img. Both are allowed.
+- With next/image:
+    import Image from "next/image"
+    <Image src="/logo.png" alt="Logo" width={48} height={48} className="rounded" />
+- Put static assets in public/.
+
+Accessibility and semantics
+- Use semantic elements (main, nav, header, footer, section, h1–h6).
+- Provide alt text for images.
+- Ensure focus states are visible (Tailwind focus: utilities).
+- Use aria-* attributes where applicable.
+
+Environment variables
+- public variables: NEXT_PUBLIC_* available on client.
+- server-only variables are not needed for SSR here, but may be used at build time (getStaticProps) or in API routes.
+- Define in .env.local and document required keys.
+
+API routes (optional)
+- You can use pages/api/* for serverless endpoints. This does not render UI on the server; it provides data to client-side fetching or build-time SSG.
+- Example: pages/api/users/[id].ts returns JSON.
+
+Testing and quality
+- ESLint/Prettier recommended. Keep rules lightweight.
+- Consider an ESLint rule to disallow getServerSideProps and getInitialProps.
+    - For example, add a custom lint rule or a simple codebase check in CI that greps for those function names.
+- TypeScript:
+    - Use strict mode in tsconfig for safer code.
+
+Do/Don’t summary
+- Do:
+    - Use pages directory exclusively.
+    - Use square brackets for dynamic routes.
+    - Use Tailwind utility classes directly in JSX.
+    - Use static generation (getStaticProps/Paths) and ISR, or client-side fetching.
+    - Define small UI components locally within the page file (including Layout inside _app.tsx).
+- Don’t:
+    - Don’t create an app directory or use the App Router.
+    - Don’t use getServerSideProps or getInitialProps.
+    - Don’t install external component libraries (MUI, Chakra, Radix, Headless UI, etc.).
+    - Don’t create a shared components directory; co-locate components within the page files.
+
+Common patterns and snippets
+- Loading and empty states:
+    <p className="p-4 text-gray-500">Loading…</p>
+    <p className="p-4 text-gray-500">No results found</p>
+
+- Form example:
+    <form className="space-y-4" onSubmit={handleSubmit}>
+        <label className="block">
+            <span className="mb-1 block text-sm font-medium text-gray-700">Email</span>
+            <input type="email" className="w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </label>
+        <button className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">Submit</button>
+    </form>
+
+- Cards and lists:
+    <ul className="divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white">
+        {items.map(i => (
+            <li key={i.id} className="flex items-center justify-between p-4">
+                <span className="text-gray-900">{i.name}</span>
+                <a href={`/items/${i.id}`} className="text-blue-600 hover:underline">Open</a>
+            </li>
+        ))}
+    </ul>
+
+Code review checklist
+- Routes use pages/* with [param] for dynamics; no app/*.
+- No getServerSideProps/getInitialProps present.
+- Tailwind classes applied directly; no component-lib imports.
+- Small components are declared in the same page file.
+- Static generation or client-side fetching is used appropriately.
+- Accessibility: alt text, focus states, semantic tags.
+- Head metadata present where needed.
+
+This guide keeps the project simple, static by default, and styled with Tailwind utilities, while avoiding SSR and external component libraries.
+
+> appendUser
+# Card Shop
+
+The **Card Shop** is the bustling heart of collection-building in Pocket Plumbers. Here, players use their hard-earned coins to buy fresh card packs, snipe rare single cards, and barter with others through a vibrant marketplace—all with a distinctly retro, Gameboy-inspired interface.
+
+---
+
+## Layout & Structure
+
+### Overall View
+
+The shop fills the screen with a lively, well-organized grid featuring themed shop sections, engaging pixel flourishes, and clear coin balances. It uses a soft, high-contrast palette: a light-to-emerald vertical gradient background with a pixel grid overlay, providing playful energy and focus to shopping activities. The shop’s main content is contained within a rounded, bordered, and subtly shadowed panel centered on the screen, recalling classic game menu boxes.
+
+### Sections
+
+#### 1. Shop Header
+
+- **Placement:** Centered at the top of the main panel.
+- **Style:**  
+  - Large, uppercase `SHOP` title in emerald, pixel-shadowed (`text-emerald-400 text-2xl font-bold uppercase drop-shadow`).
+  - Animated coin or pixel-burst icon next to the title for atmosphere.
+  - Player **Coin Balance** displayed prominently; mono font, bold, emerald-highlighted.
+
+#### 2. Shop Tabs
+
+- **Functionality:** Players can quickly switch between three core shop modes:
+  - **Card Packs** (default): Buy randomized packs of cards.
+  - **Single Cards**: Pick individual cards from rotating daily offers.
+  - **Trades**: See open trades or post cards to swap with other players.
+
+- **Style:**  
+  - Horizontal tab bar, each tab a pill-shaped emerald-outlined button (`rounded-full border-emerald-400 uppercase`).
+  - Active tab uses solid emerald fill (`bg-emerald-500 text-white`); inactive tabs are outline-only.
+  - Smooth hover transitions as you mouse over tabs.
+
+#### 3. Card Packs Section
+
+- **Layout:**  
+  - Grid layout: Featured card packs are arranged as oversized cards or tiles.
+  - Each pack tile shows artwork, pack name, number of cards, theme, and price in coins.
+  - **Purchase button:** Emerald, large, with coin icon.
+  - **Pack details** (rarity odds, included card types) appear on tile hover/tap.
+
+- **Specials:**  
+  - Daily or weekly rotating "Special Pack" highlighted with a glowing emerald border or pixel-burst effect.
+  - Limited-time offers use badge overlays (e.g., `LIMITED!` in yellow/lime).
+
+#### 4. Single Card Offers
+
+- **Layout:**  
+  - Vertical or grid list of individual cards available for direct purchase.
+  - Each card mini-panel:
+    - Pixel-art illustration.
+    - Card name and rarity.
+    - Coin price; purchase button.
+    - Timer bar for limited-time availability beneath each card.
+
+- **Rarity Highlight:**  
+  - Rare cards use brighter or animated emerald/yellow borders.
+  - Uncommon/common cards have softer outlines.
+
+#### 5. Player Trades
+
+- **Layout:**  
+  - Listing of trade requests from other players, sortable by newest, rarest, or match to your collection.
+  - Each trade features:
+    - Offered card(s): Mini-card previews.
+    - Requested card(s) or coin price.
+    - Player name/avatar (pixel-style).
+    - "Trade" button (emerald), or "Post Trade" for your own requests.
+
+- **Empty State:**  
+  - If few trades exist, display a friendly, pixel-plumber mascot with encouragement to post a trade.
+
+#### 6. Bonus/Promo Bar
+
+- **Placement:** Between shop header and tabs or floating at the top.
+- **Contents:**  
+  - Flashes current daily deal, flash discounts, or event packs (e.g., "Leak Week Special!").
+  - Subtle pulsing background, animated sparkle/burst for limited-time urgency.
+
+#### 7. Shop Modal
+
+- **Triggered by:** Card or pack purchases, or viewing a trade.
+- **Appearance:**  
+  - Central floating, emerald-outlined modal with bold title.
+  - Shows animated reveal of purchased cards, or confirmation of trade.
+  - "Close" and "Buy More" (emerald, bold) actions at bottom.
+  - Subtle celebration graphics—pixel confetti, emerald rays—on successful purchase.
+
+---
+
+## Functionality
+
+- **Coin Spending:** Players use their in-game coins; if insufficient, the purchase button is grayed and shows a tooltip.
+- **Transaction Feedback:** On every purchase, cards animate into the collection, with rare pulls highlighted.
+- **Inventory Updating:** Collection and coin counts in the header update in real-time with purchases or trades.
+- **Daily Reset:** Specials and card listings refresh on a daily schedule, with a visible timer before reset.
+- **Trading System:** Players can propose trades, browse open requests, and accept or counter-offer. All trades are safely escrowed by the shop.
+- **Accessibility:** All buttons and interactive elements are high-contrast, large touch targets, and keyboard navigable.
+
+---
+
+## Thematic UI Highlights
+
+- **Emerald action color:** Drives every purchase, highlight, and “Buy” action.
+- **Pixel shadows, burst SVGs:** Used for badges, limited-time deals, or highlighting rare finds.
+- **Rounded containers and borders:** Every card, button, and shop panel feels inviting and game-like.
+- **Rewards/Notifications:** Success feedback uses emerald gradients and retro flourishes (sparkles, coin chimes).
+- **Mono font and uppercase:** Shop labels and headings echo classic game menus.
+- **Card Reveal Animation:** Buying a pack triggers a quick, flipping animation as new cards are “unpacked.”
+
+---
+
+## Example UI Outline
+
+```html
+<div class="max-w-lg mx-auto mt-12 mb-8 bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl p-8
+            relative">
+  <!-- Shop Header -->
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-emerald-400 text-2xl font-bold uppercase drop-shadow">SHOP</h2>
+    <div class="flex items-center gap-2 font-mono font-bold text-emerald-300 bg-gray-800 rounded px-4 py-2">
+      <img src="/icons/coin.svg" class="w-5 h-5" /> 5,200
+    </div>
+  </div>
+
+  <!-- Bonus/Promo Banner -->
+  <div class="bg-gradient-to-r from-emerald-400/60 to-yellow-300/60 rounded-md text-center font-mono
+              text-sm py-2 px-3 mb-3 uppercase tracking-wider shadow drop-shadow">
+    Leak Week Special: 50% off Plumber Pack!
+  </div>
+
+  <!-- Shop Tabs -->
+  <div class="flex gap-2 mb-6">
+    <button class="bg-emerald-500 text-white px-4 py-1 rounded-full font-bold uppercase tracking-wider shadow">Card Packs</button>
+    <button class="border-2 border-emerald-400 text-emerald-500 px-4 py-1 rounded-full font-bold uppercase tracking-wider">Single Cards</button>
+    <button class="border-2 border-emerald-400 text-emerald-500 px-4 py-1 rounded-full font-bold uppercase tracking-wider">Trades</button>
+  </div>
+
+  <!-- Packs/cards/trades section updates below here -->
+</div>
+```
+
+---
+
+## Summary
+
+The Card Shop is a lively, accessible space where players can expand their collections and strategize. Every interaction—buying, browsing, trading—feels rewarding, thanks to the tactile retro visuals, pixelated highlights, and punchy emerald-driven action buttons. Frequent daily specials, prominent coin feedback, and satisfying card reveal animations encourage continual engagement and reward collectors both casual and hardcore.
+
+> appendUser
+Create a next JS page based on context.
+You can use package defined in the package-json tag.
+Card images are stored in the public/cards directory and can be accessed using a http path of "/cards/{baseFilename}.png"
+Do not include a navigation bar, one is included in the layout wrapper of the game.
+
+> nop
+//_END_MAKE_TARGET_INPUT_
+
+
+@time 2025-09-03T17:08:17-04:00
+@tokenUsage 10089 / 15553 / $0.0320525
+@model gpt-5-2025-08-07
+> assistant
+import { useEffect, useMemo, useState } from "react"
+import Head from "next/head"
+import Image from "next/image"
+import {
+  CircleDollarSign,
+  ShoppingCart,
+  Sparkles,
+  Clock,
+  Gift,
+  Tag,
+  ArrowLeftRight,
+  CheckCircle2,
+  X,
+} from "lucide-react"
+
+type BaseCard = {
+  type: "plumber" | "tool" | "excuse" | "power-up" | "sandwich"
+  name: string
+  baseFilename: string
+  visualDescription: string
+  price: number
+  rarity: 1 | 2 | 3 | 4
+}
+
+type Plumber = BaseCard & { type: "plumber"; hp: number; damage: number }
+type Tool = BaseCard & { type: "tool"; damage: number }
+type Excuse = BaseCard & { type: "excuse"; timeGain: number }
+type PowerUp = BaseCard & {
+  type: "power-up"
+  damageMultiplier?: number
+  healthMultiplier?: number
+}
+type Sandwich = BaseCard & { type: "sandwich"; health: number }
+
+type Card = Plumber | Tool | Excuse | PowerUp | Sandwich
+
+type Collection = Record<string, number>
+
+type PackDef = {
+  key: string
+  name: string
+  description: string
+  count: number
+  price: number
+  types: Card["type"][]
+  odds: Record<1 | 2 | 3 | 4, number>
+  badge?: string
+}
+
+type TradeCoin = {
+  id: string
+  seller: string
+  offer: string // baseFilename
+  wantCoins: number
+  createdAt: number
+}
+
+type TradeSwap = {
+  id: string
+  seller: string
+  offer: string // baseFilename
+  request: string // baseFilename
+  createdAt: number
+}
+
+type Trade = TradeCoin | TradeSwap
+
+type DailyData = {
+  dateKey: string
+  singleOffers: string[] // baseFilenames
+  trades: Trade[]
+  specials: {
+    packKey: string
+    discountPct: number
+    message: string
+  }
+}
+
+const ALL_CARDS: Card[] = [
+  {
+    type: "plumber",
+    name: "Turbo Tony",
+    baseFilename: "plumber_turbo_tony",
+    visualDescription:
+      "A burly plumber with a big red wrench and a confident grin. Wears blue coveralls and a tool belt.",
+    price: 300,
+    rarity: 3,
+    hp: 100,
+    damage: 25,
+  },
+  {
+    type: "plumber",
+    name: "Speedy Sal",
+    baseFilename: "plumber_speedy_sal",
+    visualDescription:
+      "A slim, speedy plumber in green with goggles and rollerblades attached to his boots.",
+    price: 250,
+    rarity: 2,
+    hp: 80,
+    damage: 19,
+  },
+  {
+    type: "plumber",
+    name: "Mighty Mona",
+    baseFilename: "plumber_mighty_mona",
+    visualDescription:
+      "A tall, muscular woman holding two plungers, ready for battle. Has utility pouches and an iconic yellow cap.",
+    price: 320,
+    rarity: 4,
+    hp: 105,
+    damage: 29,
+  },
+  {
+    type: "plumber",
+    name: "Wrenchin’ Wes",
+    baseFilename: "plumber_wrenchin_wes",
+    visualDescription:
+      "A young, scrappy plumber with spiky hair and an oversized wrench slung over his shoulder.",
+    price: 180,
+    rarity: 1,
+    hp: 65,
+    damage: 17,
+  },
+  {
+    type: "plumber",
+    name: "Pipe Pro Paula",
+    baseFilename: "plumber_pipe_pro_paula",
+    visualDescription:
+      "A stylish plumber with fluorescent-pink gloves, glasses, and a digital leak detector.",
+    price: 220,
+    rarity: 2,
+    hp: 75,
+    damage: 22,
+  },
+  {
+    type: "tool",
+    name: "Mega Plunger",
+    baseFilename: "tool_mega_plunger",
+    visualDescription:
+      "A bright orange, oversized plunger with a metal handle and glowing accents.",
+    price: 90,
+    rarity: 2,
+    damage: 14,
+  },
+  {
+    type: "tool",
+    name: "Snake-O-Matic",
+    baseFilename: "tool_snake_o_matic",
+    visualDescription:
+      "A mechanical, coiled drain snake that retracts and extends with buttons.",
+    price: 110,
+    rarity: 3,
+    damage: 20,
+  },
+  {
+    type: "tool",
+    name: "Leak Detector",
+    baseFilename: "tool_leak_detector",
+    visualDescription:
+      "A hi-tech gadget with blinking blue lights to find hidden leaks.",
+    price: 60,
+    rarity: 1,
+    damage: 6,
+  },
+  {
+    type: "tool",
+    name: "Pipe Patch Kit",
+    baseFilename: "tool_pipe_patch_kit",
+    visualDescription:
+      "A small metal box filled with tape, putty, and quick fixes for cracks.",
+    price: 75,
+    rarity: 2,
+    damage: 10,
+  },
+  {
+    type: "tool",
+    name: "Turbo Torque Wrench",
+    baseFilename: "tool_turbo_torque_wrench",
+    visualDescription:
+      "A gleaming chrome wrench with digital torque settings.",
+    price: 100,
+    rarity: 3,
+    damage: 18,
+  },
+  {
+    type: "excuse",
+    name: "Blame the Dog",
+    baseFilename: "excuse_blame_the_dog",
+    visualDescription:
+      "A comical card featuring a guilty-looking dog next to a puddle.",
+    price: 45,
+    rarity: 1,
+    timeGain: 5,
+  },
+  {
+    type: "excuse",
+    name: "Traffic Jam",
+    baseFilename: "excuse_traffic_jam",
+    visualDescription:
+      "A cartoon traffic jam blocks a city street full of plumbers.",
+    price: 60,
+    rarity: 2,
+    timeGain: 8,
+  },
+  {
+    type: "excuse",
+    name: "Misplaced Tools",
+    baseFilename: "excuse_misplaced_tools",
+    visualDescription:
+      "A messy toolbox with open drawers and scattered wrenches.",
+    price: 30,
+    rarity: 1,
+    timeGain: 3,
+  },
+  {
+    type: "excuse",
+    name: "Parts on Backorder",
+    baseFilename: "excuse_parts_on_backorder",
+    visualDescription:
+      "A computer with a 'backorder' alert on the screen.",
+    price: 80,
+    rarity: 3,
+    timeGain: 10,
+  },
+  {
+    type: "excuse",
+    name: "Client Not Home",
+    baseFilename: "excuse_client_not_home",
+    visualDescription:
+      "A locked door with a 'Sorry, missed you' note.",
+    price: 65,
+    rarity: 2,
+    timeGain: 6,
+  },
+  {
+    type: "power-up",
+    name: "Caffeinated Surge",
+    baseFilename: "powerup_caffeinated_surge",
+    visualDescription:
+      "A neon coffee mug overflowing with energy bolts.",
+    price: 70,
+    rarity: 2,
+    damageMultiplier: 1.2,
+  },
+  {
+    type: "power-up",
+    name: "Unbreakable Gloves",
+    baseFilename: "powerup_unbreakable_gloves",
+    visualDescription: "Shiny black gloves etched with golden symbols.",
+    price: 120,
+    rarity: 4,
+    healthMultiplier: 1.25,
+  },
+  {
+    type: "power-up",
+    name: "Safety Goggles",
+    baseFilename: "powerup_safety_goggles",
+    visualDescription:
+      "Translucent blue goggles radiating a protective aura.",
+    price: 55,
+    rarity: 1,
+    healthMultiplier: 1.1,
+  },
+  {
+    type: "power-up",
+    name: "Protein Shake",
+    baseFilename: "powerup_protein_shake",
+    visualDescription:
+      "A sports bottle with liquid strength sloshing inside.",
+    price: 85,
+    rarity: 2,
+    damageMultiplier: 1.15,
+  },
+  {
+    type: "power-up",
+    name: "Quick Reflexes",
+    baseFilename: "powerup_quick_reflexes",
+    visualDescription:
+      "A pair of hands juggling pipes, tools, and a wrench all at once.",
+    price: 95,
+    rarity: 3,
+    damageMultiplier: 1.18,
+  },
+  {
+    type: "sandwich",
+    name: "Classic Sub",
+    baseFilename: "sandwich_classic_sub",
+    visualDescription:
+      "A traditional submarine sandwich overflowing with deli meats and cheese.",
+    price: 35,
+    rarity: 1,
+    health: 22,
+  },
+  {
+    type: "sandwich",
+    name: "Mega BLT",
+    baseFilename: "sandwich_mega_blt",
+    visualDescription:
+      "A huge BLT with crisp lettuce and bacon, radiating tempting aroma.",
+    price: 50,
+    rarity: 2,
+    health: 33,
+  },
+  {
+    type: "sandwich",
+    name: "Spicy Wrap",
+    baseFilename: "sandwich_spicy_wrap",
+    visualDescription:
+      "A tightly-rolled wrap with bright peppers peeking out the sides.",
+    price: 48,
+    rarity: 2,
+    health: 29,
+  },
+  {
+    type: "sandwich",
+    name: "Veggie Hoagie",
+    baseFilename: "sandwich_veggie_hoagie",
+    visualDescription:
+      "A fresh green hoagie loaded with crisp veggies and creamy dressing.",
+    price: 42,
+    rarity: 1,
+    health: 18,
+  },
+  {
+    type: "sandwich",
+    name: "Energy Bagel",
+    baseFilename: "sandwich_energy_bagel",
+    visualDescription:
+      "A plump bagel with sunflower seeds and glowing cream cheese.",
+    price: 37,
+    rarity: 1,
+    health: 20,
+  },
+  {
+    type: "tool",
+    name: "Copper Pipe Set",
+    baseFilename: "tool_copper_pipe_set",
+    visualDescription:
+      "A bundle of shiny copper pipes ready for installation.",
+    price: 80,
+    rarity: 2,
+    damage: 12,
+  },
+  {
+    type: "tool",
+    name: "Waterproof Tape",
+    baseFilename: "tool_waterproof_tape",
+    visualDescription:
+      "A roll of gray, ultra-sticky tape that magically seals leaks.",
+    price: 70,
+    rarity: 1,
+    damage: 8,
+  },
+  {
+    type: "tool",
+    name: "Mini Shop Vac",
+    baseFilename: "tool_mini_shop_vac",
+    visualDescription:
+      "A portable vacuum with wheels and a big blue button.",
+    price: 60,
+    rarity: 1,
+    damage: 5,
+  },
+  {
+    type: "plumber",
+    name: "Delicate Dani",
+    baseFilename: "plumber_delicate_dani",
+    visualDescription:
+      "A careful, meticulous plumber with small tools and surgical gloves.",
+    price: 190,
+    rarity: 1,
+    hp: 60,
+    damage: 15,
+  },
+  {
+    type: "power-up",
+    name: "Inspirational Playlist",
+    baseFilename: "powerup_inspirational_playlist",
+    visualDescription:
+      "A phone with musical notes floating around, headphones plugged in.",
+    price: 78,
+    rarity: 2,
+    damageMultiplier: 1.12,
+  },
+  {
+    type: "excuse",
+    name: "Epic Rainstorm",
+    baseFilename: "excuse_epic_rainstorm",
+    visualDescription:
+      "A deluge outside the window with flashing thunderbolts.",
+    price: 70,
+    rarity: 2,
+    timeGain: 7,
+  },
+  {
+    type: "plumber",
+    name: "Old School Stan",
+    baseFilename: "plumber_old_school_stan",
+    visualDescription:
+      "A gray-bearded plumber in suspenders, wielding a classic monkey wrench.",
+    price: 240,
+    rarity: 2,
+    hp: 90,
+    damage: 21,
+  },
+  {
+    type: "tool",
+    name: "Liquid Drain Blaster",
+    baseFilename: "tool_liquid_drain_blaster",
+    visualDescription:
+      "A big blue and red bottle with warning labels, bubbling with potent chemicals.",
+    price: 85,
+    rarity: 2,
+    damage: 13,
+  },
+  {
+    type: "plumber",
+    name: "Techie Tessa",
+    baseFilename: "plumber_techie_tessa",
+    visualDescription:
+      "A high-tech plumber adorned with smart glasses and a tablet for diagnostics.",
+    price: 250,
+    rarity: 3,
+    hp: 85,
+    damage: 20,
+  },
+  {
+    type: "tool",
+    name: "Pipe Cutter Deluxe",
+    baseFilename: "tool_pipe_cutter_deluxe",
+    visualDescription:
+      "A heavy-duty red pipe cutter with a digital readout.",
+    price: 95,
+    rarity: 2,
+    damage: 16,
+  },
+]
+
+function useLocalStorage<T>(key: string, initialValue: T) {
+  const [value, setValue] = useState<T>(() => {
+    if (typeof window === "undefined") return initialValue
+    const stored = localStorage.getItem(key)
+    return stored ? (JSON.parse(stored) as T) : initialValue
+  })
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem(key, JSON.stringify(value))
+    }
+  }, [key, value])
+
+  return [value, setValue] as const
+}
+
+function formatCoins(n: number) {
+  return n.toLocaleString()
+}
+
+function rarityLabel(r: 1 | 2 | 3 | 4) {
+  return r === 4 ? "Epic" : r === 3 ? "Rare" : r === 2 ? "Uncommon" : "Common"
+}
+
+function rarityBorder(r: number) {
+  if (r === 4) return "border-yellow-300"
+  if (r === 3) return "border-emerald-400"
+  if (r === 2) return "border-emerald-300"
+  return "border-gray-300"
+}
+
+function rarityGlow(r: number) {
+  if (r === 4) return "shadow-[0_0_24px_rgba(253,224,71,0.4)]"
+  if (r === 3) return "shadow-[0_0_18px_rgba(52,211,153,0.35)]"
+  if (r === 2) return "shadow-[0_0_10px_rgba(110,231,183,0.25)]"
+  return ""
+}
+
+function randomItem<T>(arr: T[]) {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
+
+function pickByRarity<T extends Card>(cards: T[], rarity: 1 | 2 | 3 | 4) {
+  const pool = cards.filter((c) => c.rarity === rarity)
+  if (pool.length) return randomItem(pool)
+  // fallback to closest rarity
+  for (const r of [3, 2, 1, 4]) {
+    const alt = cards.filter((c) => c.rarity === r)
+    if (alt.length) return randomItem(alt)
+  }
+  return randomItem(cards)
+}
+
+function weightedRarity(odds: Record<1 | 2 | 3 | 4, number>): 1 | 2 | 3 | 4 {
+  const entries: { r: 1 | 2 | 3 | 4; w: number }[] = [
+    { r: 1, w: odds[1] || 0 },
+    { r: 2, w: odds[2] || 0 },
+    { r: 3, w: odds[3] || 0 },
+    { r: 4, w: odds[4] || 0 },
+  ]
+  const total = entries.reduce((s, e) => s + e.w, 0)
+  let roll = Math.random() * total
+  for (const e of entries) {
+    if (roll < e.w) return e.r
+    roll -= e.w
+  }
+  return 1
+}
+
+const PACKS: PackDef[] = [
+  {
+    key: "mixed",
+    name: "Mixed Starter Pack",
+    description: "Balanced mix for new fixers",
+    count: 5,
+    price: 180,
+    types: ["plumber", "tool", "power-up", "excuse", "sandwich"],
+    odds: { 1: 0.55, 2: 0.3, 3: 0.13, 4: 0.02 },
+  },
+  {
+    key: "plumber",
+    name: "Plumber Power Pack",
+    description: "Skilled pros ready to roll",
+    count: 3,
+    price: 300,
+    types: ["plumber"],
+    odds: { 1: 0.5, 2: 0.3, 3: 0.17, 4: 0.03 },
+  },
+  {
+    key: "tools",
+    name: "Tool Kit Pack",
+    description: "Reliable gear for any job",
+    count: 4,
+    price: 160,
+    types: ["tool"],
+    odds: { 1: 0.6, 2: 0.3, 3: 0.1, 4: 0 },
+  },
+  {
+    key: "boost",
+    name: "Boost Bundle",
+    description: "Power-ups, excuses, and snacks",
+    count: 4,
+    price: 140,
+    types: ["power-up", "excuse", "sandwich"],
+    odds: { 1: 0.6, 2: 0.3, 3: 0.09, 4: 0.01 },
+  },
+]
+
+function localDateKey(d = new Date()) {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, "0")
+  const day = String(d.getDate()).padStart(2, "0")
+  return `${y}-${m}-${day}`
+}
+
+function nextLocalMidnight(now = new Date()) {
+  const n = new Date(now)
+  n.setHours(24, 0, 0, 0)
+  return +n
+}
+
+function getCard(baseFilename: string) {
+  return ALL_CARDS.find((c) => c.baseFilename === baseFilename)!
+}
+
+function sampleWithoutReplace<T>(arr: T[], n: number): T[] {
+  const copy = arr.slice()
+  const out: T[] = []
+  for (let i = 0; i < n && copy.length; i++) {
+    const idx = Math.floor(Math.random() * copy.length)
+    out.push(copy[idx])
+    copy.splice(idx, 1)
+  }
+  return out
+}
+
+function generateDaily(dateKey: string): DailyData {
+  // Single offers: 8 cards weighted by rarity
+  const weights: Record<1 | 2 | 3 | 4, number> = { 1: 50, 2: 30, 3: 15, 4: 5 }
+  const pool: Card[] = []
+  for (const c of ALL_CARDS) {
+    for (let i = 0; i < weights[c.rarity]; i++) pool.push(c)
+  }
+  const singleOffers = sampleWithoutReplace(pool, 8).map((c) => c.baseFilename)
+
+  // Trades: 4 total, 2 coin trades + 2 swaps
+  const trades: Trade[] = []
+  for (let i = 0; i < 2; i++) {
+    const offer = randomItem(ALL_CARDS)
+    const price =
+      Math.round(offer.price * (0.85 + Math.random() * 0.35) / 5) * 5
+    trades.push({
+      id: `tcoin_${dateKey}_${i}`,
+      seller: ["Pipemaster98", "RetroRoto", "LeakBoss", "ValveVixen"][
+        Math.floor(Math.random() * 4)
+      ],
+      offer: offer.baseFilename,
+      wantCoins: Math.max(10, price),
+      createdAt: Date.now(),
+    } as TradeCoin)
+  }
+  for (let i = 0; i < 2; i++) {
+    const offer = randomItem(ALL_CARDS)
+    // request a similarly priced card (not same)
+    const candidates = ALL_CARDS.filter(
+      (c) =>
+        c.baseFilename !== offer.baseFilename &&
+        Math.abs(c.price - offer.price) <= Math.max(40, offer.price * 0.25)
+    )
+    const request = (candidates.length ? randomItem(candidates) : randomItem(ALL_CARDS)).baseFilename
+    trades.push({
+      id: `tswap_${dateKey}_${i}`,
+      seller: ["GasketGuru", "PixelPlumb", "ClampChamp", "DrainDynamo"][
+        Math.floor(Math.random() * 4)
+      ],
+      offer: offer.baseFilename,
+      request,
+      createdAt: Date.now(),
+    } as TradeSwap)
+  }
+
+  const specialPack = randomItem(PACKS)
+  const discountPct = [10, 15, 20, 25, 30][Math.floor(Math.random() * 5)]
+  const message = `${specialPack.name}: ${discountPct}% OFF today!`
+
+  return {
+    dateKey,
+    singleOffers,
+    trades,
+    specials: {
+      packKey: specialPack.key,
+      discountPct,
+      message,
+    },
+  }
+}
+
+function useDaily() {
+  const [daily, setDaily] = useLocalStorage<DailyData | null>("pp_daily", null)
+  useEffect(() => {
+    const key = localDateKey()
+    if (!daily || daily.dateKey !== key) {
+      const gen = generateDaily(key)
+      setDaily(gen)
+    }
+  }, []) // eslint-disable-line
+  return [daily, setDaily] as const
+}
+
+function CardThumb({ card, size = 72 }: { card: Card; size?: number }) {
+  return (
+    <div
+      className={[
+        "relative rounded-md border bg-white shadow",
+        rarityBorder(card.rarity),
+        "overflow-hidden",
+      ].join(" ")}
+      style=\{{ width: size, height: size }}
+      title={`${card.name} (${rarityLabel(card.rarity)})`}
+    \>
+      <Image
+        src={`/cards/${card.baseFilename}.png`}
+        alt={card.name}
+        fill
+        sizes={`${size}px`}
+        className="object-cover"
+      />
+    </div>
+  )
+}
+
+function ProgressBar({ until }: { until: number }) {
+  const [now, setNow] = useState(Date.now())
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000)
+    return () => clearInterval(id)
+  }, [])
+  const total = 24 * 60 * 60 * 1000
+  const midnight = nextLocalMidnight(new Date(until - total + 1000))
+  const elapsed = Math.min(Math.max(now - midnight, 0), total)
+  const pct = Math.max(0, Math.min(100, (elapsed / total) * 100))
+  const remainingMs = Math.max(0, until - now)
+  const hrs = Math.floor(remainingMs / 3600000)
+  const mins = Math.floor((remainingMs % 3600000) / 60000)
+  const secs = Math.floor((remainingMs % 60000) / 1000)
+  return (
+    <div className="w-full">
+      <div className="h-2 w-full rounded bg-gray-300 overflow-hidden">
+        <div
+          className="h-2 bg-emerald-500 transition-all"
+          style=\{{ width: `${pct}%` }}
+        />
+      </div>
+      <div className="mt-1 flex items-center gap-1 text-[11px] uppercase tracking-wider text-gray-700">
+        <Clock className="h-3 w-3 text-emerald-600" />
+        Resets in {String(hrs).padStart(2, "0")}:{String(mins).padStart(2, "0")}
+        :{String(secs).padStart(2, "0")}
+      </div>
+    </div>
+  )
+}
+
+export default function ShopPage() {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  const [coins, setCoins] = useLocalStorage<number>("pp_coins", 1000)
+  const [collection, setCollection] = useLocalStorage<Collection>("pp_collection", {})
+  const [daily, setDaily] = useDaily()
+  const [activeTab, setActiveTab] = useState<"packs" | "singles" | "trades">("packs")
+
+  const resetAt = useMemo(() => nextLocalMidnight(), [])
+
+  // Modal state
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalTitle, setModalTitle] = useState<string>("")
+  const [modalCards, setModalCards] = useState<Card[]>([])
+  const [modalMessage, setModalMessage] = useState<string>("")
+
+  // Trades: keep user posted trades combined with daily trades, store under pp_trades_user
+  const [userTrades, setUserTrades] = useLocalStorage<Trade[]>("pp_trades_user", [])
+
+  // Post trade form state
+  const ownedCards = useMemo(
+    () =>
+      ALL_CARDS.filter((c) => (collection[c.baseFilename] || 0) > 0).sort(
+        (a, b) => a.name.localeCompare(b.name)
+      ),
+    [collection]
+  )
+  const [postOffer, setPostOffer] = useState<string>("")
+  const [postType, setPostType] = useState<"coins" | "swap">("coins")
+  const [postCoins, setPostCoins] = useState<number>(50)
+  const [postRequest, setPostRequest] = useState<string>("")
+
+  function addToCollection(bases: string[]) {
+    setCollection((prev) => {
+      const next = { ...prev }
+      for (const b of bases) next[b] = (next[b] || 0) + 1
+      return next
+    })
+  }
+
+  function removeFromCollection(bases: string[]) {
+    setCollection((prev) => {
+      const next = { ...prev }
+      for (const b of bases) {
+        const cur = next[b] || 0
+        next[b] = Math.max(0, cur - 1)
+        if (next[b] === 0) delete next[b]
+      }
+      return next
+    })
+  }
+
+  function effectivePackPrice(pack: PackDef) {
+    if (!daily || daily.specials.packKey !== pack.key) return pack.price
+    const discounted = Math.round(pack.price * (1 - daily.specials.discountPct / 100))
+    return Math.max(1, discounted)
+  }
+
+  function buyPack(pack: PackDef) {
+    const cost = effectivePackPrice(pack)
+    if (coins < cost) return
+    const allowed = ALL_CARDS.filter((c) => pack.types.includes(c.type))
+    const opened: Card[] = []
+    for (let i = 0; i < pack.count; i++) {
+      const r = weightedRarity(pack.odds)
+      const card = pickByRarity(allowed, r)
+      opened.push(card)
+    }
+    setCoins(coins - cost)
+    addToCollection(opened.map((c) => c.baseFilename))
+    setModalTitle(`${pack.name} Opened!`)
+    setModalCards(opened)
+    setModalMessage(
+      daily && daily.specials.packKey === pack.key
+        ? `Special applied: ${daily.specials.discountPct}% off`
+        : "New cards added to your collection!"
+    )
+    setModalOpen(true)
+  }
+
+  function buySingle(base: string) {
+    const card = getCard(base)
+    if (coins < card.price) return
+    setCoins(coins - card.price)
+    addToCollection([base])
+    setModalTitle("Purchased!")
+    setModalCards([card])
+    setModalMessage(`${card.name} added to your collection.`)
+    setModalOpen(true)
+  }
+
+  function acceptTrade(trade: Trade) {
+    if ("wantCoins" in trade) {
+      if (coins < trade.wantCoins) return
+      setCoins(coins - trade.wantCoins)
+      addToCollection([trade.offer])
+      setModalTitle("Trade Complete")
+      setModalCards([getCard(trade.offer)])
+      setModalMessage(`You bought ${getCard(trade.offer).name} from ${trade.seller}.`)
+      // remove from daily or user trades if exists
+      removeTrade(trade.id)
+      setModalOpen(true)
+    } else {
+      // swap: need requested in collection
+      const have = (collection[trade.request] || 0) > 0
+      if (!have) return
+      removeFromCollection([trade.request])
+      addToCollection([trade.offer])
+      setModalTitle("Swap Complete")
+      setModalCards([getCard(trade.offer)])
+      setModalMessage(
+        `You swapped ${getCard(trade.request).name} for ${getCard(trade.offer).name} with ${trade.seller}.`
+      )
+      removeTrade(trade.id)
+      setModalOpen(true)
+    }
+  }
+
+  function removeTrade(id: string) {
+    setDaily((prev) => {
+      if (!prev) return prev
+      const updated = { ...prev, trades: prev.trades.filter((t) => t.id !== id) }
+      localStorage.setItem("pp_daily", JSON.stringify(updated))
+      return updated
+    })
+    setUserTrades((prev) => prev.filter((t) => t.id !== id))
+  }
+
+  function postNewTrade() {
+    if (!postOffer) return
+    const seller = "You"
+    const id = `you_${Date.now()}`
+    if (postType === "coins") {
+      const t: TradeCoin = {
+        id,
+        seller,
+        offer: postOffer,
+        wantCoins: Math.max(1, Math.round(postCoins)),
+        createdAt: Date.now(),
+      }
+      setUserTrades((prev) => [t, ...prev])
+    } else {
+      if (!postRequest) return
+      const t: TradeSwap = {
+        id,
+        seller,
+        offer: postOffer,
+        request: postRequest,
+        createdAt: Date.now(),
+      }
+      setUserTrades((prev) => [t, ...prev])
+    }
+    setModalTitle("Trade Posted")
+    setModalCards([getCard(postOffer)])
+    setModalMessage("Your trade is now visible in the shop.")
+    setModalOpen(true)
+    setPostOffer("")
+    setPostCoins(50)
+    setPostRequest("")
+  }
+
+  const allTrades = useMemo<Trade[]>(() => {
+    const d = daily?.trades || []
+    return [...userTrades, ...d].sort((a, b) => b.createdAt - a.createdAt)
+  }, [daily, userTrades])
+
+  if (!mounted) {
+    return (
+      <>
+        <Head>
+          <title>Pocket Plumbers • Shop</title>
+          <meta name="description" content="Buy packs, singles, and trade cards." />
+        </Head>
+        <main className="w-full min-h-screen bg-gray-900 flex items-center justify-center">
+          <p className="font-mono text-gray-300">Loading…</p>
+        </main>
+      </>
+    )
+  }
+
+  return (
+    <>
+      <Head>
+        <title>Pocket Plumbers • Shop</title>
+        <meta name="description" content="Buy packs, single cards, and trade with others." />
+      </Head>
+
+      <main className="relative w-full min-h-screen bg-gradient-to-b from-gray-100 via-emerald-100 to-gray-200">
+        <div className="absolute inset-0 opacity-20 bg-[url('/pixelgrid.svg')] pointer-events-none" />
+
+        <div className="relative mx-auto max-w-5xl px-4 py-8">
+          <div className="bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl p-6 md:p-8 relative font-mono text-gray-100">
+            {/* Header */}
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-6 w-6 text-emerald-400" />
+                <h2 className="text-emerald-400 text-2xl font-bold uppercase tracking-widest drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+                  SHOP
+                </h2>
+              </div>
+              <div className="flex items-center gap-2 bg-gray-800 rounded px-3 py-2 border border-gray-600">
+                <CircleDollarSign className="h-5 w-5 text-emerald-400" />
+                <span className="font-bold text-emerald-300 tracking-wider">
+                  {formatCoins(coins)}
+                </span>
+              </div>
+            </div>
+
+            {/* Promo / Bonus Bar */}
+            {daily && (
+              <div className="mb-4">
+                <div className="bg-gradient-to-r from-emerald-400/60 to-yellow-300/60 rounded-md text-center text-gray-900 font-mono text-sm py-2 px-3 uppercase tracking-wider shadow drop-shadow-[0_1px_0_rgba(0,0,0,0.4)] flex items-center justify-center gap-2">
+                  <Gift className="h-4 w-4" />
+                  <span>{daily.specials.message}</span>
+                </div>
+                <div className="mt-2">
+                  <ProgressBar until={resetAt} />
+                </div>
+              </div>
+            )}
+
+            {/* Tabs */}
+            <div className="mb-6 flex flex-wrap gap-2">
+              <button
+                onClick={() => setActiveTab("packs")}
+                className={[
+                  "px-4 py-1 rounded-full font-bold uppercase tracking-wider transition-all",
+                  activeTab === "packs"
+                    ? "bg-emerald-500 text-white shadow border-2 border-emerald-700"
+                    : "border-2 border-emerald-400 text-emerald-300 hover:text-white hover:bg-emerald-500/20",
+                ].join(" ")}
+              \>
+                Card Packs
+              </button>
+              <button
+                onClick={() => setActiveTab("singles")}
+                className={[
+                  "px-4 py-1 rounded-full font-bold uppercase tracking-wider transition-all",
+                  activeTab === "singles"
+                    ? "bg-emerald-500 text-white shadow border-2 border-emerald-700"
+                    : "border-2 border-emerald-400 text-emerald-300 hover:text-white hover:bg-emerald-500/20",
+                ].join(" ")}
+              \>
+                Single Cards
+              </button>
+              <button
+                onClick={() => setActiveTab("trades")}
+                className={[
+                  "px-4 py-1 rounded-full font-bold uppercase tracking-wider transition-all",
+                  activeTab === "trades"
+                    ? "bg-emerald-500 text-white shadow border-2 border-emerald-700"
+                    : "border-2 border-emerald-400 text-emerald-300 hover:text-white hover:bg-emerald-500/20",
+                ].join(" ")}
+              \>
+                Trades
+              </button>
+            </div>
+
+            {/* Content */}
+            {activeTab === "packs" && (
+              <section>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {PACKS.map((pack) => {
+                    const discounted = daily && daily.specials.packKey === pack.key
+                    const price = effectivePackPrice(pack)
+                    return (
+                      <div
+                        key={pack.key}
+                        className={[
+                          "relative bg-white text-gray-900 rounded-lg border-2 shadow-lg p-4 overflow-hidden transition-transform hover:scale-[1.01]",
+                          discounted ? "border-emerald-500" : "border-emerald-300",
+                          discounted ? "shadow-[0_0_24px_rgba(16,185,129,0.35)]" : "",
+                        ].join(" ")}
+                      \>
+                        {discounted && (
+                          <div className="absolute -right-8 -top-3 rotate-12 bg-emerald-500 text-white text-xs font-bold uppercase tracking-widest px-10 py-1 shadow">
+                            Limited!
+                          </div>
+                        )}
+                        <div className="flex gap-3 items-center">
+                          <div className="relative w-20 h-20 rounded-md border-2 border-emerald-400 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-200 to-emerald-50 opacity-80" />
+                            <Sparkles className="absolute right-2 bottom-2 h-6 w-6 text-emerald-500" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-lg font-bold uppercase tracking-wider drop-shadow-[0_1px_0_rgba(34,197,94,0.5)]">
+                              {pack.name}
+                            </h3>
+                            <p className="text-sm text-gray-600">{pack.description}</p>
+                            <div className="mt-1 text-xs text-gray-600 uppercase tracking-wider">
+                              {pack.count} cards • Types: {pack.types.join(", ")}
+                            </div>
+                            <div className="mt-2 text-[11px] text-gray-700">
+                              Odds: C {Math.round(pack.odds[1] * 100)}% • U{" "}
+                              {Math.round(pack.odds[2] * 100)}% • R{" "}
+                              {Math.round(pack.odds[3] * 100)}% • E{" "}
+                              {Math.round((pack.odds[4] || 0) * 100)}%
+                            </div>
+                          </div>
+                        </div>
+                        <div className="mt-3 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <CircleDollarSign className="h-5 w-5 text-emerald-600" />
+                            <div className="text-gray-900 font-bold">
+                              {discounted && (
+                                <span className="text-[12px] mr-2 line-through text-gray-400">
+                                  {formatCoins(pack.price)}
+                                </span>
+                              )}
+                              <span className="text-emerald-700">{formatCoins(price)}</span>
+                            </div>
+                            {discounted && (
+                              <span className="ml-2 inline-flex items-center gap-1 text-xs bg-emerald-100 text-emerald-700 border border-emerald-400 rounded px-2 py-[2px] uppercase tracking-wider">
+                                <Tag className="h-3 w-3" />
+                                {daily?.specials.discountPct}% Off
+                              </span>
+                            )}
+                          </div>
+                          <button
+                            onClick={() => coins >= price && buyPack(pack)}
+                            disabled={coins < price}
+                            title={coins < price ? "Not enough coins" : "Buy pack"}
+                            className={[
+                              "inline-flex items-center gap-2 rounded border-2 px-3 py-1 uppercase tracking-widest font-bold transition-colors",
+                              coins < price
+                                ? "bg-gray-300 text-gray-500 border-gray-400 cursor-not-allowed"
+                                : "bg-emerald-500 text-white border-emerald-700 hover:bg-emerald-600",
+                            ].join(" ")}
+                          \>
+                            <ShoppingCart className="h-4 w-4" /> Buy
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </section>
+            )}
+
+            {activeTab === "singles" && (
+              <section>
+                {!daily ? (
+                  <p className="text-sm text-gray-300">Loading today&apos;s offers…</p>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {daily.singleOffers.map((base) => {
+                      const card = getCard(base)
+                      const owned = collection[base] || 0
+                      return (
+                        <div
+                          key={base}
+                          className={[
+                            "bg-white rounded-lg border-2 p-3 shadow relative overflow-hidden",
+                            rarityBorder(card.rarity),
+                            rarityGlow(card.rarity),
+                          ].join(" ")}
+                        \>
+                          <div className="absolute top-2 right-2 text-[10px] uppercase tracking-widest font-bold text-emerald-600 bg-emerald-100 border border-emerald-300 rounded px-2 py-[2px]">
+                            {rarityLabel(card.rarity)}
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <CardThumb card={card} size={72} />
+                            <div className="flex-1">
+                              <div className="font-bold uppercase tracking-wider text-gray-900 drop-shadow-[0_1px_0_rgba(34,197,94,0.5)]">
+                                {card.name}
+                              </div>
+                              <div className="text-xs text-gray-600">{card.type}</div>
+                              <div className="mt-1 flex items-center gap-2">
+                                <CircleDollarSign className="h-4 w-4 text-emerald-600" />
+                                <span className="text-gray-900 font-bold">
+                                  {formatCoins(card.price)}
+                                </span>
+                                {owned > 0 && (
+                                  <span className="ml-2 text-[11px] text-emerald-700 bg-emerald-100 border border-emerald-300 rounded px-2 py-[1px] uppercase">
+                                    Owned: {owned}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <button
+                              onClick={() => coins >= card.price && buySingle(base)}
+                              disabled={coins < card.price}
+                              title={coins < card.price ? "Not enough coins" : "Buy card"}
+                              className={[
+                                "w-full inline-flex items-center justify-center gap-2 rounded border-2 px-3 py-1 uppercase tracking-widest font-bold transition-colors",
+                                coins < card.price
+                                  ? "bg-gray-300 text-gray-500 border-gray-400 cursor-not-allowed"
+                                  : "bg-emerald-500 text-white border-emerald-700 hover:bg-emerald-600",
+                              ].join(" ")}
+                            \>
+                              <ShoppingCart className="h-4 w-4" /> Purchase
+                            </button>
+                            <div className="mt-2">
+                              <ProgressBar until={resetAt} />
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </section>
+            )}
+
+            {activeTab === "trades" && (
+              <section className="space-y-6">
+                {/* Post Trade */}
+                <div className="bg-white rounded-lg border-2 border-emerald-300 p-4 shadow">
+                  <h3 className="text-gray-900 font-bold uppercase tracking-wider mb-3 drop-shadow-[0_1px_0_rgba(34,197,94,0.5)]">
+                    Post a Trade
+                  </h3>
+                  {ownedCards.length === 0 ? (
+                    <div className="text-sm text-gray-600">
+                      You don’t own any cards yet. Buy packs or singles to start trading!
+                    </div>
+                  ) : (
+                    <form
+                      className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end"
+                      onSubmit={(e) => {
+                        e.preventDefault()
+                        postNewTrade()
+                      }}
+                    \>
+                      <label className="block">
+                        <span className="mb-1 block text-xs font-bold uppercase tracking-widest text-gray-700">
+                          Offer
+                        </span>
+                        <select
+                          value={postOffer}
+                          onChange={(e) => setPostOffer(e.target.value)}
+                          className="w-full rounded border border-gray-300 px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        \>
+                          <option value="">Select card</option>
+                          {ownedCards.map((c) => (
+                            <option key={c.baseFilename} value={c.baseFilename}>
+                              {c.name} (x{collection[c.baseFilename] || 0})
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+
+                      <label className="block">
+                        <span className="mb-1 block text-xs font-bold uppercase tracking-widest text-gray-700">
+                          Trade Type
+                        </span>
+                        <select
+                          value={postType}
+                          onChange={(e) => setPostType(e.target.value as any)}
+                          className="w-full rounded border border-gray-300 px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        \>
+                          <option value="coins">Coins</option>
+                          <option value="swap">Swap</option>
+                        </select>
+                      </label>
+
+                      {postType === "coins" ? (
+                        <label className="block">
+                          <span className="mb-1 block text-xs font-bold uppercase tracking-widest text-gray-700">
+                            Price (Coins)
+                          </span>
+                          <input
+                            type="number"
+                            min={1}
+                            value={postCoins}
+                            onChange={(e) => setPostCoins(parseInt(e.target.value || "1", 10))}
+                            className="w-full rounded border border-gray-300 px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                          />
+                        </label>
+                      ) : (
+                        <label className="block">
+                          <span className="mb-1 block text-xs font-bold uppercase tracking-widest text-gray-700">
+                            Request Card
+                          </span>
+                          <select
+                            value={postRequest}
+                            onChange={(e) => setPostRequest(e.target.value)}
+                            className="w-full rounded border border-gray-300 px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                          \>
+                            <option value="">Select card</option>
+                            {ALL_CARDS.filter((c) => c.baseFilename !== postOffer).map((c) => (
+                              <option key={c.baseFilename} value={c.baseFilename}>
+                                {c.name}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      )}
+
+                      <button
+                        type="submit"
+                        className="rounded bg-emerald-500 text-white font-bold uppercase tracking-widest border-2 border-emerald-700 px-4 py-2 hover:bg-emerald-600 transition-colors"
+                      \>
+                        Post Trade
+                      </button>
+                    </form>
+                  )}
+                </div>
+
+                {/* Trades list */}
+                <div className="space-y-3">
+                  {allTrades.length === 0 ? (
+                    <div className="flex items-center gap-3 bg-white border-2 border-emerald-300 rounded-lg p-4">
+                      <div className="relative w-14 h-14 rounded-md border-2 border-emerald-400 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-200 to-emerald-50 opacity-90" />
+                        <Sparkles className="absolute right-2 bottom-2 h-5 w-5 text-emerald-500" />
+                      </div>
+                      <div>
+                        <div className="font-bold uppercase tracking-wider text-gray-900">
+                          No trades yet
+                        </div>
+                        <div className="text-sm text-gray-600">
+                          Be the first to post a trade and kick off the marketplace!
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    allTrades.map((t) => {
+                      const offer = getCard(t.offer)
+                      const isYours = t.seller === "You"
+                      const canAccept =
+                        "wantCoins" in t
+                          ? coins >= t.wantCoins
+                          : (collection[(t as TradeSwap).request] || 0) > 0
+                      return (
+                        <div
+                          key={t.id}
+                          className={[
+                            "flex items-center gap-3 bg-white rounded-lg border-2 p-3 shadow",
+                            rarityBorder(offer.rarity),
+                          ].join(" ")}
+                        \>
+                          <CardThumb card={offer} size={64} />
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <div className="font-bold uppercase tracking-wider text-gray-900">
+                                  {offer.name}
+                                </div>
+                                <div className="text-xs text-gray-600">
+                                  Seller:{" "}
+                                  <span className="uppercase tracking-wider">
+                                    {t.seller}
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="text-right">
+                                {"wantCoins" in t ? (
+                                  <div className="inline-flex items-center gap-1 bg-emerald-100 text-emerald-700 border border-emerald-300 rounded px-2 py-[2px] text-xs uppercase">
+                                    <CircleDollarSign className="h-3 w-3" />
+                                    {formatCoins(t.wantCoins)}
+                                  </div>
+                                ) : (
+                                  <div className="inline-flex items-center gap-1 bg-yellow-100 text-yellow-800 border border-yellow-300 rounded px-2 py-[2px] text-xs uppercase">
+                                    <ArrowLeftRight className="h-3 w-3" />
+                                    For: {getCard((t as TradeSwap).request).name}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                            {"request" in t && (
+                              <div className="mt-1 text-[11px] text-gray-600">
+                                You own: {collection[(t as TradeSwap).request] || 0}
+                              </div>
+                            )}
+                          </div>
+
+                          {isYours ? (
+                            <button
+                              onClick={() => removeTrade(t.id)}
+                              className="rounded border-2 border-red-600 text-red-600 px-3 py-1 uppercase text-xs font-bold tracking-widest hover:bg-red-50"
+                            \>
+                              Remove
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => canAccept && acceptTrade(t)}
+                              disabled={!canAccept}
+                              className={[
+                                "inline-flex items-center gap-1 rounded border-2 px-3 py-1 uppercase text-xs font-bold tracking-widest transition-colors",
+                                canAccept
+                                  ? "bg-emerald-500 text-white border-emerald-700 hover:bg-emerald-600"
+                                  : "bg-gray-300 text-gray-500 border-gray-400 cursor-not-allowed",
+                              ].join(" ")}
+                            \>
+                              <CheckCircle2 className="h-4 w-4" />
+                              Trade
+                            </button>
+                          )}
+                        </div>
+                      )
+                    })
+                  )}
+                </div>
+              </section>
+            )}
+          </div>
+        </div>
+
+        {/* Modal */}
+        {modalOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+            onClick={() => setModalOpen(false)}
+          \>
+            <div
+              className="bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl px-6 py-5 max-w-lg w-full relative"
+              onClick={(e) => e.stopPropagation()}
+            \>
+              <button
+                onClick={() => setModalOpen(false)}
+                className="absolute top-2 right-2 text-gray-300 hover:text-white"
+                aria-label="Close"
+              \>
+                <X className="h-5 w-5" />
+              </button>
+              <h3 className="text-emerald-400 text-xl font-bold uppercase mb-3 tracking-widest drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+                {modalTitle}
+              </h3>
+              {modalCards.length > 0 && (
+                <div className="grid grid-cols-3 gap-3 mb-3">
+                  {modalCards.map((c, idx) => (
+                    <div
+                      key={c.baseFilename + "_" + idx}
+                      className={[
+                        "bg-white rounded-md border-2 p-2 text-center animate-[fadeIn_200ms_ease-out]",
+                        rarityBorder(c.rarity),
+                        rarityGlow(c.rarity),
+                      ].join(" ")}
+                      style=\{{ animationDelay: `${idx * 60}ms` }}
+                    \>
+                      <div className="mx-auto">
+                        <CardThumb card={c} size={72} />
+                      </div>
+                      <div className="mt-2 text-[12px] uppercase font-bold text-gray-900 tracking-wider">
+                        {c.name}
+                      </div>
+                      <div className="text-[10px] uppercase text-gray-600">
+                        {rarityLabel(c.rarity)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <p className="text-sm text-gray-200">{modalMessage}</p>
+              <div className="mt-4 flex justify-end gap-2">
+                <button
+                  onClick={() => setModalOpen(false)}
+                  className="rounded border-2 border-gray-400 text-gray-100 px-4 py-2 uppercase text-xs tracking-widest hover:bg-gray-600"
+                \>
+                  Close
+                </button>
+                <button
+                  onClick={() => {
+                    setModalOpen(false)
+                    setActiveTab("packs")
+                  }}
+                  className="rounded bg-emerald-500 text-white border-2 border-emerald-700 px-4 py-2 uppercase text-xs tracking-widest hover:bg-emerald-600"
+                \>
+                  Buy More
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.96);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
+    </>
+  )
+}

@@ -1,0 +1,6 @@
+[in]
+?hash-props:[{"outType":"array(struct(\n    name: string\n    # Short description of the screen\n    description: string\n    # The path of the screen within the pages directory of a NextJS app.\n    # Do not include an extension and use the square bracket pairs for route parameters.\n    path: string\n))"}]
+docs/app-description.md:QqKEX1CTjnKERCFY8lbeUHZxLCeYBgfKU5Wyt3gBqNA
+:Iiz5A3AzCXqy2Lr_HkY65NS9zTFD65rk2g3wLAk4UYc
+[out]
+docs/screens.json:B-gi8mzcq97g3ygOlt-T23Y9HRUBVXIJhuZqnobTK78

@@ -1,0 +1,1580 @@
+> define
+__model="gpt-5"
+
+> system
+You are generating content that will be directly written to "pages/dashboard.tsx".
+DO NOT include a preamble or postamble.
+
+> appendUser
+<app-description>
+# Pocket Plumbers: Detailed Game Description
+
+## Overview
+
+Pocket Plumbers is a fun and strategic card battle game inspired by classics like Pokémon and trading card games. Instead of battling monsters, players collect and trade plumbing-themed cards to overcome quirky and challenging plumbing emergencies. Experience the excitement of creating unique decks, responding to emergencies, and building the ultimate collection of plumber cards!
+
+---
+
+## Features
+
+- **Plumbing Emergencies:** Face a wide variety of plumbing emergencies, each requiring different strategies and card combinations to resolve.
+- **Card Collection:** Collect, unlock, and upgrade cards featuring tools, plumbers, parts, abilities, and special tactics.
+- **Deck Building:** Organize your collection into custom decks for different emergency scenarios. Save, customize, and rename your decks.
+- **Card Trading:** Swap and buy cards with the in-game card shop, growing your collection and refining your strategies.
+- **Player Dashboard:** Track your progress, view your top cards, stats, and manage your decks easily.
+- **Poke-Battle Style Battles:** Challenge plumbing emergencies with engaging, turn-based battle mechanics reminiscent of Pokémon showdowns.
+- **Coins and Rewards:** Earn coins based on your speed and performance in emergencies, and spend them on new cards.
+- **Stats Tracking:** See detailed information about your card collection and gameplay accomplishments.
+
+---
+
+## Screen Descriptions
+
+### Dashboard
+
+- **Short Description:** Your main hub for the game.
+- **Details:**  
+  See your overall game stats (wins, coins, emergencies solved), your total card count, and a highlight of your top ten cards. Access a full card list with a single tap. Review a complete list of your decks where you can quickly rename, delete, or create new decks for battle.
+
+### Card List
+
+- **Short Description:** A comprehensive inventory of all your collected cards.
+- **Details:**  
+  Browse every card you own, including plumbers, tools, emergency tactics, and upgrades. Use filters and sorting to quickly find the card you need.
+
+### Deck
+
+- **Short Description:** Build and edit your battle decks.
+- **Details:**  
+  Manage your deck by adding or removing cards, renaming it, and ensuring you have the perfect setup for any emergency. See stats for your deck, like average card power or type distribution.
+
+### Card Shop
+
+- **Short Description:** Buy and trade for new cards using in-game currency.
+- **Details:**  
+  Spend your hard-earned coins on card packs, single cards, or trade with other players via the shop. Keep an eye out for rotating specials and limited-time offers that could boost your collection.
+
+### Emergency
+
+- **Short Description:** Dive into battle and fix urgent plumbing problems!
+- **Details:**  
+  Select a deck and face off against unique plumbing emergencies in a turn-based, Pokémon-inspired battlefield. Each emergency behaves differently, and players must respond with tactics and the right cards to resolve them quickly for maximum rewards.
+
+---
+</app-description>
+
+> appendUser
+<theme>
+## Pocket Plumbers Theme Specification
+
+### Overall Look and Feel
+Pocket Plumbers pays homage to classic Gameboy Color visuals while leveraging modern design principles for clarity and accessibility. The interface mimics pixelated charm and limited color palettes but uses cleaner typography, contemporary layout spacing, and subtle micro-interactions. All interactive elements and call-to-action accents use a retro-inspired green. Cards, buttons, and stat windows call back to cartridge labels and game menus, with soft shadows and border radii adding a welcoming, modern touch.
+
+### Core Palette
+- **Primary (Action) Color:** `emerald-500` (`bg-emerald-500`, `text-emerald-500`, `border-emerald-500`)
+- **Dark Ground:** `gray-900` / `gray-800`
+- **Light Backgrounds:** `gray-100`, `white`
+- **Accent Borders/Dividers:** `gray-200`
+- **Pixel Shadow Accent:** Vibrant contrast, e.g., `yellow-300`, `lime-400`
+- **Button & Selection Highlight:** `emerald-600`, `emerald-400`
+
+### Typography
+- **Font Family:** `font-mono` (for pixel/Gameboy effect), occasionally `font-sans` for announcements or body
+- **Uppercase Labels:** `uppercase`, `tracking-wider`
+- **Heading Style:** `text-xl md:text-2xl font-bold`
+- **Subtle Shadow:** `drop-shadow-[0_1px_0_rgba(0,0,0,0.8)]` (simulates pixel text highlight)
+
+---
+
+### Example Theme Application
+
+#### Main Game Container
+```html
+<div class="w-full min-h-screen bg-gray-900 flex flex-col items-center font-mono text-gray-100">
+  <!-- Content here -->
+</div>
+```
+
+#### Card Example
+```html
+<div class="bg-gray-100 rounded-lg border-2 border-emerald-500 shadow-lg px-4 py-3
+            relative overflow-hidden mb-4 transition-transform hover:scale-105">
+  <div class="absolute top-2 right-2 text-emerald-500 text-xs uppercase tracking-widest font-bold">
+    Rare
+  </div>
+  <h3 class="text-xl font-bold text-gray-900 drop-shadow-[0_1px_0_rgba(34,197,94,0.9)] leading-tight uppercase tracking-wide">
+    Pipe Wrench
+  </h3>
+  <p class="text-gray-700 text-sm mt-2">
+    A trusty wrench. Use to fix common leaks and open stuck valves.
+  </p>
+</div>
+```
+
+#### Button
+```html
+<button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow 
+                border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest
+                transition-colors duration-150">
+  TRADE
+</button>
+```
+
+#### Stat Panel
+```html
+<div class="bg-gray-800 rounded-md border border-gray-200 
+             shadow-md px-6 py-3 flex gap-4 items-center mb-2">
+  <div class="text-xl font-bold text-emerald-400">152</div>
+  <div class="uppercase text-xs text-gray-300 tracking-wide">Total Cards</div>
+</div>
+```
+
+#### Deck List Item
+```html
+<div class="flex items-center bg-white border border-emerald-200 rounded-lg px-3 py-2 mb-2 shadow
+            transition hover:border-emerald-400 group">
+  <span class="font-bold text-gray-800 group-hover:text-emerald-500 uppercase flex-1">Leak Busters</span>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-emerald-500 text-white hover:bg-emerald-400 
+                    border border-emerald-700 tracking-wider">Rename</button>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-400 
+                    border border-red-700">Delete</button>
+</div>
+```
+
+#### Emergency/Battle Screen Background
+- Use a patterned/solid background: `bg-gradient-to-b from-gray-100 via-emerald-100 to-gray-200`
+- Overlay a pixelated grid: `<div class="absolute inset-0 opacity-20 bg-[url('/pixelgrid.svg')]"></div>`
+
+#### Modal/Popover (Shop/Emergency Conclusion)
+```html
+<div class="bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl px-8 py-6
+            max-w-md mx-auto">
+  <h2 class="text-emerald-400 text-2xl font-bold uppercase mb-3 drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+    SHOP
+  </h2>
+  <!-- Shop content -->
+</div>
+```
+
+---
+
+## Thematic Details
+
+- Rounded edges (`rounded-lg`, `rounded-md`) on all core UI elements.
+- Shadow effects (`shadow`, `shadow-lg`, etc.) suggest the chunky, layered look of early handheld interface dividers.
+- Thin solid borders (`border-2`, `border`, `border-emerald-500`) on cards/buttons for the Gameboy look.
+- Use of `uppercase tracking-wider` (and `tracking-widest` for more dramatic effect) on all labels, buttons, and headings.
+- Flashy actions (rewards popups, critical fixes) use emerald gradients and pixelated burst SVGs.
+- Subtle transition effects (`transition`, `hover:*`) maintain a responsive, modern UI feel.
+
+---
+
+### Summary
+
+This theme blends a retro, pixel-inspired Gameboy color vibe—channeling nostalgia—while updating the interface for contemporary clarity and usability through Tailwind utilities. Emerald green stands out as the world’s core energy, used consistently for buttons, highlights, and progress bars, helping all “action” interactions pop vividly.
+</theme>
+
+> appendUser
+<package-json>
+{
+  "name": "beach-rescue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start"
+  },
+  "dependencies": {
+    "lucide-react": "^0.542.0",
+    "next": "15.5.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+</package-json>
+
+> appendUser
+Below are all the cards in the game
+
+<cards>
+[
+    {
+        "type": "plumber",
+        "name": "Turbo Tony",
+        "baseFilename": "plumber_turbo_tony",
+        "visualDescription": "A burly plumber with a big red wrench and a confident grin. Wears blue coveralls and a tool belt.",
+        "price": 300,
+        "rarity": 3,
+        "hp": 100,
+        "damage": 25
+    },
+    {
+        "type": "plumber",
+        "name": "Speedy Sal",
+        "baseFilename": "plumber_speedy_sal",
+        "visualDescription": "A slim, speedy plumber in green with goggles and rollerblades attached to his boots.",
+        "price": 250,
+        "rarity": 2,
+        "hp": 80,
+        "damage": 19
+    },
+    {
+        "type": "plumber",
+        "name": "Mighty Mona",
+        "baseFilename": "plumber_mighty_mona",
+        "visualDescription": "A tall, muscular woman holding two plungers, ready for battle. Has utility pouches and an iconic yellow cap.",
+        "price": 320,
+        "rarity": 4,
+        "hp": 105,
+        "damage": 29
+    },
+    {
+        "type": "plumber",
+        "name": "Wrenchin’ Wes",
+        "baseFilename": "plumber_wrenchin_wes",
+        "visualDescription": "A young, scrappy plumber with spiky hair and an oversized wrench slung over his shoulder.",
+        "price": 180,
+        "rarity": 1,
+        "hp": 65,
+        "damage": 17
+    },
+    {
+        "type": "plumber",
+        "name": "Pipe Pro Paula",
+        "baseFilename": "plumber_pipe_pro_paula",
+        "visualDescription": "A stylish plumber with fluorescent-pink gloves, glasses, and a digital leak detector.",
+        "price": 220,
+        "rarity": 2,
+        "hp": 75,
+        "damage": 22
+    },
+    {
+        "type": "tool",
+        "name": "Mega Plunger",
+        "baseFilename": "tool_mega_plunger",
+        "visualDescription": "A bright orange, oversized plunger with a metal handle and glowing accents.",
+        "price": 90,
+        "rarity": 2,
+        "damage": 14
+    },
+    {
+        "type": "tool",
+        "name": "Snake-O-Matic",
+        "baseFilename": "tool_snake_o_matic",
+        "visualDescription": "A mechanical, coiled drain snake that retracts and extends with buttons.",
+        "price": 110,
+        "rarity": 3,
+        "damage": 20
+    },
+    {
+        "type": "tool",
+        "name": "Leak Detector",
+        "baseFilename": "tool_leak_detector",
+        "visualDescription": "A hi-tech gadget with blinking blue lights to find hidden leaks.",
+        "price": 60,
+        "rarity": 1,
+        "damage": 6
+    },
+    {
+        "type": "tool",
+        "name": "Pipe Patch Kit",
+        "baseFilename": "tool_pipe_patch_kit",
+        "visualDescription": "A small metal box filled with tape, putty, and quick fixes for cracks.",
+        "price": 75,
+        "rarity": 2,
+        "damage": 10
+    },
+    {
+        "type": "tool",
+        "name": "Turbo Torque Wrench",
+        "baseFilename": "tool_turbo_torque_wrench",
+        "visualDescription": "A gleaming chrome wrench with digital torque settings.",
+        "price": 100,
+        "rarity": 3,
+        "damage": 18
+    },
+    {
+        "type": "excuse",
+        "name": "Blame the Dog",
+        "baseFilename": "excuse_blame_the_dog",
+        "visualDescription": "A comical card featuring a guilty-looking dog next to a puddle.",
+        "price": 45,
+        "rarity": 1,
+        "timeGain": 5
+    },
+    {
+        "type": "excuse",
+        "name": "Traffic Jam",
+        "baseFilename": "excuse_traffic_jam",
+        "visualDescription": "A cartoon traffic jam blocks a city street full of plumbers.",
+        "price": 60,
+        "rarity": 2,
+        "timeGain": 8
+    },
+    {
+        "type": "excuse",
+        "name": "Misplaced Tools",
+        "baseFilename": "excuse_misplaced_tools",
+        "visualDescription": "A messy toolbox with open drawers and scattered wrenches.",
+        "price": 30,
+        "rarity": 1,
+        "timeGain": 3
+    },
+    {
+        "type": "excuse",
+        "name": "Parts on Backorder",
+        "baseFilename": "excuse_parts_on_backorder",
+        "visualDescription": "A computer with a 'backorder' alert on the screen.",
+        "price": 80,
+        "rarity": 3,
+        "timeGain": 10
+    },
+    {
+        "type": "excuse",
+        "name": "Client Not Home",
+        "baseFilename": "excuse_client_not_home",
+        "visualDescription": "A locked door with a 'Sorry, missed you' note.",
+        "price": 65,
+        "rarity": 2,
+        "timeGain": 6
+    },
+    {
+        "type": "power-up",
+        "name": "Caffeinated Surge",
+        "baseFilename": "powerup_caffeinated_surge",
+        "visualDescription": "A neon coffee mug overflowing with energy bolts.",
+        "price": 70,
+        "rarity": 2,
+        "damageMultiplier": 1.2
+    },
+    {
+        "type": "power-up",
+        "name": "Unbreakable Gloves",
+        "baseFilename": "powerup_unbreakable_gloves",
+        "visualDescription": "Shiny black gloves etched with golden symbols.",
+        "price": 120,
+        "rarity": 4,
+        "healthMultiplier": 1.25
+    },
+    {
+        "type": "power-up",
+        "name": "Safety Goggles",
+        "baseFilename": "powerup_safety_goggles",
+        "visualDescription": "Translucent blue goggles radiating a protective aura.",
+        "price": 55,
+        "rarity": 1,
+        "healthMultiplier": 1.1
+    },
+    {
+        "type": "power-up",
+        "name": "Protein Shake",
+        "baseFilename": "powerup_protein_shake",
+        "visualDescription": "A sports bottle with liquid strength sloshing inside.",
+        "price": 85,
+        "rarity": 2,
+        "damageMultiplier": 1.15
+    },
+    {
+        "type": "power-up",
+        "name": "Quick Reflexes",
+        "baseFilename": "powerup_quick_reflexes",
+        "visualDescription": "A pair of hands juggling pipes, tools, and a wrench all at once.",
+        "price": 95,
+        "rarity": 3,
+        "damageMultiplier": 1.18
+    },
+    {
+        "type": "sandwich",
+        "name": "Classic Sub",
+        "baseFilename": "sandwich_classic_sub",
+        "visualDescription": "A traditional submarine sandwich overflowing with deli meats and cheese.",
+        "price": 35,
+        "rarity": 1,
+        "health": 22
+    },
+    {
+        "type": "sandwich",
+        "name": "Mega BLT",
+        "baseFilename": "sandwich_mega_blt",
+        "visualDescription": "A huge BLT with crisp lettuce and bacon, radiating tempting aroma.",
+        "price": 50,
+        "rarity": 2,
+        "health": 33
+    },
+    {
+        "type": "sandwich",
+        "name": "Spicy Wrap",
+        "baseFilename": "sandwich_spicy_wrap",
+        "visualDescription": "A tightly-rolled wrap with bright peppers peeking out the sides.",
+        "price": 48,
+        "rarity": 2,
+        "health": 29
+    },
+    {
+        "type": "sandwich",
+        "name": "Veggie Hoagie",
+        "baseFilename": "sandwich_veggie_hoagie",
+        "visualDescription": "A fresh green hoagie loaded with crisp veggies and creamy dressing.",
+        "price": 42,
+        "rarity": 1,
+        "health": 18
+    },
+    {
+        "type": "sandwich",
+        "name": "Energy Bagel",
+        "baseFilename": "sandwich_energy_bagel",
+        "visualDescription": "A plump bagel with sunflower seeds and glowing cream cheese.",
+        "price": 37,
+        "rarity": 1,
+        "health": 20
+    },
+    {
+        "type": "tool",
+        "name": "Copper Pipe Set",
+        "baseFilename": "tool_copper_pipe_set",
+        "visualDescription": "A bundle of shiny copper pipes ready for installation.",
+        "price": 80,
+        "rarity": 2,
+        "damage": 12
+    },
+    {
+        "type": "tool",
+        "name": "Waterproof Tape",
+        "baseFilename": "tool_waterproof_tape",
+        "visualDescription": "A roll of gray, ultra-sticky tape that magically seals leaks.",
+        "price": 70,
+        "rarity": 1,
+        "damage": 8
+    },
+    {
+        "type": "tool",
+        "name": "Mini Shop Vac",
+        "baseFilename": "tool_mini_shop_vac",
+        "visualDescription": "A portable vacuum with wheels and a big blue button.",
+        "price": 60,
+        "rarity": 1,
+        "damage": 5
+    },
+    {
+        "type": "plumber",
+        "name": "Delicate Dani",
+        "baseFilename": "plumber_delicate_dani",
+        "visualDescription": "A careful, meticulous plumber with small tools and surgical gloves.",
+        "price": 190,
+        "rarity": 1,
+        "hp": 60,
+        "damage": 15
+    },
+    {
+        "type": "power-up",
+        "name": "Inspirational Playlist",
+        "baseFilename": "powerup_inspirational_playlist",
+        "visualDescription": "A phone with musical notes floating around, headphones plugged in.",
+        "price": 78,
+        "rarity": 2,
+        "damageMultiplier": 1.12
+    },
+    {
+        "type": "excuse",
+        "name": "Epic Rainstorm",
+        "baseFilename": "excuse_epic_rainstorm",
+        "visualDescription": "A deluge outside the window with flashing thunderbolts.",
+        "price": 70,
+        "rarity": 2,
+        "timeGain": 7
+    },
+    {
+        "type": "plumber",
+        "name": "Old School Stan",
+        "baseFilename": "plumber_old_school_stan",
+        "visualDescription": "A gray-bearded plumber in suspenders, wielding a classic monkey wrench.",
+        "price": 240,
+        "rarity": 2,
+        "hp": 90,
+        "damage": 21
+    },
+    {
+        "type": "tool",
+        "name": "Liquid Drain Blaster",
+        "baseFilename": "tool_liquid_drain_blaster",
+        "visualDescription": "A big blue and red bottle with warning labels, bubbling with potent chemicals.",
+        "price": 85,
+        "rarity": 2,
+        "damage": 13
+    },
+    {
+        "type": "plumber",
+        "name": "Techie Tessa",
+        "baseFilename": "plumber_techie_tessa",
+        "visualDescription": "A high-tech plumber adorned with smart glasses and a tablet for diagnostics.",
+        "price": 250,
+        "rarity": 3,
+        "hp": 85,
+        "damage": 20
+    },
+    {
+        "type": "tool",
+        "name": "Pipe Cutter Deluxe",
+        "baseFilename": "tool_pipe_cutter_deluxe",
+        "visualDescription": "A heavy-duty red pipe cutter with a digital readout.",
+        "price": 95,
+        "rarity": 2,
+        "damage": 16
+    }
+]
+</cards>
+
+> appendUser
+Below is a list of all pages in the app:
+
+<pages>
+[
+    {
+        "name": "Dashboard",
+        "description": "Your main hub for the game. See your stats, top ten cards, total card count, and access your complete deck and card lists. Quickly manage and organize all your decks from here.",
+        "path": "/dashboard"
+    },
+    {
+        "name": "Card List",
+        "description": "Browse a comprehensive inventory of all your collected cards, including plumbers, tools, tactics, and upgrades. Use filters and sorting to find specific cards quickly.",
+        "path": "/cards"
+    },
+    {
+        "name": "Deck",
+        "description": "Build, edit, and rename your decks for battle. Add or remove cards and view stats like average card power and type breakdown to optimize your deck for different emergencies.",
+        "path": "/deck"
+    },
+    {
+        "name": "Card Shop",
+        "description": "Buy card packs, single cards, or trade with other players using coins. Discover daily specials and time-limited offers to enhance your collection.",
+        "path": "/shop"
+    },
+    {
+        "name": "Emergency",
+        "description": "Jump into turn-based battles to fix quirky and challenging plumbing emergencies using your custom decks. Each emergency is unique and rewards skillful, speedy play with extra coins.",
+        "path": "/emergency"
+    }
+]
+</pages>
+
+> appendUser
+# Next.js Developers Guide (Pages Router, no SSR, Tailwind utilities, no external component libraries)
+
+Core principles
+- Pages router only: use the pages directory. Do not create an app directory.
+- No server-side rendering. Do not use getServerSideProps or getInitialProps.
+- Prefer static generation (SSG) and/or client-side data fetching.
+- Use square brackets for route parameters (e.g., pages/users/[id].tsx).
+- Styling uses basic Tailwind CSS utility classes only. No design systems or component libraries.
+- All UI components are defined directly in page files (co-located, no shared components directory).
+
+**Data storage**
+- All persistent user data should be stored in the browser's local storage.
+- Do not use cookies, server-side sessions, or external databases for user data persistence.
+- Use the `window.localStorage` API to read and write data:
+    ```js
+    // Save data
+    localStorage.setItem("key", JSON.stringify(value));
+    // Retrieve data
+    const value = JSON.parse(localStorage.getItem("key") || "null");
+    ```
+- Always check for window existence before accessing localStorage (e.g., inside useEffect) to avoid SSR-related errors.
+- For sensitive data, consider encrypting before storing, but avoid storing secrets in the browser.
+- Example pattern:
+    ```js
+    import { useEffect, useState } from "react";
+
+    function useLocalStorage(key, initialValue) {
+        const [value, setValue] = useState(() => {
+            if (typeof window === "undefined") return initialValue;
+            const stored = localStorage.getItem(key);
+            return stored ? JSON.parse(stored) : initialValue;
+        });
+
+        useEffect(() => {
+            if (typeof window !== "undefined") {
+                localStorage.setItem(key, JSON.stringify(value));
+            }
+        }, [key, value]);
+
+        return [value, setValue];
+    }
+    ```
+- Use this pattern for user preferences, drafts, or other persistent client-side data.
+
+Project setup
+1) Create the project (TypeScript recommended)
+- npx create-next-app@latest my-app --ts
+- When prompted, choose the Pages Router if asked.
+
+2) Add Tailwind CSS
+- npm install -D tailwindcss postcss autoprefixer
+- npx tailwindcss init -p
+- tailwind.config.js content should include:
+    - content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"]
+    - You won’t create a components folder, but leaving it does no harm; you may remove it if you want to be strict.
+- styles/globals.css should include Tailwind directives:
+    - @tailwind base;
+    - @tailwind components;
+    - @tailwind utilities;
+
+3) Ensure no app directory
+- Do not create an app/ folder.
+- All page files go under pages/.
+
+4) next.config.js (optional but recommended)
+- Ensure default settings. You do not need to enable appDir.
+- You may enable images.domains if using next/image with remote sources.
+
+Directory structure (minimal)
+- pages/
+    - _app.tsx (global providers, global layout, defined in-file)
+    - _document.tsx (document shell if needed)
+    - index.tsx
+    - 404.tsx
+    - example/[id].tsx (dynamic routes use [param] files)
+- public/ (static assets)
+- styles/
+    - globals.css
+- tailwind.config.js, postcss.config.js, next.config.js
+
+Routing guidelines
+- Static routes: pages/about.tsx => /about
+- Dynamic routes (square brackets only):
+    - pages/users/[id].tsx => /users/123
+    - pages/blog/[slug].tsx => /blog/my-post
+    - Catch-all: pages/docs/[...slug].tsx => /docs/a/b/c
+- Link between pages with next/link. Example:
+    import Link from "next/link"
+    <Link href="/users/123" className="text-blue-600 hover:underline">User</Link>
+- Access route params via useRouter in client code:
+    import { useRouter } from "next/router"
+    const { query } = useRouter()
+    const { id } = query
+
+No server-side rendering
+- Do not use getServerSideProps or getInitialProps in any page or custom _app/_document.
+- Prefer:
+    - Static generation (getStaticProps + getStaticPaths) when content can be known at build time. Optionally use ISR via revalidate for freshness.
+    - Client-side fetching (useEffect/fetch or SWR-like patterns using fetch) for user-specific or frequently changing data.
+- Avoid patterns that force SSR (including getInitialProps in _app.tsx).
+
+Data fetching patterns
+1) Static generation (preferred when possible)
+- pages/blog/[slug].tsx
+    export async function getStaticPaths() {
+        return { paths: [], fallback: "blocking" }
+    }
+    export async function getStaticProps({ params }) {
+        const { slug } = params
+        const post = await fetch(`${process.env.API_BASE_URL}/posts/${slug}`).then(r => r.json())
+        if (!post) return { notFound: true }
+        return {
+            props: { post },
+            revalidate: 60 // ISR (optional)
+        }
+    }
+    export default function BlogPost({ post }) { /* render with Tailwind utilities */ }
+
+2) Client-side fetching (no SSR)
+- pages/users/[id].tsx
+    import { useEffect, useState } from "react"
+    import { useRouter } from "next/router"
+    export default function UserPage() {
+        const { query } = useRouter()
+        const { id } = query
+        const [user, setUser] = useState(null)
+        const [loading, setLoading] = useState(true)
+
+        useEffect(() => {
+            if (!id) return
+            setLoading(true)
+            fetch(`/api/users/${id}`)
+                .then(r => r.json())
+                .then(data => setUser(data))
+                .finally(() => setLoading(false))
+        }, [id])
+
+        if (loading) return <p className="p-4 text-gray-500">Loading…</p>
+        if (!user) return <p className="p-4 text-red-600">User not found</p>
+        return <div className="p-4">...</div>
+    }
+
+Styling with Tailwind utilities (no component libraries)
+- Use Tailwind utility classes directly in JSX (bg-, text-, p-/m-, flex/grid, rounded, shadow, border, hover:, focus:, md:, etc.).
+- Keep className strings readable: group by layout, spacing, color/typography, state.
+- Prefer semantic HTML elements and ARIA attributes for accessibility.
+- Do not use Tailwind UI, Headless UI, Radix, MUI, Chakra, or similar component libraries.
+
+Examples (inline, minimal components defined in the page file)
+- pages/index.tsx
+    import Head from "next/head"
+
+    function Button({ children, onClick, variant = "primary" }) {
+        const base = "inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
+        const variants = {
+            primary: "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-600",
+            secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-400"
+        }
+        return (
+            <button onClick={onClick} className={`${base} ${variants[variant]}`}>
+                {children}
+            </button>
+        )
+    }
+
+    export default function Home() {
+        return (
+            <>
+                <Head>
+                    <title>Home</title>
+                    <meta name="description" content="Next.js Pages + Tailwind (no SSR)" />
+                </Head>
+                <main className="mx-auto max-w-3xl p-6">
+                    <h1 className="mb-4 text-3xl font-bold text-gray-900">Welcome</h1>
+                    <p className="mb-6 text-gray-700">Build with static generation or client-side fetching.</p>
+                    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+                        <h2 className="mb-2 text-xl font-semibold text-gray-900">Example card</h2>
+                        <p className="mb-4 text-gray-600">This card uses only Tailwind utilities.</p>
+                        <Button onClick={() => alert("Clicked!")}>Click me</Button>
+                    </div>
+                </main>
+            </>
+        )
+    }
+
+Global layout and providers (inside pages/_app.tsx, define local components in-file)
+- pages/_app.tsx
+    import "../styles/globals.css"
+    import type { AppProps } from "next/app"
+
+    function Layout({ children }) {
+        return (
+            <div className="min-h-screen bg-gray-50 text-gray-900">
+                <header className="border-b bg-white">
+                    <div className="mx-auto flex max-w-5xl items-center justify-between p-4">
+                        <a href="/" className="text-lg font-semibold">MyApp</a>
+                        <nav className="space-x-4">
+                            <a href="/about" className="text-gray-600 hover:text-gray-900">About</a>
+                            <a href="/docs/getting-started" className="text-gray-600 hover:text-gray-900">Docs</a>
+                        </nav>
+                    </div>
+                </header>
+                <div className="mx-auto max-w-5xl p-4">{children}</div>
+                <footer className="mt-12 border-t bg-white">
+                    <div className="mx-auto max-w-5xl p-4 text-sm text-gray-500">© {new Date().getFullYear()}</div>
+                </footer>
+            </div>
+        )
+    }
+
+    export default function MyApp({ Component, pageProps }: AppProps) {
+        return (
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        )
+    }
+
+Dynamic routes examples (square brackets)
+- Single parameter:
+    - File: pages/products/[id].tsx
+    - URL: /products/42
+- Multiple parameters via nesting:
+    - File: pages/teams/[teamId]/members/[memberId].tsx
+    - URL: /teams/7/members/15
+- Catch-all:
+    - File: pages/docs/[...slug].tsx
+    - URLs: /docs/a, /docs/a/b, /docs/a/b/c
+    - Use getStaticPaths/getStaticProps or client-side fetching depending on needs.
+
+Navigation
+- Use next/link:
+    import Link from "next/link"
+    <Link href="/products/42" className="text-blue-600 hover:underline">View Product</Link>
+- Avoid router.push with string concatenation when a Link is sufficient; Link prefetching improves UX.
+
+Images and assets
+- You may use next/image (built-in) or plain img. Both are allowed.
+- With next/image:
+    import Image from "next/image"
+    <Image src="/logo.png" alt="Logo" width={48} height={48} className="rounded" />
+- Put static assets in public/.
+
+Accessibility and semantics
+- Use semantic elements (main, nav, header, footer, section, h1–h6).
+- Provide alt text for images.
+- Ensure focus states are visible (Tailwind focus: utilities).
+- Use aria-* attributes where applicable.
+
+Environment variables
+- public variables: NEXT_PUBLIC_* available on client.
+- server-only variables are not needed for SSR here, but may be used at build time (getStaticProps) or in API routes.
+- Define in .env.local and document required keys.
+
+API routes (optional)
+- You can use pages/api/* for serverless endpoints. This does not render UI on the server; it provides data to client-side fetching or build-time SSG.
+- Example: pages/api/users/[id].ts returns JSON.
+
+Testing and quality
+- ESLint/Prettier recommended. Keep rules lightweight.
+- Consider an ESLint rule to disallow getServerSideProps and getInitialProps.
+    - For example, add a custom lint rule or a simple codebase check in CI that greps for those function names.
+- TypeScript:
+    - Use strict mode in tsconfig for safer code.
+
+Do/Don’t summary
+- Do:
+    - Use pages directory exclusively.
+    - Use square brackets for dynamic routes.
+    - Use Tailwind utility classes directly in JSX.
+    - Use static generation (getStaticProps/Paths) and ISR, or client-side fetching.
+    - Define small UI components locally within the page file (including Layout inside _app.tsx).
+- Don’t:
+    - Don’t create an app directory or use the App Router.
+    - Don’t use getServerSideProps or getInitialProps.
+    - Don’t install external component libraries (MUI, Chakra, Radix, Headless UI, etc.).
+    - Don’t create a shared components directory; co-locate components within the page files.
+
+Common patterns and snippets
+- Loading and empty states:
+    <p className="p-4 text-gray-500">Loading…</p>
+    <p className="p-4 text-gray-500">No results found</p>
+
+- Form example:
+    <form className="space-y-4" onSubmit={handleSubmit}>
+        <label className="block">
+            <span className="mb-1 block text-sm font-medium text-gray-700">Email</span>
+            <input type="email" className="w-full rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </label>
+        <button className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">Submit</button>
+    </form>
+
+- Cards and lists:
+    <ul className="divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white">
+        {items.map(i => (
+            <li key={i.id} className="flex items-center justify-between p-4">
+                <span className="text-gray-900">{i.name}</span>
+                <a href={`/items/${i.id}`} className="text-blue-600 hover:underline">Open</a>
+            </li>
+        ))}
+    </ul>
+
+Code review checklist
+- Routes use pages/* with [param] for dynamics; no app/*.
+- No getServerSideProps/getInitialProps present.
+- Tailwind classes applied directly; no component-lib imports.
+- Small components are declared in the same page file.
+- Static generation or client-side fetching is used appropriately.
+- Accessibility: alt text, focus states, semantic tags.
+- Head metadata present where needed.
+
+This guide keeps the project simple, static by default, and styled with Tailwind utilities, while avoiding SSR and external component libraries.
+
+> appendUser
+# Dashboard
+
+Your mission command center! The Dashboard is the starting point every time you enter Pocket Plumbers, giving you a crisp, all-in-one overview of your progress, collection, and essential management tools.
+
+---
+
+## Layout Overview
+
+The Dashboard is organized to deliver essential info at a glance, while providing easy access to deep-dive features. The classic Gameboy-inspired look infuses every element: emerald accents, chunky shadows, pixel fonts, and softly rounded cards.
+
+**Main Layout:**
+- **Top Section:** Game greeting & summary stats
+- **Middle Section:** Card highlights & collection info
+- **Lower Section:** Deck management and quick links
+
+The layout is responsive—single column on mobile, two-to-three columns and expanded stat panels on tablet or desktop.
+
+---
+
+## Functional Areas
+
+### 1. Welcome and Stats Panel (Header)
+
+A strip at the very top, blending `bg-emerald-500` and `bg-gray-900` via a soft gradient, with pixel text greeting and your current level/badge.
+
+**Elements:**
+- Player avatar or pixel plumber icon (left)
+- “WELCOME, PLUMBER!” label, your current level badge (center)
+- Settings cog/button (right)
+
+Below, a row of chunky stat panels showing:
+- **Wins:** Total battles/emergencies cleared
+- **Coins:** Current in-game currency balance
+- **Emergencies Solved:** Cumulative completed challenges
+- **Total Cards:** Total collected card count
+
+**Design Details:**
+```html
+<div class="flex gap-3 mb-3">
+  <div class="bg-gray-800 rounded-md border border-gray-200 shadow-md px-6 py-3 flex items-center">
+    <div class="text-xl font-bold text-emerald-400 mr-2">27</div>
+    <span class="uppercase text-xs text-gray-300 tracking-wide">Wins</span>
+  </div>
+  <!-- ...repeat for Coins, Emergencies Solved, Total Cards -->
+</div>
+```
+
+---
+
+### 2. Card Highlights
+
+A prominent feature card list, showcasing your **top ten cards** (by rarity, power, or recent play). Each card is visually presented in a horizontal scroll container on mobile, or grid on larger screens.
+
+**Card Items:**
+- Card art/mini pixel icon (left/top)
+- Card name (`text-xl uppercase font-bold`)
+- Rarity label & highlight accent (emerald details)
+- Key stat(s) for each card, e.g., Power, Rarity, Upgrade level
+
+**Design Details:**
+```html
+<div class="flex overflow-x-auto gap-4">
+  <div class="bg-gray-100 border-2 border-emerald-500 rounded-lg shadow-lg px-4 py-3 min-w-[180px]">
+    <div class="text-emerald-500 uppercase tracking-wider text-xs mb-1">Rare</div>
+    <div class="font-bold text-gray-900 text-lg uppercase mb-1">Pipe Wrench</div>
+    <div class="text-gray-700 text-xs">POWER: <span class="font-bold">42</span></div>
+  </div>
+  <!-- ...up to 10 cards -->
+</div>
+```
+
+**Below highlights** is a quick button:
+```html
+<button class="mt-2 text-emerald-600 hover:underline uppercase font-bold tracking-wider">
+  View Full Card List
+</button>
+```
+
+---
+
+### 3. Decks Overview & Management
+
+The **next section** displays your list of decks with powerful management tools. You see each deck's name, key stats, and fast actions.
+
+**Deck List:**
+- Rendered as a stacked list (mobile) or compact grid (desktop)
+- Each deck entry includes:
+  - Deck name (prominent, uppercase, emerald on hover)
+  - Key stats: card count, average power/type icons (inline or tooltip)
+  - Action buttons: **Rename**, **Delete**
+  - “New Deck” button at the top or fixed at the bottom
+
+**Example Deck Item:**
+```html
+<div class="flex items-center bg-white border border-emerald-200 rounded-lg px-3 py-2 mb-2 shadow transition hover:border-emerald-400 group">
+  <span class="font-bold text-gray-800 group-hover:text-emerald-500 uppercase flex-1">Leak Busters</span>
+  <span class="text-xs text-gray-500 mr-2">12 Cards</span>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-emerald-500 text-white hover:bg-emerald-400 border border-emerald-700 tracking-wider">Rename</button>
+  <button class="ml-2 px-2 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-400 border border-red-700">Delete</button>
+</div>
+```
+
+**“Create New Deck” Button:**
+```html
+<button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest mt-2">
+  New Deck
+</button>
+```
+
+---
+
+### 4. Quick Navigation / Shortcuts
+
+At the bottom or as a sticky panel:
+- **View Card List** (opens full collection)
+- **Manage Decks**
+- **Visit Card Shop**
+All styled with emerald action color, pixel buttons, and bold uppercase labels.
+
+---
+
+## Theming & Visual Details
+
+- **Emerald green** used for all CTAs, deck highlights, and active tabs.
+- **Rounded corners** and **thick borders** distinguish each major panel.
+- **Pixel font (`font-mono`, uppercase, tracking-wider`)** for headings, stats, and buttons.
+- **Drop-shadow accents** on stats and cards for chunky retro depth.
+- **Subtle hover/active scaling** on cards and buttons for modern feedback.
+- **Soft gray backgrounds** and **grid pattern overlays** reinforce the Gameboy vibe while ensuring accessibility.
+
+---
+
+## Functionality Summary
+
+- **All-in-One Progress:** Instantly see and track coins, wins, emergencies solved, and your collection’s growth.
+- **Show Off Best Cards:** Glance at your most powerful or rare cards, all visually presented.
+- **Deck Control Center:** Rename, delete, and create new decks with minimal taps/clicks.
+- **Quick Access:** Jump to cards, decks, or the shop from any device.
+- **Persistent, Nostalgic Theme:** The Gameboy-powered style makes every stat panel, card, and button feel part of a cohesive, playful world.
+
+---
+
+## Example Dashboard Structure (Pseudocode)
+
+```html
+<div class="dashboard bg-gray-900 min-h-screen font-mono text-gray-100">
+  <!-- Header: Greeting and Main Stats -->
+  <div class="flex items-center justify-between bg-emerald-500 px-4 py-3 rounded-b-lg shadow-lg">
+    <img src="plumber-avatar.png" class="w-10 h-10 rounded-full" />
+    <div class="text-xl font-bold uppercase tracking-wider">Welcome, Plumber!</div>
+    <button class="p-2" aria-label="Settings"><i class="icon-cog"></i></button>
+  </div>
+  <div class="flex gap-3 mt-4">
+    <!-- Individual stat panels as above -->
+  </div>
+  <!-- Card Highlights -->
+  <section class="mt-5">
+    <h2 class="uppercase text-lg font-bold text-emerald-400 mb-2 tracking-wide">Top Cards</h2>
+    <div class="flex overflow-x-auto gap-4">
+      <!-- Card components -->
+    </div>
+    <button class="mt-2 text-emerald-600 hover:underline uppercase font-bold tracking-wider">View Full Card List</button>
+  </section>
+  <!-- Decks Management -->
+  <section class="mt-8">
+    <h2 class="uppercase text-lg font-bold text-emerald-400 mb-2 tracking-wide">My Decks</h2>
+    <div>
+      <!-- Deck list items as above -->
+    </div>
+    <button class="bg-emerald-500 hover:bg-emerald-600 ...">New Deck</button>
+  </section>
+  <!-- Quick links (bottom/sticky) -->
+  <nav class="fixed bottom-4 left-0 right-0 mx-auto max-w-sm flex gap-3 justify-center">
+    <button class="...">Cards</button>
+    <button class="...">Decks</button>
+    <button class="...">Shop</button>
+  </nav>
+</div>
+```
+
+---
+
+## User Flow Highlights
+
+- **First glance:** Find out how you’re progressing and what you’ve unlocked.
+- **Deck Operations:** Instantly make, edit, or remove decks based on new cards or strategies—no deep menu digging!
+- **Collection Pride:** Quickly show off your shiniest plumbing cards to others or plan your next upgrade.
+- **Next Steps:** Whether you’re diving for an emergency or shopping for new packs, Dashboard is your efficient, stylish launchpad.
+
+---
+
+In Pocket Plumbers, the Dashboard isn’t just an info dump—it’s a celebration of your achievements and the command center from which every grand adventure begins!
+
+> appendUser
+Create a next JS page based on context.
+You can use package defined in the package-json tag.
+Card images are stored in the public/cards directory and can be accessed using a http path of "/cards/{baseFilename}.png"
+Do not include a navigation bar, one is included in the layout wrapper of the game.
+
+> nop
+//_END_MAKE_TARGET_INPUT_
+
+
+@time 2025-09-03T17:06:10-04:00
+@tokenUsage 10391 / 9823 / $0.025267500000000002
+@model gpt-5-2025-08-07
+> assistant
+import Head from "next/head"
+import Image from "next/image"
+import Link from "next/link"
+import { useEffect, useMemo, useState } from "react"
+import { Cog, Coins as CoinsIcon, Trophy, ShieldCheck, Layers, Pencil, Trash2, PlusCircle, Star, ChevronRight } from "lucide-react"
+import { useRouter } from "next/router"
+
+type CardType = "plumber" | "tool" | "excuse" | "power-up" | "sandwich"
+
+type BaseCard = {
+  type: CardType
+  name: string
+  baseFilename: string
+  visualDescription: string
+  price: number
+  rarity: number
+  // optional fields across categories
+  hp?: number
+  damage?: number
+  timeGain?: number
+  damageMultiplier?: number
+  healthMultiplier?: number
+  health?: number
+}
+
+type Profile = {
+  wins: number
+  coins: number
+  emergenciesSolved: number
+  level: number
+}
+
+type Deck = {
+  id: string
+  name: string
+  cards: string[] // baseFilenames
+}
+
+type Collection = Record<string, number> // baseFilename -> quantity
+
+// Local storage hook (from guide pattern)
+function useLocalStorage<T>(key: string, initialValue: T) {
+  const [value, setValue] = useState<T>(() => {
+    if (typeof window === "undefined") return initialValue
+    const stored = window.localStorage.getItem(key)
+    return stored ? (JSON.parse(stored) as T) : initialValue
+  })
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(key, JSON.stringify(value))
+    }
+  }, [key, value])
+
+  return [value, setValue] as const
+}
+
+// Static cards database (build-time known)
+const ALL_CARDS: BaseCard[] = [
+  { type: "plumber", name: "Turbo Tony", baseFilename: "plumber_turbo_tony", visualDescription: "A burly plumber with a big red wrench and a confident grin. Wears blue coveralls and a tool belt.", price: 300, rarity: 3, hp: 100, damage: 25 },
+  { type: "plumber", name: "Speedy Sal", baseFilename: "plumber_speedy_sal", visualDescription: "A slim, speedy plumber in green with goggles and rollerblades attached to his boots.", price: 250, rarity: 2, hp: 80, damage: 19 },
+  { type: "plumber", name: "Mighty Mona", baseFilename: "plumber_mighty_mona", visualDescription: "A tall, muscular woman holding two plungers, ready for battle. Has utility pouches and an iconic yellow cap.", price: 320, rarity: 4, hp: 105, damage: 29 },
+  { type: "plumber", name: "Wrenchin’ Wes", baseFilename: "plumber_wrenchin_wes", visualDescription: "A young, scrappy plumber with spiky hair and an oversized wrench slung over his shoulder.", price: 180, rarity: 1, hp: 65, damage: 17 },
+  { type: "plumber", name: "Pipe Pro Paula", baseFilename: "plumber_pipe_pro_paula", visualDescription: "A stylish plumber with fluorescent-pink gloves, glasses, and a digital leak detector.", price: 220, rarity: 2, hp: 75, damage: 22 },
+  { type: "tool", name: "Mega Plunger", baseFilename: "tool_mega_plunger", visualDescription: "A bright orange, oversized plunger with a metal handle and glowing accents.", price: 90, rarity: 2, damage: 14 },
+  { type: "tool", name: "Snake-O-Matic", baseFilename: "tool_snake_o_matic", visualDescription: "A mechanical, coiled drain snake that retracts and extends with buttons.", price: 110, rarity: 3, damage: 20 },
+  { type: "tool", name: "Leak Detector", baseFilename: "tool_leak_detector", visualDescription: "A hi-tech gadget with blinking blue lights to find hidden leaks.", price: 60, rarity: 1, damage: 6 },
+  { type: "tool", name: "Pipe Patch Kit", baseFilename: "tool_pipe_patch_kit", visualDescription: "A small metal box filled with tape, putty, and quick fixes for cracks.", price: 75, rarity: 2, damage: 10 },
+  { type: "tool", name: "Turbo Torque Wrench", baseFilename: "tool_turbo_torque_wrench", visualDescription: "A gleaming chrome wrench with digital torque settings.", price: 100, rarity: 3, damage: 18 },
+  { type: "excuse", name: "Blame the Dog", baseFilename: "excuse_blame_the_dog", visualDescription: "A comical card featuring a guilty-looking dog next to a puddle.", price: 45, rarity: 1, timeGain: 5 },
+  { type: "excuse", name: "Traffic Jam", baseFilename: "excuse_traffic_jam", visualDescription: "A cartoon traffic jam blocks a city street full of plumbers.", price: 60, rarity: 2, timeGain: 8 },
+  { type: "excuse", name: "Misplaced Tools", baseFilename: "excuse_misplaced_tools", visualDescription: "A messy toolbox with open drawers and scattered wrenches.", price: 30, rarity: 1, timeGain: 3 },
+  { type: "excuse", name: "Parts on Backorder", baseFilename: "excuse_parts_on_backorder", visualDescription: "A computer with a 'backorder' alert on the screen.", price: 80, rarity: 3, timeGain: 10 },
+  { type: "excuse", name: "Client Not Home", baseFilename: "excuse_client_not_home", visualDescription: "A locked door with a 'Sorry, missed you' note.", price: 65, rarity: 2, timeGain: 6 },
+  { type: "power-up", name: "Caffeinated Surge", baseFilename: "powerup_caffeinated_surge", visualDescription: "A neon coffee mug overflowing with energy bolts.", price: 70, rarity: 2, damageMultiplier: 1.2 },
+  { type: "power-up", name: "Unbreakable Gloves", baseFilename: "powerup_unbreakable_gloves", visualDescription: "Shiny black gloves etched with golden symbols.", price: 120, rarity: 4, healthMultiplier: 1.25 },
+  { type: "power-up", name: "Safety Goggles", baseFilename: "powerup_safety_goggles", visualDescription: "Translucent blue goggles radiating a protective aura.", price: 55, rarity: 1, healthMultiplier: 1.1 },
+  { type: "power-up", name: "Protein Shake", baseFilename: "powerup_protein_shake", visualDescription: "A sports bottle with liquid strength sloshing inside.", price: 85, rarity: 2, damageMultiplier: 1.15 },
+  { type: "power-up", name: "Quick Reflexes", baseFilename: "powerup_quick_reflexes", visualDescription: "A pair of hands juggling pipes, tools, and a wrench all at once.", price: 95, rarity: 3, damageMultiplier: 1.18 },
+  { type: "sandwich", name: "Classic Sub", baseFilename: "sandwich_classic_sub", visualDescription: "A traditional submarine sandwich overflowing with deli meats and cheese.", price: 35, rarity: 1, health: 22 },
+  { type: "sandwich", name: "Mega BLT", baseFilename: "sandwich_mega_blt", visualDescription: "A huge BLT with crisp lettuce and bacon, radiating tempting aroma.", price: 50, rarity: 2, health: 33 },
+  { type: "sandwich", name: "Spicy Wrap", baseFilename: "sandwich_spicy_wrap", visualDescription: "A tightly-rolled wrap with bright peppers peeking out the sides.", price: 48, rarity: 2, health: 29 },
+  { type: "sandwich", name: "Veggie Hoagie", baseFilename: "sandwich_veggie_hoagie", visualDescription: "A fresh green hoagie loaded with crisp veggies and creamy dressing.", price: 42, rarity: 1, health: 18 },
+  { type: "sandwich", name: "Energy Bagel", baseFilename: "sandwich_energy_bagel", visualDescription: "A plump bagel with sunflower seeds and glowing cream cheese.", price: 37, rarity: 1, health: 20 },
+  { type: "tool", name: "Copper Pipe Set", baseFilename: "tool_copper_pipe_set", visualDescription: "A bundle of shiny copper pipes ready for installation.", price: 80, rarity: 2, damage: 12 },
+  { type: "tool", name: "Waterproof Tape", baseFilename: "tool_waterproof_tape", visualDescription: "A roll of gray, ultra-sticky tape that magically seals leaks.", price: 70, rarity: 1, damage: 8 },
+  { type: "tool", name: "Mini Shop Vac", baseFilename: "tool_mini_shop_vac", visualDescription: "A portable vacuum with wheels and a big blue button.", price: 60, rarity: 1, damage: 5 },
+  { type: "plumber", name: "Delicate Dani", baseFilename: "plumber_delicate_dani", visualDescription: "A careful, meticulous plumber with small tools and surgical gloves.", price: 190, rarity: 1, hp: 60, damage: 15 },
+  { type: "power-up", name: "Inspirational Playlist", baseFilename: "powerup_inspirational_playlist", visualDescription: "A phone with musical notes floating around, headphones plugged in.", price: 78, rarity: 2, damageMultiplier: 1.12 },
+  { type: "excuse", name: "Epic Rainstorm", baseFilename: "excuse_epic_rainstorm", visualDescription: "A deluge outside the window with flashing thunderbolts.", price: 70, rarity: 2, timeGain: 7 },
+  { type: "plumber", name: "Old School Stan", baseFilename: "plumber_old_school_stan", visualDescription: "A gray-bearded plumber in suspenders, wielding a classic monkey wrench.", price: 240, rarity: 2, hp: 90, damage: 21 },
+  { type: "tool", name: "Liquid Drain Blaster", baseFilename: "tool_liquid_drain_blaster", visualDescription: "A big blue and red bottle with warning labels, bubbling with potent chemicals.", price: 85, rarity: 2, damage: 13 },
+  { type: "plumber", name: "Techie Tessa", baseFilename: "plumber_techie_tessa", visualDescription: "A high-tech plumber adorned with smart glasses and a tablet for diagnostics.", price: 250, rarity: 3, hp: 85, damage: 20 },
+  { type: "tool", name: "Pipe Cutter Deluxe", baseFilename: "tool_pipe_cutter_deluxe", visualDescription: "A heavy-duty red pipe cutter with a digital readout.", price: 95, rarity: 2, damage: 16 }
+]
+
+// Helpers
+const rarityLabel = (r: number) =>
+  r >= 4 ? "Epic" : r === 3 ? "Rare" : r === 2 ? "Uncommon" : "Common"
+
+const rarityBadgeColor = (r: number) =>
+  r >= 4 ? "text-fuchsia-500" : r === 3 ? "text-emerald-500" : r === 2 ? "text-lime-500" : "text-gray-500"
+
+function computeCardPower(card: BaseCard): number {
+  switch (card.type) {
+    case "plumber":
+      return (card.damage || 0) + (card.hp || 0) * 0.4 + card.rarity * 4
+    case "tool":
+      return (card.damage || 0) + card.rarity * 3
+    case "power-up":
+      return ((card.damageMultiplier ? (card.damageMultiplier - 1) * 100 : 0) + (card.healthMultiplier ? (card.healthMultiplier - 1) * 100 : 0)) * 0.6 + card.rarity * 5
+    case "sandwich":
+      return (card.health || 0) * 0.6 + card.rarity * 2
+    case "excuse":
+      return (card.timeGain || 0) * 0.5 + card.rarity * 1.5
+    default:
+      return card.rarity
+  }
+}
+
+// Components (local to page)
+function StatPanel({ icon, value, label }: { icon: JSX.Element; value: number; label: string }) {
+  return (
+    <div className="flex items-center gap-3 bg-gray-800 rounded-md border border-gray-200 shadow-md px-4 py-3">
+      <div className="text-emerald-400">{icon}</div>
+      <div>
+        <div className="text-xl font-bold text-emerald-400 drop-shadow-[0_1px_0_rgba(0,0,0,0.8)]">{value}</div>
+        <div className="uppercase text-[10px] text-gray-300 tracking-widest">{label}</div>
+      </div>
+    </div>
+  )
+}
+
+function CardPill({ card, qty }: { card: BaseCard; qty: number }) {
+  const power = Math.round(computeCardPower(card))
+  return (
+    <div className="relative bg-gray-100 border-2 border-emerald-500 rounded-lg shadow-lg px-3 py-3 min-w-[200px] md:min-w-0 transition-transform hover:scale-[1.02]">
+      <div className="absolute top-2 right-2 text-xs uppercase tracking-widest font-bold">
+        <span className={`${rarityBadgeColor(card.rarity)}`}>{rarityLabel(card.rarity)}</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <div className="relative w-14 h-14 rounded-md overflow-hidden border-2 border-emerald-400 shadow">
+          <Image src={`/cards/${card.baseFilename}.png`} alt={card.name} fill sizes="56px" className="object-cover" />
+        </div>
+        <div className="flex-1">
+          <div className="font-bold text-gray-900 text-base uppercase tracking-wide drop-shadow-[0_1px_0_rgba(34,197,94,0.9)]">{card.name}</div>
+          <div className="text-gray-700 text-xs flex items-center gap-2">
+            <span className="inline-flex items-center gap-1">
+              <Star className="w-3.5 h-3.5 text-emerald-500" />
+              POWER: <span className="font-bold">{power}</span>
+            </span>
+            <span className="text-gray-400">•</span>
+            <span>Qty x{qty}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function Dashboard() {
+  const router = useRouter()
+
+  const [profile, setProfile] = useLocalStorage<Profile>("pp_profile", {
+    wins: 0,
+    coins: 0,
+    emergenciesSolved: 0,
+    level: 1
+  })
+  const [collection, setCollection] = useLocalStorage<Collection>("pp_collection", {})
+  const [decks, setDecks] = useLocalStorage<Deck[]>("pp_decks", [])
+  const [activeDeckId, setActiveDeckId] = useLocalStorage<string | null>("pp_active_deck_id", null)
+  const [showSettings, setShowSettings] = useState(false)
+
+  // Initial seed for first-time players
+  useEffect(() => {
+    if (Object.keys(collection).length === 0 && decks.length === 0 && profile.coins === 0 && profile.wins === 0) {
+      const starterCollection: Collection = {
+        plumber_turbo_tony: 1,
+        plumber_wrenchin_wes: 1,
+        tool_mega_plunger: 1,
+        tool_leak_detector: 1,
+        tool_pipe_patch_kit: 1,
+        powerup_safety_goggles: 1,
+        sandwich_classic_sub: 2,
+        excuse_blame_the_dog: 1
+      }
+      const starterDeck: Deck = {
+        id: cryptoRandomId(),
+        name: "Leak Busters",
+        cards: Object.keys(starterCollection)
+      }
+      setCollection(starterCollection)
+      setDecks([starterDeck])
+      setActiveDeckId(starterDeck.id)
+      setProfile({ wins: 0, coins: 500, emergenciesSolved: 0, level: 1 })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const totalCards = useMemo(
+    () => Object.values(collection).reduce((sum, qty) => sum + qty, 0),
+    [collection]
+  )
+
+  const topCards = useMemo(() => {
+    const owned = ALL_CARDS.filter(c => (collection[c.baseFilename] || 0) > 0)
+      .map(c => ({ card: c, qty: collection[c.baseFilename] || 0, score: computeCardPower(c) + c.rarity * 10 }))
+      .sort((a, b) => b.card.rarity - a.card.rarity || b.score - a.score)
+      .slice(0, 10)
+    return owned
+  }, [collection])
+
+  function renameDeck(id: string) {
+    const name = window.prompt("Rename deck to:", decks.find(d => d.id === id)?.name || "")
+    if (!name) return
+    setDecks(prev => prev.map(d => (d.id === id ? { ...d, name } : d)))
+  }
+
+  function deleteDeck(id: string) {
+    const deck = decks.find(d => d.id === id)
+    if (!deck) return
+    if (!window.confirm(`Delete deck "${deck.name}"? This cannot be undone.`)) return
+    setDecks(prev => prev.filter(d => d.id !== id))
+    if (activeDeckId === id) setActiveDeckId(null)
+  }
+
+  function createDeck() {
+    const base = "New Deck"
+    let idx = 1
+    const existingNames = new Set(decks.map(d => d.name))
+    let candidate = base
+    while (existingNames.has(candidate)) {
+      idx += 1
+      candidate = `${base} ${idx}`
+    }
+    const newDeck: Deck = { id: cryptoRandomId(), name: candidate, cards: [] }
+    setDecks(prev => [newDeck, ...prev])
+    setActiveDeckId(newDeck.id)
+  }
+
+  function openDeck(id: string) {
+    setActiveDeckId(id)
+    router.push("/deck")
+  }
+
+  function resetProgress() {
+    if (!window.confirm("Reset all progress? This clears profile, decks, and collection.")) return
+    setProfile({ wins: 0, coins: 500, emergenciesSolved: 0, level: 1 })
+    setCollection({})
+    setDecks([])
+    setActiveDeckId(null)
+    setShowSettings(false)
+  }
+
+  const activeDeckName = decks.find(d => d.id === activeDeckId)?.name || "None"
+
+  return (
+    <>
+      <Head>
+        <title>Pocket Plumbers • Dashboard</title>
+        <meta name="description" content="Your main hub for Pocket Plumbers. View stats, top cards, and manage decks." />
+      </Head>
+      <main className="w-full min-h-screen bg-gray-900 text-gray-100 font-mono">
+        <section className="relative">
+          <div className="absolute inset-0 opacity-20 pointer-events-none">
+            <div className="w-full h-full bg-[url('/pixelgrid.svg')]"></div>
+          </div>
+
+          <div className="relative mx-auto max-w-6xl px-4 pt-4">
+            {/* Header / Greeting */}
+            <div className="flex items-center justify-between bg-gradient-to-r from-emerald-600 via-emerald-500 to-gray-900 border-b-2 border-emerald-700 px-4 py-3 rounded-b-lg shadow-lg">
+              <div className="flex items-center gap-3">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-emerald-300 shadow">
+                  <Image src="/cards/plumber_turbo_tony.png" alt="Player Avatar" fill sizes="48px" className="object-cover" />
+                </div>
+                <div>
+                  <div className="text-sm uppercase tracking-widest text-emerald-100">Welcome, Plumber!</div>
+                  <div className="text-lg md:text-2xl font-bold uppercase tracking-wider drop-shadow-[0_1px_0_rgba(0,0,0,0.8)]">
+                    Level {profile.level}
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowSettings(s => !s)}
+                className="inline-flex items-center gap-2 bg-gray-900/40 hover:bg-gray-900/60 text-white border-2 border-emerald-700 rounded px-3 py-2 uppercase tracking-wider shadow transition-colors"
+                aria-label="Settings"
+              \>
+                <Cog className="w-5 h-5" /> Settings
+              </button>
+            </div>
+
+            {/* Stats Row */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+              <StatPanel icon={<Trophy className="w-5 h-5" />} value={profile.wins} label="Wins" />
+              <StatPanel icon={<CoinsIcon className="w-5 h-5" />} value={profile.coins} label="Coins" />
+              <StatPanel icon={<ShieldCheck className="w-5 h-5" />} value={profile.emergenciesSolved} label="Emergencies Solved" />
+              <StatPanel icon={<Layers className="w-5 h-5" />} value={totalCards} label="Total Cards" />
+            </div>
+
+            {/* Top Cards */}
+            <section className="mt-8">
+              <h2 className="uppercase text-xl md:text-2xl font-bold text-emerald-400 mb-3 tracking-wider drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+                Top Cards
+              </h2>
+
+              {topCards.length === 0 ? (
+                <div className="bg-gray-800 border border-gray-200 rounded-md p-4 text-gray-300">
+                  You don’t have any cards yet. Visit the shop to start your collection!
+                </div>
+              ) : (
+                <>
+                  <div className="flex md:hidden overflow-x-auto gap-4 pb-2">
+                    {topCards.map(({ card, qty }) => (
+                      <CardPill key={card.baseFilename} card={card} qty={qty} />
+                    ))}
+                  </div>
+                  <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    {topCards.map(({ card, qty }) => (
+                      <CardPill key={card.baseFilename} card={card} qty={qty} />
+                    ))}
+                  </div>
+                </>
+              )}
+
+              <div className="mt-3">
+                <Link href="/cards" className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 uppercase font-bold tracking-wider">
+                  View Full Card List <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </section>
+
+            {/* Decks Management */}
+            <section className="mt-10">
+              <div className="flex items-center justify-between">
+                <h2 className="uppercase text-xl md:text-2xl font-bold text-emerald-400 mb-2 tracking-wider drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+                  My Decks
+                </h2>
+                <div className="text-xs text-gray-400 uppercase tracking-widest">
+                  Active: <span className="text-emerald-400 font-bold">{activeDeckName}</span>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                {decks.length === 0 && (
+                  <div className="bg-gray-800 border border-gray-200 rounded-md p-4 text-gray-300">
+                    No decks yet. Create your first deck to head into emergencies!
+                  </div>
+                )}
+
+                {decks.map(deck => (
+                  <div
+                    key={deck.id}
+                    className="flex items-center bg-white border border-emerald-200 rounded-lg px-3 py-2 shadow transition hover:border-emerald-400 group"
+                  \>
+                    <button
+                      onClick={() => openDeck(deck.id)}
+                      className="text-left font-bold text-gray-800 group-hover:text-emerald-500 uppercase flex-1"
+                    \>
+                      {deck.name}
+                    </button>
+                    <span className="text-xs text-gray-500 mr-2">{deck.cards.length} Cards</span>
+                    <button
+                      onClick={() => renameDeck(deck.id)}
+                      className="ml-2 px-2 py-1 text-xs rounded bg-emerald-500 text-white hover:bg-emerald-400 border border-emerald-700 tracking-wider inline-flex items-center gap-1"
+                      aria-label={`Rename ${deck.name}`}
+                    \>
+                      <Pencil className="w-3.5 h-3.5" /> Rename
+                    </button>
+                    <button
+                      onClick={() => deleteDeck(deck.id)}
+                      className="ml-2 px-2 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-400 border border-red-700 inline-flex items-center gap-1"
+                      aria-label={`Delete ${deck.name}`}
+                    \>
+                      <Trash2 className="w-3.5 h-3.5" /> Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                onClick={createDeck}
+                className="mt-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest inline-flex items-center gap-2"
+              \>
+                <PlusCircle className="w-5 h-5" />
+                New Deck
+              </button>
+            </section>
+
+            {/* Quick Shortcuts */}
+            <nav className="mt-10 mb-24">
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/cards"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest transition"
+                \>
+                  View Card List
+                </Link>
+                <button
+                  onClick={() => router.push("/deck")}
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest transition"
+                \>
+                  Manage Decks
+                </button>
+                <Link
+                  href="/shop"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest transition"
+                \>
+                  Visit Card Shop
+                </Link>
+                <Link
+                  href="/emergency"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest transition"
+                \>
+                  Start Emergency
+                </Link>
+              </div>
+            </nav>
+          </div>
+        </section>
+
+        {/* Sticky Bottom Shortcuts (mobile-friendly) */}
+        <div className="fixed bottom-4 left-0 right-0 z-20">
+          <div className="mx-auto max-w-md px-4">
+            <div className="flex items-center justify-between gap-2 bg-gray-800/90 border border-gray-200 rounded-xl shadow-2xl px-3 py-2">
+              <Link href="/cards" className="flex-1 text-center text-xs uppercase tracking-wider text-emerald-400 hover:text-emerald-300">
+                Cards
+              </Link>
+              <button onClick={() => router.push("/deck")} className="flex-1 text-center text-xs uppercase tracking-wider text-emerald-400 hover:text-emerald-300">
+                Decks
+              </button>
+              <Link href="/shop" className="flex-1 text-center text-xs uppercase tracking-wider text-emerald-400 hover:text-emerald-300">
+                Shop
+              </Link>
+              <Link href="/emergency" className="flex-1 text-center text-xs uppercase tracking-wider text-emerald-400 hover:text-emerald-300">
+                Emergency
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Settings Modal */}
+        {showSettings && (
+          <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/60 px-4">
+            <div className="bg-gray-700 rounded-lg border-2 border-emerald-400 shadow-2xl px-6 py-5 w-full max-w-md">
+              <h2 className="text-emerald-400 text-2xl font-bold uppercase mb-3 drop-shadow-[0_1px_0_rgba(0,0,0,0.7)]">
+                Settings
+              </h2>
+              <div className="space-y-3">
+                <div className="text-sm text-gray-200">
+                  Coins: <span className="text-emerald-300 font-bold">{profile.coins}</span>
+                </div>
+                <button
+                  onClick={() => {
+                    const add = Number(window.prompt("Add coins:", "100") || "0")
+                    if (!Number.isFinite(add)) return
+                    setProfile(p => ({ ...p, coins: Math.max(0, p.coins + add) }))
+                  }}
+                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded shadow border-2 border-emerald-700 px-4 py-2 uppercase tracking-widest"
+                \>
+                  Add Coins
+                </button>
+                <button
+                  onClick={resetProgress}
+                  className="w-full bg-red-500 hover:bg-red-600 text-white font-bold rounded shadow border-2 border-red-700 px-4 py-2 uppercase tracking-widest"
+                \>
+                  Reset Progress
+                </button>
+                <button
+                  onClick={() => setShowSettings(false)}
+                  className="w-full bg-gray-600 hover:bg-gray-500 text-white font-bold rounded shadow border-2 border-gray-800 px-4 py-2 uppercase tracking-widest"
+                \>
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+    </>
+  )
+}
+
+// Utils
+function cryptoRandomId() {
+  if (typeof window !== "undefined" && "crypto" in window && "randomUUID" in window.crypto) {
+    return window.crypto.randomUUID()
+  }
+  return "id-" + Math.random().toString(36).slice(2)
+}
