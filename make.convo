@@ -118,6 +118,7 @@ context: array(
 
 > target layout
 out: 'components/Layout.tsx'
+component: true
 appPath: '/'
 ===
 Generate a layout component for the app. The layout should include the following:
@@ -125,6 +126,7 @@ Generate a layout component for the app. The layout should include the following
 - Navigation bar at the top of the screen
 - Number of coins the player has
 - A single `children` prop that will contain page content. Do not place the children in a container column, pages will define their open container if needed.
+- Export the Layout as a named export do not export as default - `export function Layout`
 ===
 
 // Generates a .tsx page for each generated page description
