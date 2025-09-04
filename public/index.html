@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Save Earth Wonders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark">
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --text:#f5f7fa;
+      --muted:#d7dee8;
+      --accent:#25c2a0;
+      --accent-2:#6ae6cd;
+      --shadow:rgba(0,0,0,.5);
+      --panel:rgba(10,14,18,.7);
+      --btn-bg:rgba(255,255,255,.12);
+      --btn-hover:rgba(255,255,255,.22);
+      --danger:#ff6b6b;
+      --focus:#7cc7ff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.4;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit}
+    .app{
+      height:100dvh;
+      width:100%;
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(180deg,#0b0f14 0%, #0b0f14 60%, #0b0f14 100%);
+      isolation:isolate;
+    }
+
+    /* Header */
+    .brand{
+      position:fixed;
+      top:16px; left:16px;
+      z-index:30;
+      display:flex; align-items:center; gap:12px;
+      padding:8px 12px;
+      background:rgba(0,0,0,.3);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px;
+      backdrop-filter: blur(6px);
+    }
+    .logo{
+      width:28px;height:28px;border-radius:8px;
+      background: radial-gradient(70% 70% at 30% 30%, var(--accent) 0%, var(--accent-2) 55%, #1a8e78 100%);
+      box-shadow: 0 0 0 2px rgba(255,255,255,.06) inset, 0 8px 24px rgba(0,0,0,.35);
+    }
+    .brand h1{
+      font-size:16px; margin:0; letter-spacing:.3px; font-weight:700;
+    }
+
+    /* Carousel */
+    .carousel{
+      position:absolute; inset:0;
+    }
+    .slides{
+      position:absolute; inset:0;
+    }
+    .slide{
+      position:absolute; inset:0;
+      opacity:0; transition:opacity .8s ease;
+      pointer-events:none;
+    }
+    .slide.active{opacity:1; pointer-events:auto;}
+    .bg{
+      position:absolute; inset:0;
+      overflow:hidden;
+    }
+    .bg img{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      filter: saturate(1.05) contrast(1.05) brightness(.95);
+      transform: scale(1.05);
+      transition: transform 10s ease;
+    }
+    .slide.active .bg img{ transform: scale(1.0); }
+    .vignette{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(130% 85% at 50% 20%, rgba(0,0,0,0) 0%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.7) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.85) 100%);
+      mix-blend-mode:multiply;
+    }
+    .content{
+      position:absolute;
+      left: max(16px, 5vw);
+      right: max(16px, 5vw);
+      bottom: clamp(16px, 8vh, 120px);
+      display:grid; gap:14px;
+      max-width: 900px;
+      background: linear-gradient(180deg, rgba(15,20,26,.65), rgba(15,20,26,.45));
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:clamp(14px, 3.5vw, 28px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.45);
+      backdrop-filter: blur(6px);
+    }
+    .kicker{
+      font-size:12px; letter-spacing:.18em; text-transform:uppercase; color: var(--muted);
+      opacity:.95;
+    }
+    .title{
+      font-size: clamp(26px, 5vw, 48px);
+      line-height:1.1;
+      margin:0;
+      text-shadow: 0 2px 12px rgba(0,0,0,.65);
+    }
+    .location{
+      color: var(--muted);
+      font-size: clamp(14px, 2.5vw, 18px);
+      margin-top:-4px;
+    }
+    .problem{
+      font-size: clamp(14px, 2.2vw, 18px);
+      color: #e8eef7;
+      max-width: 70ch;
+      margin-top:2px;
+    }
+    .actions{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:6px;
+    }
+    .btn{
+      appearance:none; border:none;
+      padding:12px 18px; border-radius:12px;
+      font-weight:700; letter-spacing:.2px; cursor:pointer;
+      color:var(--text); background:var(--btn-bg);
+      border:1px solid rgba(255,255,255,.2);
+      transition: background .2s ease, transform .05s ease, border-color .2s ease, box-shadow .2s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,.35);
+    }
+    .btn:hover{ background: var(--btn-hover); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#06221c; border-color: rgba(255,255,255,.0);
+      text-shadow: 0 1px 0 rgba(255,255,255,.2);
+    }
+    .btn.primary:hover{
+      filter: brightness(1.05);
+      box-shadow: 0 8px 28px rgba(37,194,160,.45);
+    }
+
+    /* Navigation */
+    .nav{
+      position:absolute; top:50%; transform: translateY(-50%);
+      width:46px; height:46px; border-radius:50%;
+      display:grid; place-items:center;
+      background: rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.15);
+      color:var(--text); cursor:pointer; z-index:15;
+      transition: background .2s ease, transform .05s ease;
+      backdrop-filter: blur(4px);
+    }
+    .nav:hover{ background: rgba(0,0,0,.5); }
+    .nav:active{ transform: translateY(-50%) scale(.98); }
+    .nav.prev{ left:14px; }
+    .nav.next{ right:14px; }
+    .nav svg{ width:22px; height:22px; filter: drop-shadow(0 2px 6px rgba(0,0,0,.6)); }
+
+    .dots{
+      position:absolute; bottom:16px; left:50%; transform: translateX(-50%);
+      display:flex; gap:8px; padding:8px 12px; border-radius:999px;
+      background: rgba(0,0,0,.32);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(6px);
+      z-index:16;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: rgba(255,255,255,.35); border:1px solid rgba(255,255,255,.4);
+      cursor:pointer; transition: transform .15s ease, background .2s ease, width .25s ease;
+      overflow:hidden;
+    }
+    .dot.active{ background: linear-gradient(135deg, var(--accent), var(--accent-2)); transform: scale(1.15); }
+
+    /* Modal */
+    .modal[hidden]{ display:none !important; }
+    .modal{
+      position:fixed; inset:0; z-index:50;
+    }
+    .backdrop{
+      position:absolute; inset:0; background: rgba(0,0,0,.6);
+      backdrop-filter: blur(2px);
+    }
+    .dialog{
+      position:absolute; inset:0;
+      display:grid; place-items:center; padding:20px;
+      overflow:auto;
+    }
+    .panel{
+      width:min(720px, 100%);
+      background: linear-gradient(180deg, rgba(14,19,25,.92), rgba(14,19,25,.86));
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:16px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.6);
+      overflow:hidden;
+      animation: pop .15s ease;
+    }
+    @keyframes pop { from{ transform: translateY(6px); opacity:0 } to{ transform: translateY(0); opacity:1 } }
+    .panel-header{
+      display:flex; align-items: center; justify-content: space-between;
+      padding:16px 18px; border-bottom:1px solid rgba(255,255,255,.08);
+      gap:12px;
+      background: linear-gradient(180deg, rgba(20,26,34,.6), rgba(20,26,34,.2));
+    }
+    .panel-header h2{ margin:0; font-size:20px; }
+    .close{
+      background:transparent; border:none; color:var(--muted); cursor:pointer;
+      padding:8px; border-radius:8px;
+    }
+    .close:hover{ color:var(--text); background: rgba(255,255,255,.06); }
+    .panel-body{ padding:18px; display:grid; gap:16px; }
+    form .grid{
+      display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:14px;
+    }
+    @media (max-width:700px){
+      form .grid{ grid-template-columns: 1fr; }
+      .nav{ display:none; }
+      .brand{ left:12px; right:12px; }
+    }
+    label{ display:block; font-weight:600; margin-bottom:6px; font-size:14px; color:var(--muted); }
+    input{
+      width:100%; padding:12px 12px; border-radius:10px;
+      background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16);
+      color:var(--text); outline:none;
+      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+      font-size:16px;
+    }
+    input::placeholder{ color:#9cabc2; opacity:.8; }
+    input:focus{
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus), transparent 70%);
+      background: rgba(255,255,255,.1);
+    }
+    .help{ font-size:12px; color:#a9b5c6; margin-top:6px; }
+    .error{ color:var(--danger); font-size:12px; margin-top:6px; }
+    .panel-footer{
+      display:flex; justify-content: space-between; align-items:center; gap:10px;
+      padding:16px 18px; border-top:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(0deg, rgba(20,26,34,.6), rgba(20,26,34,.2));
+    }
+    .right{ display:flex; gap:10px; }
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
+    /* Success */
+    .success{
+      text-align:center; padding:24px 18px 28px;
+    }
+    .success h3{ margin: 6px 0 8px; font-size:22px; }
+    .success p{ margin: 6px auto; color: var(--muted); max-width: 52ch; }
+    .success .check{
+      width:60px; height:60px; margin:0 auto 8px; border-radius:50%;
+      display:grid; place-items:center;
+      background: radial-gradient(90% 90% at 30% 30%, var(--accent-2) 0%, var(--accent) 60%, #1b8d78 100%);
+      box-shadow: 0 10px 30px rgba(37,194,160,.45), 0 0 0 2px rgba(255,255,255,.08) inset;
+      color:#06221c;
+    }
+    .small{
+      font-size:12px; color:#a7b3c2;
+    }
+
+    /* Tooltip-ish */
+    .badge{
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:12px; color:#d1e5ff;
+      background: rgba(36,132,255,.16);
+      border:1px solid rgba(124,199,255,.35);
+      padding:6px 10px; border-radius:999px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="app" aria-label="Save Earth Wonders">
+    <div class="brand" role="banner">
+      <div class="logo" aria-hidden="true"></div>
+      <h1>Save Earth Wonders</h1>
+    </div>
+
+    <section class="carousel" aria-roledescription="carousel" aria-label="Wonders to save">
+      <div class="slides" id="slides"></div>
+      <button class="nav prev" id="prevBtn" aria-label="Previous wonder">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <button class="nav next" id="nextBtn" aria-label="Next wonder">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+      </button>
+      <div class="dots" id="dots" role="tablist" aria-label="Select wonder"></div>
+      <div id="announcer" class="sr-only" aria-live="polite"></div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="modal" hidden>
+      <div class="backdrop" id="backdrop" tabindex="-1" aria-hidden="true"></div>
+      <div class="dialog">
+        <div class="panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+          <div class="panel-header">
+            <h2 id="modalTitle">Volunteer Sign-up</h2>
+            <button class="close" id="closeModal" aria-label="Close sign-up">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.3 5.71 12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.29 19.7 2.88 18.3 9.17 12 2.88 5.71 4.29 4.29 10.59 10.6l6.3-6.3z"/>
+              </svg>
+            </button>
+          </div>
+          <div class="panel-body">
+            <div id="chosenWonder" class="badge" aria-live="polite">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2m1 15h-2v-2h2zm0-4h-2V7h2z"/></svg>
+              <span id="wonderLabel"></span>
+            </div>
+            <form id="signupForm" novalidate>
+              <input type="hidden" name="wonder" id="wonderInput">
+              <div class="grid">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Alex Doe" autocomplete="name" required>
+                  <div class="error" id="nameErr" aria-live="polite"></div>
+                </div>
+                <div>
+                  <label for="age">Age (Must be 18 or over)</label>
+                  <input id="age" name="age" type="number" inputmode="numeric" min="18" placeholder="18" required>
+                  <div class="error" id="ageErr" aria-live="polite"></div>
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+                  <div class="error" id="emailErr" aria-live="polite"></div>
+                </div>
+                <div>
+                  <label for="phone">Phone</label>
+                  <input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" autocomplete="tel" pattern="^[+]?[\d\s().-]{7,}$" required>
+                  <div class="error" id="phoneErr" aria-live="polite"></div>
+                </div>
+                <div>
+                  <label for="hours">Number of hours available to volunteer</label>
+                  <input id="hours" name="hours" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g., 4" required>
+                  <div class="error" id="hoursErr" aria-live="polite"></div>
+                </div>
+              </div>
+              <div class="help">We’ll use your info only to coordinate volunteer efforts for this wonder.</div>
+            </form>
+            <div id="success" class="success" hidden>
+              <div class="check" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="m9 16.17-3.88-3.88-1.41 1.41L9 19 20.29 7.71 18.88 6.3z"/></svg>
+              </div>
+              <h3 id="successTitle">Thank you!</h3>
+              <p id="successMsg"></p>
+              <p class="small">A confirmation has been recorded. We’ll be in touch soon.</p>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <button class="btn" id="cancelBtn" type="button">Cancel</button>
+            <div class="right">
+              <button class="btn" id="resetBtn" type="button">Reset</button>
+              <button class="btn primary" id="submitBtn" type="button">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const WONDERS = [
+      {
+        name: "Great Barrier Reef",
+        location: "Australia",
+        filename: "great-barrier-reef",
+        problem: "Coral bleaching caused by rising sea temperatures, ocean acidification, and pollution threaten the world's largest coral reef system.",
+        visualDescription: "Vast underwater tapestry of branching corals, vibrant fish, and clear turquoise waters fading to patches of stark white and algae."
+      },
+      {
+        name: "Amazon Rainforest",
+        location: "Brazil and surrounding South American countries",
+        filename: "amazon-rainforest",
+        problem: "Deforestation from logging, agriculture, and mining destroys habitats and accelerates climate change.",
+        visualDescription: "Endless emerald canopy interrupted by brown scars of cleared land, smoky haze, and winding rivers."
+      },
+      {
+        name: "Arctic Ice Cap",
+        location: "Arctic Circle",
+        filename: "arctic-ice-cap",
+        problem: "Rapid ice melt from global warming endangers polar species and causes rising sea levels.",
+        visualDescription: "Expansive fields of white and blue glacier ice, fragmented into floating sheets, with polar bears on shrinking platforms."
+      },
+      {
+        name: "The Dead Sea",
+        location: "Jordan, Israel, Palestine",
+        filename: "dead-sea",
+        problem: "Diminishing water levels from water diversion and mineral extraction threaten this unique salt lake.",
+        visualDescription: "Shoreline encrusted with surreal salt formations, shallow turquoise water rapidly receding from previous boundaries."
+      },
+      {
+        name: "Galápagos Islands",
+        location: "Ecuador",
+        filename: "galapagos-islands",
+        problem: "Invasive species, overfishing, and tourism impact unique wildlife and fragile ecosystems.",
+        visualDescription: "Rocky volcanic islands in luminous blue ocean with giant tortoises, blue-footed boobies, and lush foliage."
+      },
+      {
+        name: "Sundarbans Mangrove Forest",
+        location: "India and Bangladesh",
+        filename: "sundarbans-mangrove-forest",
+        problem: "Sea level rise, pollution, and deforestation threaten the world’s largest mangrove forest and its endangered Bengal tigers.",
+        visualDescription: "Labyrinth of green mangroves interlaced by muddy waterways, partly submerged roots, and elusive tiger paw prints."
+      }
+    ];
+
+    const slidesEl = document.getElementById('slides');
+    const dotsEl = document.getElementById('dots');
+    const announcer = document.getElementById('announcer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    const modal = document.getElementById('modal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const backdrop = document.getElementById('backdrop');
+
+    const wonderLabel = document.getElementById('wonderLabel');
+    const wonderInput = document.getElementById('wonderInput');
+
+    const form = document.getElementById('signupForm');
+    const successBox = document.getElementById('success');
+    const successTitle = document.getElementById('successTitle');
+    const successMsg = document.getElementById('successMsg');
+
+    const fields = {
+      name: document.getElementById('name'),
+      age: document.getElementById('age'),
+      email: document.getElementById('email'),
+      phone: document.getElementById('phone'),
+      hours: document.getElementById('hours'),
+    };
+    const errors = {
+      name: document.getElementById('nameErr'),
+      age: document.getElementById('ageErr'),
+      email: document.getElementById('emailErr'),
+      phone: document.getElementById('phoneErr'),
+      hours: document.getElementById('hoursErr'),
+    };
+
+    let current = 0;
+    let timer = null;
+    const AUTOPLAY_MS = 7000;
+    let isPaused = false;
+
+    function createSlide(w, index){
+      const slide = document.createElement('article');
+      slide.className = 'slide';
+      slide.setAttribute('role', 'group');
+      slide.setAttribute('aria-roledescription', 'slide');
+      slide.setAttribute('aria-label', `${index+1} of ${WONDERS.length}: ${w.name}`);
+
+      slide.innerHTML = `
+        <div class="bg" aria-hidden="true">
+          <img src="/images/${w.filename}.png" alt="${w.visualDescription}">
+          <div class="vignette"></div>
+        </div>
+        <div class="content">
+          <div class="kicker">Wonder to Save</div>
+          <h2 class="title">${w.name}</h2>
+          <div class="location">${w.location}</div>
+          <p class="problem">${w.problem}</p>
+          <div class="actions">
+            <button class="btn primary signupBtn" data-index="${index}" aria-label="Sign up to help ${w.name}">Sign up to help</button>
+            <button class="btn learnBtn" data-index="${index}" aria-label="Learn more about ${w.name}">Learn more</button>
+          </div>
+        </div>
+      `;
+      return slide;
+    }
+
+    function buildCarousel(){
+      slidesEl.innerHTML = '';
+      dotsEl.innerHTML = '';
+      WONDERS.forEach((w,i)=>{
+        const s = createSlide(w,i);
+        slidesEl.appendChild(s);
+
+        const dot = document.createElement('button');
+        dot.className = 'dot';
+        dot.setAttribute('role','tab');
+        dot.setAttribute('aria-label', `Go to ${w.name}`);
+        dot.addEventListener('click', ()=>showSlide(i, true));
+        dotsEl.appendChild(dot);
+      });
+      bindSlideButtons();
+      showSlide(0);
+      startAutoplay();
+    }
+
+    function bindSlideButtons(){
+      slidesEl.querySelectorAll('.signupBtn').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          const idx = Number(e.currentTarget.getAttribute('data-index'));
+          openModal(idx);
+        });
+      });
+      slidesEl.querySelectorAll('.learnBtn').forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          const idx = Number(e.currentTarget.getAttribute('data-index'));
+          // "Learn more" just pauses autoplay briefly and announces the problem for accessibility
+          pauseAutoplay(8000);
+          const w = WONDERS[idx];
+          announcer.textContent = `${w.name}: ${w.problem}`;
+        });
+      });
+    }
+
+    function showSlide(index, userInitiated=false){
+      const slides = [...slidesEl.children];
+      const dots = [...dotsEl.children];
+      if(slides.length === 0) return;
+      if(index < 0) index = slides.length - 1;
+      if(index >= slides.length) index = 0;
+      slides.forEach(s=>s.classList.remove('active'));
+      dots.forEach(d=>d.classList.remove('active'));
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+      current = index;
+      announcer.textContent = `Showing ${WONDERS[index].name}, ${index+1} of ${WONDERS.length}.`;
+      if(userInitiated) pauseAutoplay(10000);
+    }
+    function nextSlide(userInitiated=false){ showSlide(current+1, userInitiated); }
+    function prevSlide(userInitiated=false){ showSlide(current-1, userInitiated); }
+
+    function startAutoplay(){
+      clearInterval(timer);
+      isPaused = false;
+      timer = setInterval(()=>{ if(!isPaused) nextSlide(false); }, AUTOPLAY_MS);
+    }
+    function stopAutoplay(){
+      clearInterval(timer);
+      isPaused = true;
+    }
+    function pauseAutoplay(ms){
+      isPaused = true;
+      clearTimeout(pauseAutoplay._t);
+      pauseAutoplay._t = setTimeout(()=>{ isPaused = false; }, ms);
+    }
+
+    prevBtn.addEventListener('click', ()=>prevSlide(true));
+    nextBtn.addEventListener('click', ()=>nextSlide(true));
+    document.addEventListener('keydown', (e)=>{
+      if(modal.hidden === false) return; // ignore when modal open
+      if(e.key === 'ArrowRight'){ nextSlide(true); }
+      else if(e.key === 'ArrowLeft'){ prevSlide(true); }
+    });
+    // Pause when hovering over content to read
+    slidesEl.addEventListener('pointerenter', ()=>pauseAutoplay(8000));
+    slidesEl.addEventListener('pointerleave', ()=>pauseAutoplay(3000));
+
+    // Modal handling
+    function openModal(index){
+      stopAutoplay();
+      const w = WONDERS[index];
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      wonderLabel.textContent = `Signing up for: ${w.name} (${w.location})`;
+      wonderInput.value = w.name;
+      resetForm();
+      // Focus first input
+      setTimeout(()=>{ fields.name.focus(); }, 30);
+    }
+    function closeModal(){
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      successBox.hidden = true;
+      form.style.display = '';
+      startAutoplay();
+      document.querySelector('.slide.active .signupBtn')?.focus();
+    }
+    closeModalBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+    function resetForm(){
+      form.reset();
+      clearErrors();
+      successBox.hidden = true;
+      form.style.display = '';
+      submitBtn.disabled = false;
+      resetBtn.disabled = false;
+    }
+    resetBtn.addEventListener('click', resetForm);
+
+    function clearErrors(){
+      Object.values(errors).forEach(el=>el.textContent = '');
+      Object.values(fields).forEach(f=>f.setAttribute('aria-invalid','false'));
+    }
+
+    function setError(fieldKey, message){
+      errors[fieldKey].textContent = message || '';
+      fields[fieldKey].setAttribute('aria-invalid', message ? 'true' : 'false');
+    }
+
+    function validate(){
+      let valid = true;
+      clearErrors();
+
+      // Name
+      const nameVal = fields.name.value.trim();
+      if(nameVal.length < 2){
+        setError('name','Please enter your full name.');
+        valid = false;
+      }
+
+      // Age
+      const ageVal = Number(fields.age.value);
+      if(!fields.age.value){
+        setError('age','Please enter your age.');
+        valid = false;
+      } else if(isNaN(ageVal) || ageVal < 18){
+        setError('age','You must be 18 or older to volunteer.');
+        valid = false;
+      }
+
+      // Email
+      const emailVal = fields.email.value.trim();
+      if(!emailVal){
+        setError('email','Email is required.');
+        valid = false;
+      } else if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)){
+        setError('email','Please enter a valid email address.');
+        valid = false;
+      }
+
+      // Phone
+      const phoneVal = fields.phone.value.trim();
+      if(!phoneVal){
+        setError('phone','Phone number is required.');
+        valid = false;
+      } else if(!/^[+]?[\d\s().-]{7,}$/.test(phoneVal)){
+        setError('phone','Please enter a valid phone number.');
+        valid = false;
+      }
+
+      // Hours
+      const hoursVal = Number(fields.hours.value);
+      if(!fields.hours.value){
+        setError('hours','Please enter the number of hours you can volunteer.');
+        valid = false;
+      } else if(isNaN(hoursVal) || hoursVal < 1){
+        setError('hours','Hours must be at least 1.');
+        valid = false;
+      } else if(hoursVal > 1000){
+        setError('hours','Please enter a reasonable number of hours.');
+        valid = false;
+      }
+
+      return valid;
+    }
+
+    // Live validation on blur
+    Object.entries(fields).forEach(([key, input])=>{
+      input.addEventListener('blur', validate);
+      input.addEventListener('input', ()=>{ if(errors[key].textContent) validate(); });
+    });
+
+    function submitForm(){
+      if(!validate()) return;
+      // Simulate submission
+      submitBtn.disabled = true;
+      resetBtn.disabled = true;
+
+      const data = {
+        wonder: wonderInput.value,
+        name: fields.name.value.trim(),
+        age: Number(fields.age.value),
+        email: fields.email.value.trim(),
+        phone: fields.phone.value.trim(),
+        hours: Number(fields.hours.value)
+      };
+
+      // In a real app, you would POST this data. We just show success.
+      const firstName = data.name.split(' ')[0] || data.name;
+      successTitle.textContent = `Thank you, ${firstName}!`;
+      successMsg.textContent = `You’ve signed up to help protect ${data.wonder}. We’ll reach out at ${data.email}${data.phone ? ' and ' + data.phone : ''} to coordinate your ${data.hours} hour${data.hours === 1 ? '' : 's'} of volunteering.`;
+      form.style.display = 'none';
+      successBox.hidden = false;
+      // After a short while, re-enable close
+      setTimeout(()=>{ submitBtn.disabled = false; }, 800);
+    }
+    submitBtn.addEventListener('click', submitForm);
+
+    // Initialize
+    buildCarousel();
+  </script>
+</body>
+</html>

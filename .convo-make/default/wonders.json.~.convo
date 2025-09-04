@@ -1,0 +1,90 @@
+> define
+__model="gpt-4.1"
+
+> define
+ConvoMakeOutputType=array(struct(
+    name: string
+    location: string
+    # A URL friendly filename. DO NOT include a file extension.
+    filename: string
+    # The problem that needs to be solved
+    problem: string
+    visualDescription: string
+))
+__defaultResponseType="ConvoMakeOutputType"
+
+> system
+You are generating content that will be directly written to "wonders.json".
+DO NOT include a preamble or postamble.
+
+> appendUser
+# Save Earth Wonders
+ Save Earth Wonders is a volunteer sign-up page where users can sign-up to help save the natural
+ wonders of Earth.
+
+ The page should be a full height and width carousel the animates through a list of Wonders to save
+ until the user clicks the sign-up button for a Wonder.
+
+ The sign-up form should include:
+ - Name
+ - Age ( Must be 18 or over)
+ - Email
+ - Phone
+ - Number of hours available to volunteer
+
+> appendUser
+Generate a list of 5 or more natural wonders of Earth that face major environmental issues
+
+> nop
+//_END_MAKE_TARGET_INPUT_
+
+
+@time 2025-09-03T20:14:38-04:00
+@tokenUsage 275 / 532 / $0.001614
+@model gpt-4.1-2025-04-14
+@format json
+> assistant
+[
+    {
+        "name": "Great Barrier Reef",
+        "location": "Australia",
+        "filename": "great-barrier-reef",
+        "problem": "Coral bleaching caused by rising sea temperatures, ocean acidification, and pollution threaten the world's largest coral reef system.",
+        "visualDescription": "Vast underwater tapestry of branching corals, vibrant fish, and clear turquoise waters fading to patches of stark white and algae."
+    },
+    {
+        "name": "Amazon Rainforest",
+        "location": "Brazil and surrounding South American countries",
+        "filename": "amazon-rainforest",
+        "problem": "Deforestation from logging, agriculture, and mining destroys habitats and accelerates climate change.",
+        "visualDescription": "Endless emerald canopy interrupted by brown scars of cleared land, smoky haze, and winding rivers."
+    },
+    {
+        "name": "Arctic Ice Cap",
+        "location": "Arctic Circle",
+        "filename": "arctic-ice-cap",
+        "problem": "Rapid ice melt from global warming endangers polar species and causes rising sea levels.",
+        "visualDescription": "Expansive fields of white and blue glacier ice, fragmented into floating sheets, with polar bears on shrinking platforms."
+    },
+    {
+        "name": "The Dead Sea",
+        "location": "Jordan, Israel, Palestine",
+        "filename": "dead-sea",
+        "problem": "Diminishing water levels from water diversion and mineral extraction threaten this unique salt lake.",
+        "visualDescription": "Shoreline encrusted with surreal salt formations, shallow turquoise water rapidly receding from previous boundaries."
+    },
+    {
+        "name": "Galápagos Islands",
+        "location": "Ecuador",
+        "filename": "galapagos-islands",
+        "problem": "Invasive species, overfishing, and tourism impact unique wildlife and fragile ecosystems.",
+        "visualDescription": "Rocky volcanic islands in luminous blue ocean with giant tortoises, blue-footed boobies, and lush foliage."
+    },
+    {
+        "name": "Sundarbans Mangrove Forest",
+        "location": "India and Bangladesh",
+        "filename": "sundarbans-mangrove-forest",
+        "problem": "Sea level rise, pollution, and deforestation threaten the world’s largest mangrove forest and its endangered Bengal tigers.",
+        "visualDescription": "Labyrinth of green mangroves interlaced by muddy waterways, partly submerged roots, and elusive tiger paw prints."
+    }
+]

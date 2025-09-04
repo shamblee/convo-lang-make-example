@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Great Barrier Reef",
+        "location": "Australia",
+        "filename": "great-barrier-reef",
+        "problem": "Coral bleaching caused by rising sea temperatures, ocean acidification, and pollution threaten the world's largest coral reef system.",
+        "visualDescription": "Vast underwater tapestry of branching corals, vibrant fish, and clear turquoise waters fading to patches of stark white and algae."
+    },
+    {
+        "name": "Amazon Rainforest",
+        "location": "Brazil and surrounding South American countries",
+        "filename": "amazon-rainforest",
+        "problem": "Deforestation from logging, agriculture, and mining destroys habitats and accelerates climate change.",
+        "visualDescription": "Endless emerald canopy interrupted by brown scars of cleared land, smoky haze, and winding rivers."
+    },
+    {
+        "name": "Arctic Ice Cap",
+        "location": "Arctic Circle",
+        "filename": "arctic-ice-cap",
+        "problem": "Rapid ice melt from global warming endangers polar species and causes rising sea levels.",
+        "visualDescription": "Expansive fields of white and blue glacier ice, fragmented into floating sheets, with polar bears on shrinking platforms."
+    },
+    {
+        "name": "The Dead Sea",
+        "location": "Jordan, Israel, Palestine",
+        "filename": "dead-sea",
+        "problem": "Diminishing water levels from water diversion and mineral extraction threaten this unique salt lake.",
+        "visualDescription": "Shoreline encrusted with surreal salt formations, shallow turquoise water rapidly receding from previous boundaries."
+    },
+    {
+        "name": "Galápagos Islands",
+        "location": "Ecuador",
+        "filename": "galapagos-islands",
+        "problem": "Invasive species, overfishing, and tourism impact unique wildlife and fragile ecosystems.",
+        "visualDescription": "Rocky volcanic islands in luminous blue ocean with giant tortoises, blue-footed boobies, and lush foliage."
+    },
+    {
+        "name": "Sundarbans Mangrove Forest",
+        "location": "India and Bangladesh",
+        "filename": "sundarbans-mangrove-forest",
+        "problem": "Sea level rise, pollution, and deforestation threaten the world’s largest mangrove forest and its endangered Bengal tigers.",
+        "visualDescription": "Labyrinth of green mangroves interlaced by muddy waterways, partly submerged roots, and elusive tiger paw prints."
+    }
+]

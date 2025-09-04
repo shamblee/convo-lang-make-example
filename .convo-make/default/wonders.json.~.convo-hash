@@ -1,0 +1,6 @@
+[in]
+?hash-props:[{"outType":"array(struct(\n    name: string\n    location: string\n    # A URL friendly filename. DO NOT include a file extension.\n    filename: string\n    # The problem that needs to be solved\n    problem: string\n    visualDescription: string\n))"}]
+app.md:YSkJ2nRFBQuqVI7m7AfY67eTax4VqSspdYGL6BSeRbA
+:mWvg6IpvIiN2mS7TekWW9iJ6lH8hXqmE070rXD3xxiM
+[out]
+wonders.json:8pwFKXxWUK4yYImxoKZkTU--zrxlFqmo7xyYZzVlj68
