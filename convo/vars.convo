@@ -1,7 +1,7 @@
 > define
-appName="Beach Rescue"
-shortDescription="The app lets users create and register to participate in beach clean up events."
+appName="Orator"
+shortDescription="The app lets ecommerce brands manage and organize marketing contacts; build email, sms and push notification messaging; and create automated campaign and transactional sequences."
 appTheme=
 ===
-
+Clean, modern design that offers users a light and dark mode to toggle between. Most elements and components should be flat. Use elevation for selected states, popovers, toolbars and other elements denoted as floating. Use modern software UI design principles and best practices, while maintaining a minimalist aesthetic. Use hover-state tooltips for icon-buttons where ever appropriate to emphasize minimalism while maintaining usability and accessibility standards. 
 ===

@@ -6,8 +6,8 @@
 __model='gpt-5'
 
 > user
-You are creating a next JS page based on context.
+You are creating a next JS application based on context.
 
-Use a tailwinds for styling.
+Use tailwinds for styling.
 
 App Theme: {{appTheme}}
