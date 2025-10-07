@@ -25,12 +25,7 @@ out: 'docs/pages.json'
 model: 'gpt-5'
 outListType: Page
 ---
-Generate a list of pages.
-Include:
-- landing page (index)
-- event creation page
-
-DO NOT include any other pages
+Generate a list of pages based on sections and subsections described.
 ---
 
 
